@@ -1627,9 +1627,13 @@ footer.site-footer {
   }
 
   .contact-bird {
-    /* Card padding shrinks at this breakpoint (--space-6, 32px) —
-       the desktop overlap (44px) would cut into the heading text. */
-    bottom: calc(var(--sheet-panel-height, 260px) - 22px);
+    /* Card padding shrinks at this breakpoint (--space-6, 32px), so
+       the desktop overlap (44px) would cut into the heading text —
+       but 22px turned out too conservative in the other direction:
+       measured against the real rendered heading position (not
+       guessed), there was still ~10px of unused clearance at 22px.
+       30px uses nearly all of it while staying just clear. */
+    bottom: calc(var(--sheet-panel-height, 260px) - 30px);
   }
 
   .contact-copyright {
@@ -1667,9 +1671,11 @@ footer.site-footer {
 
   .contact-bird {
     width: clamp(48px, 7vw, 70px);
-    /* Card padding shrinks at this breakpoint (--space-5, 24px) —
-       the desktop overlap (44px) would cut into the heading text. */
-    bottom: calc(var(--sheet-panel-height, 220px) - 18px);
+    /* Card padding shrinks at this breakpoint (--space-5, 24px), so
+       the desktop overlap (44px) would cut into the heading text —
+       measured against the real rendered heading position, 18px left
+       ~6px of unused clearance; 22px uses most of it. */
+    bottom: calc(var(--sheet-panel-height, 220px) - 22px);
   }
 }
 
