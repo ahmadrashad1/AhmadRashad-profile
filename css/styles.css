@@ -461,6 +461,45 @@ p {
   }
 }
 
+/* Mobile portrait: the centered hero content leaves almost no side
+   margin on a narrow phone (buttons/tagline span nearly full width),
+   but the compact-mode adaptations (shrunk avatar, dropped tagline)
+   leave ~160-175px of empty vertical space above and below the whole
+   stack. Two icons live there instead of four — sparkle + code alone
+   summarize "AI" and "full-stack"; terminal/db are dropped rather than
+   crammed in, the same instinct that drops .hero-tagline on short
+   viewports. Landscape phones (wide, short) are excluded: they have
+   side margin instead of top/bottom slack, the opposite shape, and
+   aren't handled here. */
+@media (max-width: 600px) and (min-height: 600px) {
+  .icon-field {
+    display: block;
+  }
+
+  .icon-terminal,
+  .icon-db {
+    display: none;
+  }
+
+  .floating-icon {
+    width: clamp(36px, 10vw, 44px);
+  }
+
+  .icon-sparkle {
+    top: 4%;
+    right: 8%;
+    bottom: auto;
+    left: auto;
+  }
+
+  .icon-code {
+    bottom: 4%;
+    left: 8%;
+    top: auto;
+    right: auto;
+  }
+}
+
 /* ============================================================
    Header (work page)
    ============================================================ */
