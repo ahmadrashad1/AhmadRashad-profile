@@ -1001,15 +1001,36 @@ footer.site-footer {
   padding-top: var(--space-4);
 }
 
-.featured-project-grid {
+/* Each project's slideshow + info live inside a <dialog class="project-sheet">
+   instead of a plain div, so the same markup can serve two very different
+   roles: on desktop it's just shown via the `open` attribute (a dialog
+   opened this way — as opposed to showModal() — is an ordinary in-flow
+   block with no backdrop or top-layer promotion, so it renders exactly
+   like the old plain div always did). Below the mobile breakpoint it
+   starts closed instead, and a .project-preview button opens it as a
+   true modal bottom sheet via showModal(). The :modal pseudo-class is
+   what tells the two states apart — a dialog only matches :modal when
+   shown via showModal(), never via the open attribute alone. */
+.project-sheet[open]:not(:modal) {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-6);
   align-items: center;
+  position: static;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  transform: none;
 }
 
 @media (min-width: 860px) {
-  .featured-project-grid {
+  .project-sheet[open]:not(:modal) {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-9);
   }
@@ -1023,6 +1044,120 @@ footer.site-footer {
 
   .featured-project.media-right .project-info {
     order: 1;
+  }
+}
+
+/* --- Mobile: collapsed trigger (heading + first image only) --- */
+.project-preview {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow:
+    9px 9px 22px var(--clay-dark),
+    -9px -9px 22px var(--clay-light);
+  text-align: left;
+  transition: transform var(--dur-fast) var(--ease-out-quart);
+}
+
+.project-preview:active {
+  transform: scale(0.98);
+}
+
+.project-preview-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.project-preview-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--ink);
+}
+
+.project-preview-expand {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+/* --- Mobile: the same dialog, opened as a true modal bottom sheet --- */
+.project-sheet-close {
+  display: none;
+}
+
+.project-sheet:modal {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: auto 0 0 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  max-height: min(88vh, 720px);
+  overflow-y: auto;
+  padding: var(--space-6) var(--space-5) var(--space-6);
+  border: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--surface);
+  box-shadow:
+    0 -18px 40px var(--clay-dark),
+    0 -3px 10px var(--clay-dark-soft);
+  gap: var(--space-4);
+  color: var(--ink);
+  transform: translateY(0);
+  transition:
+    transform 380ms var(--ease-out-quint),
+    overlay 380ms allow-discrete,
+    display 380ms allow-discrete;
+}
+
+@starting-style {
+  .project-sheet:modal {
+    transform: translateY(100%);
+  }
+}
+
+.project-sheet:modal::backdrop {
+  background: oklch(0.22 0.03 152 / 0.45);
+  opacity: 1;
+  transition: opacity 380ms var(--ease-out-quint), overlay 380ms allow-discrete, display 380ms allow-discrete;
+}
+
+@starting-style {
+  .project-sheet:modal::backdrop {
+    opacity: 0;
+  }
+}
+
+.project-sheet:modal .project-sheet-close {
+  display: inline-flex;
+}
+
+@media (max-width: 640px) {
+  .project-preview {
+    display: flex;
+  }
+
+  /* Safety net for the instant before JS runs: the dialog ships with
+     a static `open` attribute in the HTML (so desktop never has to
+     wait on JS to reveal content — see js/main.js), which would
+     otherwise flash the full desktop layout on a phone for a beat
+     before JS closes it. */
+  .project-sheet[open]:not(:modal) {
+    display: none;
   }
 }
 

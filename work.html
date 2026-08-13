@@ -59,138 +59,177 @@
 
     <!-- ============ Featured project 1 — AI Finance Assistant (media left) ============ -->
     <section class="featured-project" aria-labelledby="proj-ai-finance">
-      <div class="container featured-project-grid">
-        <div class="project-media">
-          <div class="project-slideshow" data-autoplay="2000">
-            <a class="slideshow-track" href="http://13.62.154.187:3000/" target="_blank" rel="noopener noreferrer" aria-label="Open the live AI Finance Assistant demo">
-              <figure class="slide is-active">
-                <img src="assets/img/projects/ai-finance/image1.png" alt="AI Finance Assistant home screen reading “Good evening. The books are open.” with quick-action prompts like Who hasn't paid us?" loading="lazy" width="1905" height="1033" />
-              </figure>
-              <figure class="slide">
-                <img src="assets/img/projects/ai-finance/image2.png" alt="Suggested question library grouped by accounts-receivable topic — unpaid invoices, searching invoices, overdue invoices" loading="lazy" width="1893" height="1025" />
-              </figure>
-              <figure class="slide">
-                <img src="assets/img/projects/ai-finance/image3.png" alt="Chat result showing an unpaid-invoices table generated from the question “What invoices haven't been paid yet?”" loading="lazy" width="1917" height="1085" />
-              </figure>
-              <span class="slideshow-visit-hint" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-                View Live
-              </span>
+      <div class="container">
+        <button class="project-preview" type="button" aria-haspopup="dialog" data-sheet-target="sheet-ai-finance">
+          <img class="project-preview-img" src="assets/img/projects/ai-finance/image1.png" alt="" loading="lazy" width="1905" height="1033" />
+          <span class="project-preview-name">
+            AI Finance Assistant
+            <svg class="project-preview-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+
+        <dialog class="project-sheet featured-project-grid" id="sheet-ai-finance" aria-labelledby="proj-ai-finance" open>
+          <button class="sheet-close project-sheet-close icon-btn" type="button" aria-label="Close project details">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+          <div class="project-media">
+            <div class="project-slideshow" data-autoplay="2000">
+              <a class="slideshow-track" href="http://13.62.154.187:3000/" target="_blank" rel="noopener noreferrer" aria-label="Open the live AI Finance Assistant demo">
+                <figure class="slide is-active">
+                  <img src="assets/img/projects/ai-finance/image1.png" alt="AI Finance Assistant home screen reading “Good evening. The books are open.” with quick-action prompts like Who hasn't paid us?" loading="lazy" width="1905" height="1033" />
+                </figure>
+                <figure class="slide">
+                  <img src="assets/img/projects/ai-finance/image2.png" alt="Suggested question library grouped by accounts-receivable topic — unpaid invoices, searching invoices, overdue invoices" loading="lazy" width="1893" height="1025" />
+                </figure>
+                <figure class="slide">
+                  <img src="assets/img/projects/ai-finance/image3.png" alt="Chat result showing an unpaid-invoices table generated from the question “What invoices haven't been paid yet?”" loading="lazy" width="1917" height="1085" />
+                </figure>
+                <span class="slideshow-visit-hint" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+                  View Live
+                </span>
+              </a>
+              <div class="slideshow-dots" role="tablist" aria-label="AI Finance Assistant screenshots"></div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-name" id="proj-ai-finance">AI Finance Assistant</h2>
+            <p class="project-desc">
+              A conversational assistant for finance teams. Ask a plain-English question like "who hasn't paid us?" and get back a real answer, not a search results page: an aging report, a duplicate-invoice check, an outstanding balance by customer. Wrapped in a quiet, editorial interface that reads more like a memo than a dashboard.
+            </p>
+            <ul class="project-tags">
+              <li class="project-tag">Conversational AI</li>
+              <li class="project-tag">Financial Reporting</li>
+              <li class="project-tag">Natural Language Queries</li>
+            </ul>
+            <div class="demo-credentials">
+              <p class="demo-credentials-label">Demo login</p>
+              <div class="credential">
+                <span class="credential-label">Username</span>
+                <code class="credential-value">admin</code>
+                <button class="credential-copy" type="button" data-copy="admin" aria-label="Copy username">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span class="copy-tip" role="status">Copied!</span>
+                </button>
+              </div>
+              <div class="credential">
+                <span class="credential-label">Password</span>
+                <code class="credential-value">QJZXHnWafYFUh3Rrn3eh</code>
+                <button class="credential-copy" type="button" data-copy="QJZXHnWafYFUh3Rrn3eh" aria-label="Copy password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span class="copy-tip" role="status">Copied!</span>
+                </button>
+              </div>
+            </div>
+            <a class="btn btn-secondary" href="http://13.62.154.187:3000/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+              View Live
             </a>
-            <div class="slideshow-dots" role="tablist" aria-label="AI Finance Assistant screenshots"></div>
           </div>
-        </div>
-        <div class="project-info">
-          <h2 class="project-name" id="proj-ai-finance">AI Finance Assistant</h2>
-          <p class="project-desc">
-            A conversational assistant for finance teams. Ask a plain-English question like "who hasn't paid us?" and get back a real answer, not a search results page: an aging report, a duplicate-invoice check, an outstanding balance by customer. Wrapped in a quiet, editorial interface that reads more like a memo than a dashboard.
-          </p>
-          <ul class="project-tags">
-            <li class="project-tag">Conversational AI</li>
-            <li class="project-tag">Financial Reporting</li>
-            <li class="project-tag">Natural Language Queries</li>
-          </ul>
-          <div class="demo-credentials">
-            <p class="demo-credentials-label">Demo login</p>
-            <div class="credential">
-              <span class="credential-label">Username</span>
-              <code class="credential-value">admin</code>
-              <button class="credential-copy" type="button" data-copy="admin" aria-label="Copy username">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <span class="copy-tip" role="status">Copied!</span>
-              </button>
-            </div>
-            <div class="credential">
-              <span class="credential-label">Password</span>
-              <code class="credential-value">QJZXHnWafYFUh3Rrn3eh</code>
-              <button class="credential-copy" type="button" data-copy="QJZXHnWafYFUh3Rrn3eh" aria-label="Copy password">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <span class="copy-tip" role="status">Copied!</span>
-              </button>
-            </div>
-          </div>
-          <a class="btn btn-secondary" href="http://13.62.154.187:3000/" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            View Live
-          </a>
-        </div>
+        </dialog>
       </div>
     </section>
 
     <!-- ============ Featured project 2 — Customer Support LLM (media right) ============ -->
     <section class="featured-project media-right" aria-labelledby="proj-support">
-      <div class="container featured-project-grid">
-        <div class="project-media">
-          <div class="project-slideshow" data-autoplay="2000">
-            <a class="slideshow-track" href="https://huggingface-model.duckdns.org/" target="_blank" rel="noopener noreferrer" aria-label="Open the live Customer Support AI demo">
-              <figure class="slide is-active">
-                <img src="assets/img/projects/customer-support-llm/image1.png" alt="Customer Support AI landing screen: “Draft support replies with a fine-tuned language model,” with model status and telemetry counters" loading="lazy" width="1869" height="1021" />
-              </figure>
-              <figure class="slide">
-                <img src="assets/img/projects/customer-support-llm/image2.png" alt="A generated reply to a customer message about a late package, with live telemetry showing successful replies and average latency" loading="lazy" width="1875" height="1022" />
-              </figure>
-              <span class="slideshow-visit-hint" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-                View Live
-              </span>
-            </a>
-            <div class="slideshow-dots" role="tablist" aria-label="Customer Support AI screenshots"></div>
+      <div class="container">
+        <button class="project-preview" type="button" aria-haspopup="dialog" data-sheet-target="sheet-support">
+          <img class="project-preview-img" src="assets/img/projects/customer-support-llm/image1.png" alt="" loading="lazy" width="1869" height="1021" />
+          <span class="project-preview-name">
+            Customer Support AI
+            <svg class="project-preview-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+
+        <dialog class="project-sheet featured-project-grid" id="sheet-support" aria-labelledby="proj-support" open>
+          <button class="sheet-close project-sheet-close icon-btn" type="button" aria-label="Close project details">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+          <div class="project-media">
+            <div class="project-slideshow" data-autoplay="2000">
+              <a class="slideshow-track" href="https://huggingface-model.duckdns.org/" target="_blank" rel="noopener noreferrer" aria-label="Open the live Customer Support AI demo">
+                <figure class="slide is-active">
+                  <img src="assets/img/projects/customer-support-llm/image1.png" alt="Customer Support AI landing screen: “Draft support replies with a fine-tuned language model,” with model status and telemetry counters" loading="lazy" width="1869" height="1021" />
+                </figure>
+                <figure class="slide">
+                  <img src="assets/img/projects/customer-support-llm/image2.png" alt="A generated reply to a customer message about a late package, with live telemetry showing successful replies and average latency" loading="lazy" width="1875" height="1022" />
+                </figure>
+                <span class="slideshow-visit-hint" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+                  View Live
+                </span>
+              </a>
+              <div class="slideshow-dots" role="tablist" aria-label="Customer Support AI screenshots"></div>
+            </div>
           </div>
-        </div>
-        <div class="project-info">
-          <h2 class="project-name" id="proj-support">Customer Support AI<span class="project-name-sub">Fine-Tuned Support LLM</span></h2>
-          <p class="project-desc">
-            A LoRA adapter fine-tuned on top of Qwen2.5-0.5B-Instruct, trained to draft grounded customer support replies from a single message. Served through a FastAPI backend with live telemetry (request counts, average latency, model status) surfaced right in the UI, not buried in a log file.
-          </p>
-          <ul class="project-tags">
-            <li class="project-tag">LoRA Fine-Tuning</li>
-            <li class="project-tag">Qwen2.5</li>
-            <li class="project-tag">FastAPI</li>
-            <li class="project-tag">Live Telemetry</li>
-          </ul>
-          <a class="btn btn-secondary" href="https://huggingface-model.duckdns.org/" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            View Live
-          </a>
-        </div>
+          <div class="project-info">
+            <h2 class="project-name" id="proj-support">Customer Support AI<span class="project-name-sub">Fine-Tuned Support LLM</span></h2>
+            <p class="project-desc">
+              A LoRA adapter fine-tuned on top of Qwen2.5-0.5B-Instruct, trained to draft grounded customer support replies from a single message. Served through a FastAPI backend with live telemetry (request counts, average latency, model status) surfaced right in the UI, not buried in a log file.
+            </p>
+            <ul class="project-tags">
+              <li class="project-tag">LoRA Fine-Tuning</li>
+              <li class="project-tag">Qwen2.5</li>
+              <li class="project-tag">FastAPI</li>
+              <li class="project-tag">Live Telemetry</li>
+            </ul>
+            <a class="btn btn-secondary" href="https://huggingface-model.duckdns.org/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+              View Live
+            </a>
+          </div>
+        </dialog>
       </div>
     </section>
 
     <!-- ============ Featured project 3 — ParhaiPartner (media left) ============ -->
     <section class="featured-project" aria-labelledby="proj-parhai">
-      <div class="container featured-project-grid">
-        <div class="project-media">
-          <div class="project-slideshow" data-autoplay="2000">
-            <a class="slideshow-track" href="https://parhaipartner.duckdns.org/" target="_blank" rel="noopener noreferrer" aria-label="Open the live ParhaiPartner demo">
-              <figure class="slide is-active">
-                <img src="assets/img/projects/parhai-partner/image1.png" alt="ParhaiPartner dashboard: current study plan, course progress, weekly schedule, and a university merit aggregate calculator" loading="lazy" width="1897" height="1027" />
-              </figure>
-              <figure class="slide">
-                <img src="assets/img/projects/parhai-partner/image2.png" alt="ParhaiPartner Analytics Hub with a syllabus performance timeline and an admissions-readiness map matching target universities" loading="lazy" width="1911" height="1020" />
-              </figure>
-              <span class="slideshow-visit-hint" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-                View Live
-              </span>
-            </a>
-            <div class="slideshow-dots" role="tablist" aria-label="ParhaiPartner screenshots"></div>
+      <div class="container">
+        <button class="project-preview" type="button" aria-haspopup="dialog" data-sheet-target="sheet-parhai">
+          <img class="project-preview-img" src="assets/img/projects/parhai-partner/image1.png" alt="" loading="lazy" width="1897" height="1027" />
+          <span class="project-preview-name">
+            ParhaiPartner
+            <svg class="project-preview-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+
+        <dialog class="project-sheet featured-project-grid" id="sheet-parhai" aria-labelledby="proj-parhai" open>
+          <button class="sheet-close project-sheet-close icon-btn" type="button" aria-label="Close project details">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+          <div class="project-media">
+            <div class="project-slideshow" data-autoplay="2000">
+              <a class="slideshow-track" href="https://parhaipartner.duckdns.org/" target="_blank" rel="noopener noreferrer" aria-label="Open the live ParhaiPartner demo">
+                <figure class="slide is-active">
+                  <img src="assets/img/projects/parhai-partner/image1.png" alt="ParhaiPartner dashboard: current study plan, course progress, weekly schedule, and a university merit aggregate calculator" loading="lazy" width="1897" height="1027" />
+                </figure>
+                <figure class="slide">
+                  <img src="assets/img/projects/parhai-partner/image2.png" alt="ParhaiPartner Analytics Hub with a syllabus performance timeline and an admissions-readiness map matching target universities" loading="lazy" width="1911" height="1020" />
+                </figure>
+                <span class="slideshow-visit-hint" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+                  View Live
+                </span>
+              </a>
+              <div class="slideshow-dots" role="tablist" aria-label="ParhaiPartner screenshots"></div>
+            </div>
           </div>
-        </div>
-        <div class="project-info">
-          <h2 class="project-name" id="proj-parhai">ParhaiPartner<span class="project-name-sub">Study Companion for Admissions Prep</span></h2>
-          <p class="project-desc">
-            A study companion for students prepping for Pakistani university admissions — NUST, GIKI, FAST, and more. Tracks course progress and weekly schedules, predicts a merit aggregate against target universities, and surfaces an admissions-readiness map so students know exactly where they stand before test day.
-          </p>
-          <ul class="project-tags">
-            <li class="project-tag">Study Planning</li>
-            <li class="project-tag">Analytics Dashboard</li>
-            <li class="project-tag">University Matching</li>
-          </ul>
-          <a class="btn btn-secondary" href="https://parhaipartner.duckdns.org/" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            View Live
-          </a>
-        </div>
+          <div class="project-info">
+            <h2 class="project-name" id="proj-parhai">ParhaiPartner<span class="project-name-sub">Study Companion for Admissions Prep</span></h2>
+            <p class="project-desc">
+              A study companion for students prepping for Pakistani university admissions — NUST, GIKI, FAST, and more. Tracks course progress and weekly schedules, predicts a merit aggregate against target universities, and surfaces an admissions-readiness map so students know exactly where they stand before test day.
+            </p>
+            <ul class="project-tags">
+              <li class="project-tag">Study Planning</li>
+              <li class="project-tag">Analytics Dashboard</li>
+              <li class="project-tag">University Matching</li>
+            </ul>
+            <a class="btn btn-secondary" href="https://parhaipartner.duckdns.org/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+              View Live
+            </a>
+          </div>
+        </dialog>
       </div>
     </section>
 

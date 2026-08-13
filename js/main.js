@@ -73,6 +73,55 @@
   }
 
   /* ---------------------------------------------------------
+     Project sheets (work.html) — each featured project's slideshow
+     + details live in one <dialog class="project-sheet">, shipped
+     with a static `open` attribute so desktop never waits on JS to
+     show content (it's just an ordinary in-flow block until shown
+     modally — see the CSS :not(:modal) rules). Below the mobile
+     breakpoint this closes instead, and a .project-preview button
+     (heading + first image only) opens the same dialog as a true
+     modal bottom sheet via showModal(). A matchMedia listener keeps
+     both states in sync if the viewport crosses the breakpoint
+     live (resize, rotation), rather than only checking once on load.
+     --------------------------------------------------------- */
+  const projectSheets = [...document.querySelectorAll(".project-sheet")];
+
+  if (projectSheets.length) {
+    const mobileQuery = window.matchMedia("(max-width: 640px)");
+
+    function syncProjectSheets(isMobile) {
+      projectSheets.forEach((sheet) => {
+        if (isMobile) {
+          if (sheet.open) sheet.close();
+        } else {
+          if (sheet.matches(":modal")) sheet.close();
+          if (!sheet.open) sheet.show();
+        }
+      });
+    }
+
+    syncProjectSheets(mobileQuery.matches);
+    mobileQuery.addEventListener("change", (event) => syncProjectSheets(event.matches));
+
+    document.querySelectorAll(".project-preview").forEach((trigger) => {
+      const sheet = document.getElementById(trigger.dataset.sheetTarget);
+      if (!sheet) return;
+      trigger.addEventListener("click", () => {
+        if (!sheet.open) sheet.showModal();
+      });
+    });
+
+    projectSheets.forEach((sheet) => {
+      const closeBtn = sheet.querySelector(".project-sheet-close");
+      if (closeBtn) closeBtn.addEventListener("click", () => sheet.close());
+
+      sheet.addEventListener("click", (event) => {
+        if (event.target === sheet) sheet.close();
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------
      Copy-to-clipboard — any button with data-copy="value"
      (email address, demo username/password, etc).
      --------------------------------------------------------- */
