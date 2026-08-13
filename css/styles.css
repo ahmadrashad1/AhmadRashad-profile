@@ -1144,6 +1144,12 @@ footer.site-footer {
 
 .project-sheet:modal .project-sheet-close {
   display: inline-flex;
+  /* .slideshow-visit-hint/.slideshow-dots inside .project-media carry
+     their own z-index (up to 3) and share this same stacking context
+     (nothing between them and the close button creates a new one), so
+     without an explicit value here they paint over the close button
+     despite coming first in DOM order. */
+  z-index: 4;
 }
 
 @media (max-width: 640px) {
