@@ -83,6 +83,13 @@
 html {
   color-scheme: only light;
   -webkit-text-size-adjust: 100%;
+  /* Kills the default translucent blue "tap highlight" WebKit/Chrome
+     draw over any tappable element on touch input (never shows on a
+     mouse, which is why it's invisible on desktop) — every button
+     here already has its own :active press animation as the real
+     tactile feedback, so the default highlight is just noise on top
+     of it. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body,
