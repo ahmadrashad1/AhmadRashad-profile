@@ -385,6 +385,83 @@ p {
 }
 
 /* ============================================================
+   Decorative floating icons (full-stack + AI motifs)
+   Sit at the same depth as the blobs (behind hero content), but
+   crisp and opaque rather than blurred — a nearer "layer" on the
+   desk scene. Hidden below a roomy desktop size: like .work-bird,
+   there's no usable margin to float them in once the layout tightens.
+   ============================================================ */
+.icon-field {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-blob);
+  pointer-events: none;
+}
+
+.floating-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(46px, 4vw, 60px);
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow:
+    5px 5px 12px var(--clay-dark),
+    -4px -4px 10px var(--clay-light);
+  animation: float 8s ease-in-out infinite;
+}
+
+.floating-icon svg {
+  width: 46%;
+  height: 46%;
+}
+
+.icon-code {
+  top: 15%;
+  right: 13%;
+  color: var(--primary-ink);
+  animation-duration: 9s;
+  animation-delay: -1s;
+}
+
+.icon-terminal {
+  top: 52%;
+  right: 7%;
+  color: var(--accent-ink);
+  animation-duration: 7.5s;
+  animation-delay: -4s;
+}
+
+.icon-sparkle {
+  bottom: 17%;
+  left: 16%;
+  background: var(--accent);
+  color: var(--white);
+  box-shadow:
+    5px 5px 12px var(--clay-dark),
+    -4px -4px 10px var(--clay-light),
+    inset 0 1px 0 oklch(1 0 0 / 0.3);
+  animation-duration: 8.5s;
+  animation-delay: -2.5s;
+}
+
+.icon-db {
+  top: 33%;
+  left: 22%;
+  color: var(--primary-ink);
+  animation-duration: 10s;
+  animation-delay: -5.5s;
+}
+
+@media (max-width: 1439px), (max-height: 760px) {
+  .icon-field {
+    display: none;
+  }
+}
+
+/* ============================================================
    Header (work page)
    ============================================================ */
 .site-header {
