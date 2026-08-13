@@ -1464,6 +1464,12 @@ footer.site-footer {
   gap: var(--space-5);
 }
 
+.view-all-repos {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-7);
+}
+
 .repo-card {
   padding: var(--space-6);
   display: flex;
