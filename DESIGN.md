@@ -1,0 +1,80 @@
+# Design
+
+## Theme
+
+Light clay. The scene: a sunlit desk scattered with hand-rolled modeling clay — terracotta, sage, warm putty — the kind of soft, matte shapes you want to press with a thumb. Everything reads pillowy: rounded, warm-lit, slightly raised off the page. No dark mode variant; this is a single, committed light environment.
+
+## Color Strategy
+
+Committed. Terracotta is the brand's one saturated color, carrying the primary CTA, the photo-blob frame, and key accents. The sage background is environmental — the "clay tabletop" the whole page sits on — which is why it's tinted rather than pure white; the surface itself is part of the claymorphism identity. Sky-blue is the second brand color for secondary actions, links, and repo-card language dots.
+
+```css
+:root {
+  /* brand */
+  --primary: oklch(0.55 0.185 33.5);       /* terracotta clay, deepened from the raw seed for 5.3:1 white-text contrast */
+  --primary-ink: oklch(0.28 0.09 33.5);    /* deep terracotta, for text-on-light use */
+  --accent: oklch(0.70 0.12 240);          /* periwinkle sky-blue */
+  --accent-ink: oklch(0.30 0.08 240);
+
+  /* surfaces */
+  --bg: oklch(0.94 0.020 152);             /* soft sage clay tabletop */
+  --surface: oklch(0.965 0.014 152);       /* raised clay panels/cards, lighter than bg */
+  --surface-sunken: oklch(0.905 0.024 152);/* pressed/inset clay (active states) */
+
+  /* text */
+  --ink: oklch(0.26 0.02 152);             /* body text, ~9:1 on --bg */
+  --muted: oklch(0.48 0.025 152);          /* secondary text, ~4.6:1 on --bg */
+
+  /* utility */
+  --success: oklch(0.68 0.15 150);
+  --white: oklch(1 0 0);
+}
+```
+
+Text-on-fill: white text on `--primary` and `--accent` (both mid-luminance saturated fills). Dark `--ink`-family text everywhere else.
+
+## Typography
+
+Contrast pair on the geometric/humanist axis:
+
+- **Display** (`h1`–`h3`, nav wordmark, button labels): **Baloo 2** — rounded terminals that echo the clay-blob shapes, used at weight 600–700. This is what makes headings feel "molded" rather than typed.
+- **Body** (paragraphs, nav links, card metadata): **Hanken Grotesk** — humanist grotesque, weights 400–600, keeps long text calm and readable against the rounded display face without leaning on the Inter/Plus-Jakarta-Sans default that's become an AI-UI tell.
+
+Both loaded via Google Fonts. Hero display size clamps at `clamp(2.5rem, 5vw + 1rem, 5.5rem)` (under the 6rem ceiling). `text-wrap: balance` on all headings.
+
+## Components
+
+- **Clay surface** (base primitive): rounded corners (`28px`–`40px` depending on size), dual soft shadow — a light highlight from the top-left and a diffused dark shadow bottom-right, both derived from `--bg`'s hue so shadows never look like generic gray drop-shadows. Pressed/active state swaps to an inset version of the same shadow pair.
+- **Photo blob**: large asymmetric rounded shape (not a plain circle — a soft "squircle" blob) holding the portrait, framed in `--primary`. Responds to pointer position with a subtle `rotateX/rotateY` tilt (max ~8deg) and a shifting highlight, so it reads as genuinely dimensional rather than a flat photo — this is the "3D" read the brief asked for, achieved with real depth cues instead of a literal 3D render.
+- **Buttons**: pill-shaped clay surfaces. Primary ("Contact Me") in `--primary` with white text; secondary ("View My Work") in `--surface` with `--ink` text and a visible clay edge. Press animation: scale to 0.97 + shadow inset, spring-out on release.
+- **Repo card**: clay surface, language-colored dot + name, description (2-line clamp), stars/forks as small pill stats, "View on GitHub" as a text link with an arrow. Hover lifts the whole card (translateY + shadow grows); no side-stripe accents.
+- **Floating decorative blobs**: 2–3 background clay shapes per page, slow idle float animation, `aria-hidden`, pure visual rhythm.
+
+## Layout
+
+- Home (`index.html`): a locked single-viewport screen (`body.single-screen { height: 100dvh; overflow: hidden }`), no page scroll at any tested size (desktop, laptop, tablet, mobile portrait/landscape down to 844×390). The photo blob, name/role/tagline, and CTAs are the only persistent content, centered as one group in `.screen`. A `@media (max-height: 760px)` fallback compacts sizes further and drops the tagline so nothing clips on short viewports. work.html is unaffected and scrolls normally.
+- Contact: not a permanent section. "Contact Me" opens `<dialog class="contact-sheet">` via `showModal()` — a bottom sheet that slides up to roughly the vertical middle of the screen over a dimmed backdrop, holding the "Let's build something." heading, email (with copy button), and GitHub link. Native `<dialog>` renders in the top layer, so it escapes the page's `overflow: hidden` for free, plus gets focus trap, Escape-to-close, and focus-return to the trigger button with no custom JS. Closes via the × button, a backdrop click, or Escape. work.html's header "Contact" link (`index.html#contact`) is preserved by checking `location.hash === '#contact'` on load and calling `showModal()`.
+  - **Structure**: the `<dialog>` itself is a transform-free, full-viewport, transparent wrapper — never give it its own `transform`, or it becomes a containing block for `position: fixed` descendants and traps the bird inside its (moving, often off-screen) coordinate space. All visible card styling and the slide-up transform live on a child `.sheet-panel` instead.
+  - **The bird**: `.contact-bird` is `position: fixed` against the true viewport and flies up independently (own `bird-fly` keyframes) while `.sheet-panel` is still held off-screen (its `sheet-rise` keyframes hold at 36% before rising) — the two are timed to "arrive" together, giving the illusion the bird grabs the top edge and pulls the sheet up the rest of the way. Its landing spot is `bottom: calc(var(--sheet-panel-height) - 44px)`, where `--sheet-panel-height` is set from `main.js` (`sheetPanel.offsetHeight`, measured right after `showModal()`) — the panel's CSS `max-height` is only a ceiling, not its real content height, so guessing that value in CSS alone left the bird stranded well above the sheet on first pass. The `-44px` (rather than a small positive gap) sinks most of the bird's body *into* the card's top edge on purpose — a bird hovering just above the card read as a mascot standing nearby, not as something gripping and pulling it. **This overlap must shrink at breakpoints where `.sheet-panel`'s own top padding shrinks** (`max-width: 640px`: padding drops to `--space-6`/32px, override to `-22px`; `max-height: 760px`: padding drops to `--space-5`/24px, override to `-18px`) or the bird's body clips into the "Let's build something." heading text — caught by direct `getBoundingClientRect()` overlap checks, not visible in a casual screenshot.
+  - **Entrance vs. exit asymmetry**: the fun choreography (bird + two-phase sheet rise) only plays on open, via `animation` scoped to `.contact-sheet[open] .sheet-panel` / `.contact-sheet[open] .contact-bird`. Close reuses the simpler `transition: transform` on `.sheet-panel`'s base (non-`[open]`) rule — animation and transition can safely target the same property because the animation only applies while `[open]` is present. The dialog itself keeps `transition: display allow-discrete, overlay allow-discrete` so closing doesn't yank it out of the top layer before the panel's own closing transition finishes.
+  - **Reduced motion**: `.contact-bird { display: none !important }` — skipped outright rather than left to flash by at the global 0.01ms override.
+- Work page (`work.html`): header + intro, then hand-curated **featured projects** (AI Finance Assistant / Customer Support AI / ParhaiPartner), then a **unified** repo-card grid (`repeat(auto-fit, minmax(280px, 1fr))`) combining Ahmad's own repos and external starred repos into one list — the "Starred" badge + owner line (not a separate section) is what still distinguishes repos that aren't his own work.
+  - **Featured project zigzag**: `.featured-project-grid` is a single-column stack that becomes a 2-column grid at `≥860px`. DOM order is always `[media, description]` so mobile stacking is consistent regardless of desktop side; the `.media-right` modifier class reorders via `order` (`.project-media{order:2}`, `.project-info{order:1}`) scoped to that same breakpoint only, so it never affects the mobile stack.
+  - **Slideshow**: `.slide` elements are absolutely stacked and crossfade via `opacity` (`--dur-slow`); dot navigation is generated in JS from however many `.slide`s exist per project (varies: 2 or 3), not hardcoded. Autoplay interval is `data-autoplay` on `.project-slideshow` (currently `2000`ms). Pauses on hover/focus and when scrolled out of view (`IntersectionObserver`, 25% threshold); `prefers-reduced-motion` disables autoplay entirely but dot clicks still work. Images live in `assets/img/projects/{project}/`, all real product screenshots at ~16:9, so `aspect-ratio:16/9` + `object-fit:cover` crops only a few percent.
+  - **Slideshow is itself a live link**: `.slideshow-track` is an `<a>` (not a `<div>`) wrapping the `.slide` figures, pointing at that project's live URL — clicking anywhere on the image opens it. `.slideshow-dots` stays a *sibling* of `.slideshow-track`, not a descendant, so dot clicks never bubble into the link (no `stopPropagation` needed; they're just unrelated elements at the same level). Hover/focus reveals a `.slideshow-visit-hint` "View Live" badge (top-right) and a subtle `scale(1.035)` zoom on the current slide's image — both driven by `.slideshow-track:hover`/`:focus-visible`, clipped by the slideshow container's existing `overflow:hidden`. `display:block` is required on `.slideshow-track` since `<a>` defaults to inline, which would otherwise break the `width/height:100%` sizing inherited from the old `<div>`.
+  - **Live links**: each featured project's "View Live" button points at its real deployed URL (`target="_blank"`); note `http://13.62.154.187:3000/` (AI Finance Assistant) is plain HTTP, not a typo — that's the actual deployment.
+  - **Demo credentials**: AI Finance Assistant ships a public demo login (`.demo-credentials`, `.credential-value` in a monospace font for unambiguous character reading) with copy buttons, intentionally plaintext — the whole point is letting visitors log into the live sandboxed demo, so hiding it behind a reveal toggle would only add friction with no security upside.
+  - **Scroll-following bird**: `.work-bird` (`≥1440px` only — below that there's no usable left margin, enforced in CSS as a hard fallback even if JS runs) reuses the contact-sheet bird's SVG. Position is one continuous, monotonic mapping of scroll progress through the *whole* featured-projects region (project-1-top-enters-viewport → last-project-bottom-leaves-viewport) to a `12vh–88vh` travel range — deliberately not per-project anchoring: an earlier version snapped to 50vh at each project's center, which (a) meant the "in-between" motion had to be faked with a sine swoop since two identical 50vh endpoints have no natural path between them, and (b) read as jumping between fixed points rather than moving with the scroll. The direct proportional mapping fixes both. Wing-flap duration (`--flap-duration` custom property, read by the `wing-flap-left/right` keyframes) tracks scroll velocity each rAF tick — `IDLE_FLAP_MS` (420) down to `FAST_FLAP_MS` (90) — and eases back to idle 200ms after scrolling stops (`setTimeout`, reset on every tick). Fades out (opacity transition) more than `0.3×viewportHeight` past either end of the zone. Scroll listener is rAF-throttled (`ticking` flag), not recalculated per scroll event.
+
+## Motion
+
+- Blob float: `translateY` ±8px, 6–8s ease-in-out loop, staggered per shape.
+- Photo tilt: pointer-driven, spring-damped, resets to neutral on pointer leave.
+- Card reveal: staggered fade+rise on scroll into view (each card's own trigger, not one uniform page-load sweep).
+- Button press: scale + inset shadow, ease-out-quart, ~150ms.
+- All motion has a `prefers-reduced-motion: reduce` fallback (crossfade or instant, no float/tilt).
+
+## Assets
+
+- Hero avatar: `assets/img/avatar.svg` — a hand-built vector illustration in the clay-toy style, standing in for a rendered 3D avatar since no image-generation tool is available in this environment. Tuned against the reference photo for recognizability: voluminous dark tousled hair, thick close-set eyebrows, rectangular amber glasses, warm olive-tan skin, light stubble, charcoal blazer with an open white collar. Source photo (`assets/img/portrait.jpg`) is kept in the project for reference but not currently referenced by either page.
+- Starred repos: fetched from `api.github.com/users/ahmadrashad1/starred`, baked into a static JSON at build/edit time (no client-side GitHub API calls, avoids rate-limit/CORS issues for a static host).

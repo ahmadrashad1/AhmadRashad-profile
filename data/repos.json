@@ -1,0 +1,119 @@
+{
+  "own": [
+    {
+      "name": "3D-coffee-website-forked",
+      "description": "A 3D coffee shop website, forked and customized end to end.",
+      "url": "https://github.com/ahmadrashad1/3D-coffee-website-forked",
+      "homepage": "https://3-d-coffee-website-forked.vercel.app",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "forks": 0
+    },
+    {
+      "name": "vehicle-tracking-3.0-ui",
+      "description": "Frontend UI for a real-time vehicle tracking platform.",
+      "url": "https://github.com/ahmadrashad1/vehicle-tracking-3.0-ui",
+      "homepage": null,
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "forks": 0
+    },
+    {
+      "name": "Vehice-Tracking-System-Backend",
+      "description": "Backend API powering the vehicle tracking system.",
+      "url": "https://github.com/ahmadrashad1/Vehice-Tracking-System-Backend",
+      "homepage": null,
+      "language": "Java",
+      "languageColor": "#b07219",
+      "stars": 1,
+      "forks": 0
+    },
+    {
+      "name": "Factory-Dashboard",
+      "description": "Dashboard for monitoring factory operations in real time.",
+      "url": "https://github.com/ahmadrashad1/Factory-Dashboard",
+      "homepage": null,
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "forks": 0
+    },
+    {
+      "name": "document-reviewer-automation",
+      "description": "Automates repetitive parts of the document review workflow.",
+      "url": "https://github.com/ahmadrashad1/document-reviewer-automation",
+      "homepage": "https://document-reviewer-automation.vercel.app",
+      "language": "JavaScript",
+      "languageColor": "#f1e05a",
+      "stars": 1,
+      "forks": 0
+    },
+    {
+      "name": "devops-automation",
+      "description": "Scripts and tooling for streamlining DevOps workflows.",
+      "url": "https://github.com/ahmadrashad1/devops-automation",
+      "homepage": null,
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "forks": 0
+    },
+    {
+      "name": "SportSync-frontend",
+      "description": "The frontend for the SportSync website.",
+      "url": "https://github.com/ahmadrashad1/SportSync-frontend",
+      "homepage": null,
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "forks": 0
+    },
+    {
+      "name": "GASR--Research",
+      "description": "Research notebooks and experiments.",
+      "url": "https://github.com/ahmadrashad1/GASR--Research",
+      "homepage": null,
+      "language": "Jupyter Notebook",
+      "languageColor": "#DA5B0B",
+      "stars": 1,
+      "forks": 0
+    }
+  ],
+  "starred": [
+    {
+      "name": "ECC",
+      "owner": "affaan-m",
+      "description": "The agent harness performance optimization system — skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "url": "https://github.com/affaan-m/ECC",
+      "homepage": "https://ecc.tools",
+      "language": "JavaScript",
+      "languageColor": "#f1e05a",
+      "stars": 239613,
+      "forks": 36370
+    },
+    {
+      "name": "developer-roadmap",
+      "owner": "nilbuild",
+      "description": "Interactive roadmaps, guides and other educational content to help developers grow in their careers.",
+      "url": "https://github.com/nilbuild/developer-roadmap",
+      "homepage": "https://roadmap.sh",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 364216,
+      "forks": 44768
+    },
+    {
+      "name": "firn",
+      "owner": "Arqamz",
+      "description": "An ever-evolving NixOS flake for use across all systems.",
+      "url": "https://github.com/Arqamz/firn",
+      "homepage": null,
+      "language": "Nix",
+      "languageColor": "#7e7eff",
+      "stars": 6,
+      "forks": 0
+    }
+  ]
+}

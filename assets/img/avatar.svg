@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" role="img" aria-label="Cartoon 3D-style illustration of Ahmad Rashad">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EAF3EA" />
+      <stop offset="1" stop-color="#F4E3D6" />
+    </linearGradient>
+    <linearGradient id="blazerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C5058" />
+      <stop offset="1" stop-color="#2C2F35" />
+    </linearGradient>
+    <radialGradient id="skinGrad" cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#E3B583" />
+      <stop offset="1" stop-color="#C68F5C" />
+    </radialGradient>
+    <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#332419" />
+      <stop offset="1" stop-color="#150E0A" />
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="400" height="460" fill="url(#bgGrad)" />
+
+  <!-- ambient shadow -->
+  <ellipse cx="200" cy="300" rx="120" ry="26" fill="#150E0A" opacity="0.14" />
+
+  <!-- blazer / shoulders -->
+  <path d="M-10,460 L-10,412 C-10,337 65,287 145,283 L255,283 C335,287 410,337 410,412 L410,460 Z" fill="url(#blazerGrad)" />
+  <!-- shirt collar peeking under the blazer -->
+  <path d="M172,282 L228,282 L200,332 Z" fill="#F6F1E7" />
+  <path d="M200,332 L172,282 L186,280 L200,312 Z" fill="#E4DCCB" opacity="0.7" />
+
+  <!-- neck -->
+  <rect x="172" y="255" width="56" height="50" rx="16" fill="#C68F5C" />
+
+  <!-- hair (back mass, sits behind/above the face oval) -->
+  <ellipse cx="200" cy="148" rx="132" ry="148" fill="url(#hairGrad)" />
+  <!-- tousled crown spikes -->
+  <ellipse cx="150" cy="35" rx="19" ry="31" fill="url(#hairGrad)" transform="rotate(-20 150 35)" />
+  <ellipse cx="195" cy="16" rx="21" ry="33" fill="url(#hairGrad)" transform="rotate(-4 195 16)" />
+  <ellipse cx="240" cy="32" rx="19" ry="31" fill="url(#hairGrad)" transform="rotate(16 240 32)" />
+  <ellipse cx="270" cy="56" rx="17" ry="27" fill="url(#hairGrad)" transform="rotate(32 270 56)" />
+  <ellipse cx="126" cy="60" rx="17" ry="27" fill="url(#hairGrad)" transform="rotate(-32 126 60)" />
+  <!-- poofy side volume, past the ears -->
+  <ellipse cx="93" cy="188" rx="39" ry="59" fill="url(#hairGrad)" />
+  <ellipse cx="307" cy="188" rx="39" ry="59" fill="url(#hairGrad)" />
+
+  <!-- ears -->
+  <ellipse cx="98" cy="217" rx="15" ry="23" fill="#C68F5C" />
+  <ellipse cx="302" cy="217" rx="15" ry="23" fill="#C68F5C" />
+
+  <!-- head / face (painted over the hair ellipse) -->
+  <ellipse cx="200" cy="216" rx="97" ry="96" fill="url(#skinGrad)" />
+
+  <!-- heavy tousled fringe over the forehead -->
+  <ellipse cx="133" cy="156" rx="27" ry="43" fill="url(#hairGrad)" transform="rotate(-14 133 156)" />
+  <ellipse cx="166" cy="144" rx="25" ry="47" fill="url(#hairGrad)" transform="rotate(-7 166 144)" />
+  <ellipse cx="200" cy="137" rx="27" ry="43" fill="url(#hairGrad)" />
+  <ellipse cx="234" cy="144" rx="25" ry="47" fill="url(#hairGrad)" transform="rotate(7 234 144)" />
+  <ellipse cx="267" cy="156" rx="27" ry="43" fill="url(#hairGrad)" transform="rotate(14 267 156)" />
+
+  <!-- hair sheen strands -->
+  <path d="M145,110 C155,130 158,150 150,168" fill="none" stroke="#5C4632" stroke-width="4" stroke-linecap="round" opacity="0.45" />
+  <path d="M195,95 C198,118 197,140 192,160" fill="none" stroke="#5C4632" stroke-width="4" stroke-linecap="round" opacity="0.4" />
+  <path d="M250,112 C244,132 244,150 252,168" fill="none" stroke="#5C4632" stroke-width="4" stroke-linecap="round" opacity="0.45" />
+
+  <!-- cheeks -->
+  <ellipse cx="150" cy="234" rx="19" ry="11" fill="#E8946B" opacity="0.28" />
+  <ellipse cx="250" cy="234" rx="19" ry="11" fill="#E8946B" opacity="0.28" />
+
+  <!-- light stubble shading -->
+  <path d="M120,258 C140,296 260,296 280,258 C270,300 230,318 200,318 C170,318 130,300 120,258 Z" fill="#150E0A" opacity="0.10" />
+  <ellipse cx="200" cy="251" rx="24" ry="5" fill="#150E0A" opacity="0.12" />
+
+  <!-- eyebrows: thick, close-set -->
+  <rect x="136" y="177" width="48" height="12" rx="6" fill="#1C130E" transform="rotate(-3 160 183)" />
+  <rect x="216" y="177" width="48" height="12" rx="6" fill="#1C130E" transform="rotate(3 240 183)" />
+
+  <!-- glasses -->
+  <g fill="none" stroke="#7A3F22" stroke-width="6.5" stroke-linejoin="round">
+    <rect x="129" y="189" width="69" height="50" rx="14" />
+    <rect x="202" y="189" width="69" height="50" rx="14" />
+    <line x1="198" y1="210" x2="202" y2="210" stroke-width="6.5" />
+    <line x1="123" y1="200" x2="98" y2="196" stroke-linecap="round" />
+    <line x1="277" y1="200" x2="302" y2="196" stroke-linecap="round" />
+  </g>
+  <rect x="129" y="189" width="69" height="50" rx="14" fill="#EAF4FB" opacity="0.16" />
+  <rect x="202" y="189" width="69" height="50" rx="14" fill="#EAF4FB" opacity="0.16" />
+
+  <!-- eyes -->
+  <ellipse cx="163.5" cy="215" rx="6.5" ry="8" fill="#241A12" />
+  <ellipse cx="236.5" cy="215" rx="6.5" ry="8" fill="#241A12" />
+  <circle cx="166" cy="212" r="1.6" fill="#F4E9DD" />
+  <circle cx="239" cy="212" r="1.6" fill="#F4E9DD" />
+
+  <!-- nose -->
+  <path d="M198,222 C196,235 193,243 200,248 C205,243 204,235 202,222" fill="none" stroke="#B37D4D" stroke-width="3.5" stroke-linecap="round" opacity="0.75" />
+
+  <!-- mouth -->
+  <path d="M180,261 C190,266 210,266 220,261" fill="none" stroke="#8B4038" stroke-width="5" stroke-linecap="round" />
+
+  <!-- top highlight for glossy clay feel -->
+  <ellipse cx="160" cy="120" rx="40" ry="20" fill="#FFFFFF" opacity="0.08" />
+</svg>

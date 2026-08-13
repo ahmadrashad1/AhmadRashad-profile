@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ahmad Rashad — Full-Stack and AI Developer</title>
+  <meta name="description" content="Ahmad Rashad is a full-stack and AI developer who builds tactile, real-world software — from vehicle tracking systems to factory dashboards. View his work or get in touch." />
+  <meta property="og:title" content="Ahmad Rashad — Full-Stack and AI Developer" />
+  <meta property="og:description" content="Portfolio of Ahmad Rashad, full-stack and AI developer." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23c1571f' d='M62 8C78 8 92 22 92 42c0 18-14 30-32 32C40 76 20 70 12 54 4 38 12 18 30 12 40 8 52 8 62 8Z'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="single-screen">
+  <a class="visually-hidden" href="#main">Skip to content</a>
+
+  <main id="main" class="screen">
+    <div class="blob-field" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
+
+    <div class="hero-stack container">
+      <div class="photo-stage" id="photoStage">
+        <div class="photo-glow" aria-hidden="true"></div>
+        <div class="photo-blob-frame" id="photoBlob">
+          <div class="photo-blob-inner">
+            <img
+              class="photo-img"
+              src="assets/img/avatar.svg"
+              alt="Cartoon 3D-style illustration of Ahmad Rashad"
+              width="400"
+              height="460"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-heading">
+        <p class="eyebrow-role">Full-Stack and AI Developer</p>
+        <h1 class="hero-name">Ahmad&nbsp;Rashad</h1>
+      </div>
+
+      <p class="hero-tagline">
+        I build tactile, real-world software — and I'm looking for my next team.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" id="contactCta" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><path d="M2 6h20v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Z"/></svg>
+          Contact Me
+        </button>
+        <a class="btn btn-secondary" href="work.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          View My Work
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <dialog class="contact-sheet" id="contact" aria-labelledby="contactHeading">
+    <svg class="contact-bird" id="contactBird" aria-hidden="true" viewBox="0 0 120 100">
+      <defs>
+        <linearGradient id="birdBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#9AC3ED" />
+          <stop offset="1" stop-color="#5B8FC7" />
+        </linearGradient>
+      </defs>
+      <path class="bird-wing bird-wing-left" d="M40,42 C22,34 8,20 4,6 C16,10 32,20 42,34 Z" fill="#4A7AB5" />
+      <path class="bird-wing bird-wing-right" d="M80,42 C98,34 112,20 116,6 C104,10 88,20 78,34 Z" fill="#4A7AB5" />
+      <ellipse cx="60" cy="52" rx="25" ry="30" fill="url(#birdBody)" />
+      <ellipse cx="58" cy="66" rx="15" ry="12" fill="#F4E9DD" opacity="0.85" />
+      <circle cx="60" cy="24" r="17" fill="url(#birdBody)" />
+      <path d="M52,28 L45,33 L52,36 Z" fill="#E8944B" />
+      <circle cx="55" cy="20" r="2.4" fill="#241A12" />
+      <circle cx="66" cy="20" r="2.4" fill="#241A12" />
+      <circle cx="54" cy="19" r="0.8" fill="#fff" />
+      <circle cx="65" cy="19" r="0.8" fill="#fff" />
+      <path d="M50,80 C48,84 46,86 43,87 M50,80 C50,85 50,87 49,89" stroke="#E8944B" stroke-width="2.2" stroke-linecap="round" fill="none" />
+      <path d="M70,80 C72,84 74,86 77,87 M70,80 C70,85 70,87 71,89" stroke="#E8944B" stroke-width="2.2" stroke-linecap="round" fill="none" />
+    </svg>
+
+    <div class="sheet-panel" id="sheetPanel">
+      <button class="sheet-close icon-btn" id="sheetClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <h2 class="contact-heading" id="contactHeading">Let's build something.</h2>
+      <div class="contact-row">
+        <a class="email-pill" href="mailto:ahmadrashadmojeeb@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><path d="M2 6h20v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Z"/></svg>
+          ahmadrashadmojeeb@gmail.com
+        </a>
+        <button class="icon-btn" id="copyEmailBtn" type="button" data-copy="ahmadrashadmojeeb@gmail.com" aria-label="Copy email address">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="copy-tip" role="status">Copied!</span>
+        </button>
+        <span class="contact-link-group">
+          <span class="contact-divider" aria-hidden="true"></span>
+          <a class="contact-link" href="https://github.com/ahmadrashad1" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .3.2.66.79.55A10.99 10.99 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
+            @ahmadrashad1
+          </a>
+        </span>
+        <span class="contact-link-group">
+          <span class="contact-divider" aria-hidden="true"></span>
+          <a class="contact-link" href="https://www.linkedin.com/in/ahmad-rashad-mojeeb/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+            LinkedIn
+          </a>
+        </span>
+      </div>
+      <span class="contact-copyright">© <span id="year"></span> Ahmad Rashad</span>
+    </div>
+  </dialog>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
