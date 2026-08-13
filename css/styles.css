@@ -1027,6 +1027,7 @@ footer.site-footer {
   box-shadow: none;
   color: inherit;
   transform: none;
+  transition: none;
 }
 
 @media (min-width: 860px) {
@@ -1093,7 +1094,42 @@ footer.site-footer {
   color: var(--muted);
 }
 
-/* --- Mobile: the same dialog, opened as a true modal bottom sheet --- */
+/* --- Mobile: the same dialog, opened as a true modal bottom sheet.
+
+   Entrance uses a keyframe `animation` rather than a `transition`: a
+   dialog going from display:none to shown has no previous rendered
+   style to transition from (that's what @starting-style is normally
+   for, and it works for freshly-generated things like ::backdrop —
+   but was unreliable here), whereas an animation's keyframes are
+   self-contained and don't need one. The animation has no forwards
+   fill, so once it finishes control quietly hands off to the plain
+   `transform: translateY(0)` below it — which is what makes the
+   value cleanly overridable by JS during a drag gesture afterward.
+
+   Closing (and dragging past the dismiss threshold) relies on the
+   *base* .project-sheet rule below, which is the one already-real
+   technique proven on .contact-sheet .sheet-panel: when :modal stops
+   matching, the element is still actually rendered (allow-discrete
+   holds it in the top layer for the duration), so reverting to the
+   base rule's translateY(100%) is a normal, already-rendered-element
+   transition — no @starting-style needed for that direction. --- */
+.project-sheet {
+  transform: translateY(100%);
+  /* overlay/display must be listed here too, not just on the :modal
+     rule below — this base rule is the one actually *active* during
+     the close transition (once :modal stops matching), and without
+     allow-discrete present here the dialog leaves the render tree
+     immediately, killing the transform transition before it can run. */
+  transition:
+    transform 380ms var(--ease-out-quint),
+    overlay 380ms allow-discrete,
+    display 380ms allow-discrete;
+}
+
+.sheet-drag-handle {
+  display: none;
+}
+
 .project-sheet-close {
   display: none;
 }
@@ -1108,7 +1144,7 @@ footer.site-footer {
   max-width: none;
   max-height: min(88vh, 720px);
   overflow-y: auto;
-  padding: var(--space-6) var(--space-5) var(--space-6);
+  padding: var(--space-4) var(--space-5) var(--space-6);
   border: none;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   background: var(--surface);
@@ -1118,16 +1154,23 @@ footer.site-footer {
   gap: var(--space-4);
   color: var(--ink);
   transform: translateY(0);
+  animation: project-sheet-rise 380ms var(--ease-out-quint);
   transition:
     transform 380ms var(--ease-out-quint),
     overlay 380ms allow-discrete,
     display 380ms allow-discrete;
 }
 
-@starting-style {
-  .project-sheet:modal {
-    transform: translateY(100%);
-  }
+@keyframes project-sheet-rise {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* While the pointer is actively dragging the sheet it must track 1:1
+   with zero lag — the transition above is only for the settle-back
+   (released below the dismiss threshold) and close animations. */
+.project-sheet.is-dragging {
+  transition: none;
 }
 
 .project-sheet:modal::backdrop {
@@ -1140,6 +1183,19 @@ footer.site-footer {
   .project-sheet:modal::backdrop {
     opacity: 0;
   }
+}
+
+.project-sheet:modal .sheet-drag-handle {
+  display: block;
+  width: 40px;
+  height: 4px;
+  flex-shrink: 0;
+  align-self: center;
+  border-radius: var(--radius-pill);
+  background: var(--surface-deep);
+  /* Prevents the browser's native touch scroll/refresh gestures from
+     competing with the pointer-driven drag-to-dismiss handler. */
+  touch-action: none;
 }
 
 .project-sheet:modal .project-sheet-close {

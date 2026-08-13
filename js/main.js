@@ -118,6 +118,57 @@
       sheet.addEventListener("click", (event) => {
         if (event.target === sheet) sheet.close();
       });
+
+      // Whatever closed it (button, backdrop, Escape, or a drag past
+      // the dismiss threshold below) leaves the sheet in a known-clean
+      // state for its next open — otherwise a leftover inline
+      // transform from a drag would fight the entrance animation.
+      sheet.addEventListener("close", () => {
+        sheet.style.transform = "";
+        sheet.classList.remove("is-dragging");
+      });
+
+      const handle = sheet.querySelector(".sheet-drag-handle");
+      if (!handle) return;
+
+      const DISMISS_THRESHOLD = 110;
+      let startY = 0;
+      let dragging = false;
+
+      handle.addEventListener("pointerdown", (event) => {
+        if (!sheet.matches(":modal")) return;
+        dragging = true;
+        startY = event.clientY;
+        sheet.classList.add("is-dragging");
+        try {
+          handle.setPointerCapture(event.pointerId);
+        } catch {
+          // Capture isn't essential — without it the drag still tracks
+          // fine as long as the pointer stays over the handle.
+        }
+      });
+
+      handle.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        const delta = Math.max(0, event.clientY - startY);
+        sheet.style.transform = `translateY(${delta}px)`;
+      });
+
+      function endDrag(event) {
+        if (!dragging) return;
+        dragging = false;
+        sheet.classList.remove("is-dragging");
+        const delta = Math.max(0, event.clientY - startY);
+        // Clearing the inline transform and closing happen together,
+        // synchronously, before the next paint — so the browser has
+        // only the last actually-rendered (mid-drag) position to
+        // transition from, not a flash back to fully open first.
+        sheet.style.transform = "";
+        if (delta > DISMISS_THRESHOLD) sheet.close();
+      }
+
+      handle.addEventListener("pointerup", endDrag);
+      handle.addEventListener("pointercancel", endDrag);
     });
   }
 
