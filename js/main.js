@@ -5,6 +5,18 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------------------------------------------------------
+     Hero avatar wave loop. A <video> can't be stopped by CSS,
+     so hold the poster frame when motion is unwelcome.
+     --------------------------------------------------------- */
+  const avatarVideo = document.getElementById("avatarVideo");
+  if (avatarVideo && reduceMotion) {
+    avatarVideo.removeAttribute("autoplay");
+    avatarVideo.removeAttribute("loop");
+    avatarVideo.pause();
+    avatarVideo.currentTime = 0;
+  }
+
+  /* ---------------------------------------------------------
      Photo blob pointer tilt
      --------------------------------------------------------- */
   const stage = document.getElementById("photoStage");

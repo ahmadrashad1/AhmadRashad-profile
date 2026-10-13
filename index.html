@@ -46,14 +46,22 @@
         <div class="photo-glow" aria-hidden="true"></div>
         <div class="photo-blob-frame" id="photoBlob">
           <div class="photo-blob-inner">
-            <img
+            <video
               class="photo-img"
-              src="assets/img/avatar.svg"
-              alt="Cartoon 3D-style illustration of Ahmad Rashad"
-              width="400"
-              height="460"
-              fetchpriority="high"
-            />
+              id="avatarVideo"
+              poster="assets/img/avatar-still.jpg"
+              width="480"
+              height="552"
+              autoplay
+              loop
+              muted
+              playsinline
+              disablepictureinpicture
+              aria-label="3D clay illustration of Ahmad Rashad waving hello"
+            >
+              <source src="assets/img/avatar.webm" type="video/webm" />
+              <source src="assets/img/avatar.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>
