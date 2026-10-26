@@ -235,6 +235,10 @@
       });
   }
 
+  // Static cards (the "In production" section) are in the DOM already, so
+  // they're observed up front rather than waiting on the repo fetch.
+  observeCards();
+
   function formatCount(n) {
     if (n >= 1000) return `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k`;
     return String(n);
@@ -391,7 +395,7 @@
   });
 
   function observeCards() {
-    const cards = document.querySelectorAll(".repo-card");
+    const cards = document.querySelectorAll(".repo-card, .rise");
     if (reduceMotion || !("IntersectionObserver" in window)) {
       cards.forEach((card) => card.classList.add("is-visible"));
       return;
