@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Bauhaus UI Specification — Ahmad Rashad</title>
+<link rel="stylesheet" href="spec.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     01 — COVER
+     ============================================================ -->
+<section class="page" style="background:var(--paper);">
+  <div class="motif left">
+    <div class="sh q f-blue"></div><div class="sh tri-tr f-ink"></div>
+    <div class="sh half-b f-red"></div><div class="sh q3 f-yellow"></div>
+    <div class="sh circ f-ink"></div><div class="sh q2 f-red"></div>
+    <div class="sh tri-bl f-blue"></div><div class="sh half-t f-yellow"></div>
+    <div class="sh q4 f-red"></div><div class="sh q f-ink"></div>
+    <div class="sh half-r f-blue"></div><div class="sh tri-br f-yellow"></div>
+    <div class="sh circ f-red"></div><div class="sh q3 f-blue"></div>
+    <div class="sh tri-tl f-yellow"></div><div class="sh half-b f-ink"></div>
+    <div class="sh q2 f-yellow"></div><div class="sh circ f-blue"></div>
+    <div class="sh half-l f-red"></div><div class="sh tri-br f-ink"></div>
+    <div class="sh q f-yellow"></div><div class="sh q4 f-blue"></div>
+    <div class="sh tri-tr f-red"></div><div class="sh half-t f-ink"></div>
+    <div class="sh q3 f-blue"></div><div class="sh circ f-yellow"></div>
+  </div>
+  <div class="motif right">
+    <div class="sh tri-tl f-yellow"></div><div class="sh q2 f-blue"></div>
+    <div class="sh q4 f-ink"></div><div class="sh half-b f-red"></div>
+    <div class="sh half-l f-yellow"></div><div class="sh circ f-blue"></div>
+    <div class="sh q3 f-red"></div><div class="sh tri-tr f-ink"></div>
+    <div class="sh q f-yellow"></div><div class="sh half-t f-red"></div>
+    <div class="sh tri-bl f-ink"></div><div class="sh q2 f-blue"></div>
+    <div class="sh circ f-ink"></div><div class="sh q4 f-yellow"></div>
+    <div class="sh half-r f-blue"></div><div class="sh tri-br f-red"></div>
+    <div class="sh q f-ink"></div><div class="sh q3 f-yellow"></div>
+    <div class="sh tri-tl f-blue"></div><div class="sh half-b f-ink"></div>
+    <div class="sh circ f-yellow"></div><div class="sh q2 f-red"></div>
+    <div class="sh half-l f-ink"></div><div class="sh tri-tr f-blue"></div>
+    <div class="sh q4 f-red"></div><div class="sh circ f-ink"></div>
+  </div>
+
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 46mm;text-align:center;">
+    <span class="kicker" style="letter-spacing:0.34em;">UI Specification &amp; Design System Manual</span>
+    <h1 style="font-size:20pt;font-weight:300;letter-spacing:0.02em;line-height:1;">Bauhaus</h1>
+    <h1 style="font-size:52pt;font-weight:800;letter-spacing:-0.04em;line-height:0.95;margin-top:1mm;">Profile</h1>
+    <div style="height:var(--rule-bold);background:var(--ink);width:72mm;margin:var(--s3) 0;"></div>
+    <p style="font-size:9.5pt;font-weight:300;max-width:112mm;line-height:1.45;">
+      The complete visual and interaction system for <strong>ahmadrashad1/AhmadRashad-profile</strong> —
+      replacing the clay build end to end, component for component.
+    </p>
+    <p class="mono" style="font-size:7.5pt;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:var(--s2);">
+      Ahmad Rashad &nbsp;/&nbsp; Revision 01 &nbsp;/&nbsp; 25 Pages
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — CONTENTS
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Bauhaus Profile — UI Specification</span><span>Contents</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">Contents</span>
+    <h2 class="h-page">What's in here</h2>
+
+    <div class="cols c3" style="margin-top:var(--s2);">
+      <div class="stack" style="gap:var(--s2);">
+        <div class="block flat" style="border:none;padding:0;">
+          <div class="block-head">Part A — Foundations</div>
+          <table>
+            <tr><td class="mono" style="width:9mm;">03</td><td>Intent &amp; what it replaces</td></tr>
+            <tr><td class="mono">04</td><td>Principles</td></tr>
+            <tr><td class="mono">05</td><td>Color — the triad</td></tr>
+            <tr><td class="mono">06</td><td>Color application rules</td></tr>
+            <tr><td class="mono">07</td><td>Typography — the scale</td></tr>
+            <tr><td class="mono">08</td><td>Typography rules</td></tr>
+            <tr><td class="mono">09</td><td>Grid &amp; spacing</td></tr>
+            <tr><td class="mono">10</td><td>Shape vocabulary</td></tr>
+            <tr><td class="mono">11</td><td>Rule weight &amp; offset depth</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stack" style="gap:var(--s2);">
+        <div class="block flat" style="border:none;padding:0;">
+          <div class="block-head">Part B — Components</div>
+          <table>
+            <tr><td class="mono" style="width:9mm;">12</td><td>Buttons</td></tr>
+            <tr><td class="mono">13</td><td>Cards</td></tr>
+            <tr><td class="mono">14</td><td>Chips, labels &amp; stats</td></tr>
+            <tr><td class="mono">15</td><td>Dialogs &amp; bottom sheets</td></tr>
+            <tr><td class="mono">16</td><td>Header &amp; navigation</td></tr>
+            <tr><td class="mono">17</td><td>Slideshow &amp; media</td></tr>
+            <tr><td class="mono">18</td><td>Characters</td></tr>
+            <tr><td class="mono">19</td><td>Motion</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stack" style="gap:var(--s2);">
+        <div class="block flat" style="border:none;padding:0;">
+          <div class="block-head">Part C — Application</div>
+          <table>
+            <tr><td class="mono" style="width:9mm;">20</td><td>Layout — home</td></tr>
+            <tr><td class="mono">21</td><td>Layout — work</td></tr>
+            <tr><td class="mono">22</td><td>Responsive</td></tr>
+            <tr><td class="mono">23</td><td>Accessibility</td></tr>
+            <tr><td class="mono">24</td><td>Migration map</td></tr>
+            <tr><td class="mono">25</td><td>Do &amp; don't</td></tr>
+          </table>
+        </div>
+        <div class="callout" style="margin-top:var(--s2);">
+          Every page in this document is rendered in the system it describes. If a rule here
+          can't be seen on these pages, it isn't a rule yet.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">02</div>
+</section>
+
+<!-- ============================================================
+     03 — INTENT
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>03 · Intent</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">01 — Intent</span>
+    <h2 class="h-page">Why this replaces the clay</h2>
+    <p class="lede" style="margin-bottom:var(--s4);">
+      The current site is claymorphic: pillowy, rounded, warm-lit, every surface raised off a sage
+      tabletop. It is well built and it is not wrong. It is simply a different argument than the one
+      this system makes.
+    </p>
+
+    <div class="cols c-2-1">
+      <div class="stack">
+        <div>
+          <div class="block-head">The argument</div>
+          <p>
+            Claymorphism says <strong>touch this</strong>. Bauhaus says <strong>this was
+            constructed</strong>. For a developer portfolio read by recruiters in seconds, the
+            second claim is the stronger one: it reads as engineering rather than decoration, and
+            it survives being screenshotted, scaled down, and skimmed.
+          </p>
+          <p>
+            The inversion is total and deliberate. Soft becomes hard. Raised becomes flat. Implied
+            light becomes printed ink. Floating becomes gridded. Nothing is kept because it was
+            expensive to build.
+          </p>
+        </div>
+
+        <div>
+          <div class="block-head">What survives</div>
+          <p>
+            Three things carry over, because they are identity rather than styling: the
+            <strong>bird</strong>, the <strong>floating field</strong> behind the hero, and the
+            <strong>avatar</strong>. Each is rebuilt from the shape vocabulary on page 10 rather
+            than redrawn soft. See page 18.
+          </p>
+        </div>
+      </div>
+
+      <div class="block tint" style="align-self:start;">
+        <div class="block-head">Inversion table</div>
+        <table>
+          <tr><th>Clay</th><th>Bauhaus</th></tr>
+          <tr><td>32px radii</td><td>0, or one 100% arc</td></tr>
+          <tr><td>Dual soft shadow</td><td>Hard offset block</td></tr>
+          <tr><td>Sage + terracotta</td><td>Cream + R/B/Y</td></tr>
+          <tr><td>Baloo 2 rounded</td><td>Jost geometric</td></tr>
+          <tr><td>Blobs drift free</td><td>Tiles lock to grid</td></tr>
+          <tr><td>Tinted shadows</td><td>Black rules</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout red" style="margin-top:var(--s3);">
+      <strong>Anti-goal.</strong> A Bauhaus skin bolted onto clay geometry — square corners with the
+      soft shadows left in — is worse than either system alone. If the shadows survive, the work
+      failed.
+    </div>
+  </div>
+  <div class="pnum red">03</div>
+</section>
+
+<!-- ============================================================
+     04 — PRINCIPLES
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>04 · Principles</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">02 — Principles</span>
+    <h2 class="h-page">Five rules that settle arguments</h2>
+
+    <div class="cols c-1-2" style="margin-top:var(--s2);">
+      <div class="stack" style="gap:var(--s2);">
+        <div class="row" style="gap:var(--s2);align-items:center;">
+          <div class="sh q f-red" style="width:20mm;height:20mm;flex:0 0 auto;"></div>
+          <div class="sh tri-tr f-blue" style="width:20mm;height:20mm;flex:0 0 auto;"></div>
+          <div class="sh half-b f-yellow" style="width:20mm;height:20mm;flex:0 0 auto;"></div>
+        </div>
+        <div class="row" style="gap:var(--s2);align-items:center;">
+          <div class="sh circ f-ink" style="width:20mm;height:20mm;flex:0 0 auto;"></div>
+          <div class="sh q3 f-blue" style="width:20mm;height:20mm;flex:0 0 auto;"></div>
+          <div class="sh f-red" style="width:20mm;height:20mm;flex:0 0 auto;"></div>
+        </div>
+        <p class="note" style="margin-top:var(--s1);">
+          Six tiles, one grid, three colors, no gradients. The whole system is visible in this
+          square.
+        </p>
+      </div>
+
+      <div class="stack tight-stack">
+        <div class="block">
+          <div class="block-head">01 — Structure is the decoration</div>
+          <p style="margin:0;">Ornament is never applied on top. A page is decorated by making its
+          grid, its rules and its blocks visible. If you are adding a shape to fill a gap, the
+          layout is wrong.</p>
+        </div>
+        <div class="block">
+          <div class="block-head">02 — Color carries meaning, never mood</div>
+          <p style="margin:0;">Red is action. Blue is information and links. Yellow is attention and
+          warning. A shape is colored because of what it does, not because the corner looked empty.</p>
+        </div>
+        <div class="block">
+          <div class="block-head">03 — Depth comes from offset, not blur</div>
+          <p style="margin:0;">There are no soft shadows in this system. Where something must sit
+          above something else, it is offset by a hard black block. See page 11.</p>
+        </div>
+        <div class="block">
+          <div class="block-head">04 — Geometry is primitive, never custom</div>
+          <p style="margin:0;">Square, circle, half-circle, quarter-circle, right triangle. Every
+          illustration in the product is assembled from these five. No bespoke curves.</p>
+        </div>
+        <div class="block">
+          <div class="block-head">05 — One screen, one action</div>
+          <p style="margin:0;">Carried over unchanged from the current product: every view has
+          exactly one primary next step, and only that step wears red.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum blue">04</div>
+</section>
+
+<!-- ============================================================
+     05 — COLOR
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>05 · Color</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">03 — Color</span>
+    <h2 class="h-page">The triad on paper</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      Three saturated colors, one near-black, one warm paper. Nothing else. No tints, no 50-step
+      ramps, no opacity variants — if a value is not in this table it is not in the system.
+    </p>
+
+    <div class="cols c4" style="flex:0 0 auto;margin-bottom:var(--s3);">
+      <div class="swatch"><div class="swatch-chip f-red"></div>
+        <div class="swatch-meta"><div class="swatch-name">Red</div><div class="swatch-hex">#CE4435</div></div></div>
+      <div class="swatch"><div class="swatch-chip f-blue"></div>
+        <div class="swatch-meta"><div class="swatch-name">Blue</div><div class="swatch-hex">#1E4FA1</div></div></div>
+      <div class="swatch"><div class="swatch-chip f-yellow"></div>
+        <div class="swatch-meta"><div class="swatch-name">Yellow</div><div class="swatch-hex">#E9A92F</div></div></div>
+      <div class="swatch"><div class="swatch-chip f-ink"></div>
+        <div class="swatch-meta"><div class="swatch-name">Ink</div><div class="swatch-hex">#15161A</div></div></div>
+    </div>
+
+    <table>
+      <tr>
+        <th style="width:8mm;"></th><th>Token</th><th>Hex</th><th>Role</th>
+        <th>Text on it</th><th>Contrast</th>
+      </tr>
+      <tr><td><span class="swatch-cell f-red"></span></td><td class="mono">--bq-red</td><td class="mono">#CE4435</td>
+        <td>Primary action, the one CTA per view, live/error state</td><td>#FFFFFF</td><td class="mono">4.6:1</td></tr>
+      <tr><td><span class="swatch-cell f-blue"></span></td><td class="mono">--bq-blue</td><td class="mono">#1E4FA1</td>
+        <td>Links, informational fills, section-break block, focus ring</td><td>#FFFFFF</td><td class="mono">8.1:1</td></tr>
+      <tr><td><span class="swatch-cell f-yellow"></span></td><td class="mono">--bq-yellow</td><td class="mono">#E9A92F</td>
+        <td>Attention, highlight bar, warning. Never carries white text</td><td>#15161A</td><td class="mono">9.4:1</td></tr>
+      <tr><td><span class="swatch-cell f-ink"></span></td><td class="mono">--bq-ink</td><td class="mono">#15161A</td>
+        <td>All body text, every rule, every border</td><td>#EFE7D7</td><td class="mono">15.6:1</td></tr>
+      <tr><td><span class="swatch-cell" style="background:#5A564E;"></span></td><td class="mono">--bq-ink-soft</td><td class="mono">#5A564E</td>
+        <td>Secondary text, metadata, running heads. Body copy never uses it</td><td>—</td><td class="mono">6.2:1</td></tr>
+      <tr><td><span class="swatch-cell" style="background:#EFE7D7;"></span></td><td class="mono">--bq-paper</td><td class="mono">#EFE7D7</td>
+        <td>The page. The one environmental surface</td><td>#15161A</td><td class="mono">15.6:1</td></tr>
+      <tr><td><span class="swatch-cell" style="background:#F7F2E7;"></span></td><td class="mono">--bq-paper-lift</td><td class="mono">#F7F2E7</td>
+        <td>Card interiors and demo wells — lighter, never shadowed</td><td>#15161A</td><td class="mono">17.1:1</td></tr>
+      <tr><td><span class="swatch-cell" style="background:#E2D7C2;"></span></td><td class="mono">--bq-paper-deep</td><td class="mono">#E2D7C2</td>
+        <td>Inset fields, code spans, table zebra if ever needed</td><td>#15161A</td><td class="mono">13.4:1</td></tr>
+    </table>
+
+    <div class="callout" style="margin-top:var(--s3);">
+      Contrast figures are against the stated text color and all clear WCAG AA for body text.
+      Red on paper as <em>text</em> is <span class="mono">3.4:1</span> — large text and headings only,
+      never a paragraph.
+    </div>
+  </div>
+  <div class="pnum yellow">05</div>
+</section>
+
+<!-- ============================================================
+     06 — COLOR APPLICATION
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>06 · Color rules</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">03.1 — Application</span>
+    <h2 class="h-page">Where each color is allowed</h2>
+
+    <div class="cols c3" style="margin-top:var(--s2);">
+      <div class="block" style="border-top:var(--rule-bold) solid var(--red);">
+        <div class="block-head">Red — action</div>
+        <p>Exactly one red element per viewport. It is the thing you want pressed.</p>
+        <ul>
+          <li>Primary button fill</li>
+          <li>The live/online dot</li>
+          <li>Destructive confirm</li>
+          <li>Section kickers (type only)</li>
+        </ul>
+        <p class="note" style="margin:0;"><strong>Never:</strong> two red buttons on one screen; red
+        body copy; red as a large background field.</p>
+      </div>
+
+      <div class="block" style="border-top:var(--rule-bold) solid var(--blue);">
+        <div class="block-head">Blue — information</div>
+        <p>Blue is the reading color. It never competes with red for the click.</p>
+        <ul>
+          <li>Every text link</li>
+          <li>Focus ring (3px, offset 2px)</li>
+          <li>Section-break blocks</li>
+          <li>Icon chips and secondary fills</li>
+        </ul>
+        <p class="note" style="margin:0;"><strong>Never:</strong> blue on a primary CTA; blue and red
+        touching edge to edge without a black rule between.</p>
+      </div>
+
+      <div class="block" style="border-top:var(--rule-bold) solid var(--yellow);">
+        <div class="block-head">Yellow — attention</div>
+        <p>The smallest-area color. Yellow is a highlighter, not a surface.</p>
+        <ul>
+          <li>Callout left bar</li>
+          <li>Current-slide dot</li>
+          <li>Warning / rate-limit state</li>
+          <li>One accent tile per motif band</li>
+        </ul>
+        <p class="note" style="margin:0;"><strong>Never:</strong> white text on yellow; yellow as a
+        page background; yellow for a link.</p>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:var(--s3);gap:var(--s3);">
+      <div class="dd do grow">
+        <div class="dd-head">Do</div>
+        <div class="dd-body">
+          <p>Separate two color fields with a black rule of at least <span class="mono">4px</span>.</p>
+          <p>Let paper be the dominant area — color is roughly 15% of any screen.</p>
+          <p>Use ink for every border, regardless of the fill it surrounds.</p>
+        </div>
+      </div>
+      <div class="dd dont grow">
+        <div class="dd-head">Don't</div>
+        <div class="dd-body">
+          <p>Tint, shade or fade any triad color — there is no <span class="mono">red-400</span>.</p>
+          <p>Use color to indicate elevation; that is what offset is for.</p>
+          <p>Introduce a fourth hue for "just this one chart".</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum red">06</div>
+</section>
+
+<!-- ============================================================
+     07 — TYPOGRAPHY
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>07 · Typography</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">04 — Typography</span>
+    <h2 class="h-page">Jost, and one monospace</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      Jost is a Futura derivative — the geometric sans drawn in 1927, contemporary with the
+      Bauhaus itself. One family does display and body; IBM Plex Mono carries anything that is a
+      value rather than a sentence.
+    </p>
+
+    <div class="cols c-2-1">
+      <div class="stack" style="gap:var(--s2);">
+        <div style="border-bottom:var(--rule-thin) solid var(--ink);padding-bottom:2mm;">
+          <div style="font-size:34pt;font-weight:800;letter-spacing:-0.04em;line-height:0.95;">Ahmad Rashad</div>
+          <span class="mono" style="font-size:6.4pt;color:var(--ink-soft);">display / 800 / −0.04em — hero name only</span>
+        </div>
+        <div style="border-bottom:var(--rule-thin) solid var(--ink);padding-bottom:2mm;">
+          <div style="font-size:20pt;font-weight:700;letter-spacing:-0.025em;">Selected work.</div>
+          <span class="mono" style="font-size:6.4pt;color:var(--ink-soft);">h1 / 700 / −0.025em</span>
+        </div>
+        <div style="border-bottom:var(--rule-thin) solid var(--ink);padding-bottom:2mm;">
+          <div style="font-size:13pt;font-weight:600;letter-spacing:-0.015em;">In production</div>
+          <span class="mono" style="font-size:6.4pt;color:var(--ink-soft);">h2 / 600 / −0.015em</span>
+        </div>
+        <div style="border-bottom:var(--rule-thin) solid var(--ink);padding-bottom:2mm;">
+          <div style="font-size:9pt;font-weight:400;line-height:1.5;">Body copy sets at 400. Long passages stay
+          light enough to read at a glance on a phone without the geometric face turning into a wall.</div>
+          <span class="mono" style="font-size:6.4pt;color:var(--ink-soft);">body / 400 / 1.5</span>
+        </div>
+        <div>
+          <div class="mono" style="font-size:9pt;font-weight:600;letter-spacing:0.14em;">ENGINES IT DRIVES</div>
+          <span class="mono" style="font-size:6.4pt;color:var(--ink-soft);">label / mono 600 / +0.14em / uppercase</span>
+        </div>
+      </div>
+
+      <div class="block tint">
+        <div class="block-head">Scale</div>
+        <table>
+          <tr><th>Step</th><th>Size</th><th>Wt</th></tr>
+          <tr><td class="mono">display</td><td class="mono">clamp(2.5,5vw,4.5rem)</td><td class="mono">800</td></tr>
+          <tr><td class="mono">h1</td><td class="mono">2.25rem</td><td class="mono">700</td></tr>
+          <tr><td class="mono">h2</td><td class="mono">1.5rem</td><td class="mono">600</td></tr>
+          <tr><td class="mono">h3</td><td class="mono">1.125rem</td><td class="mono">600</td></tr>
+          <tr><td class="mono">body</td><td class="mono">1rem</td><td class="mono">400</td></tr>
+          <tr><td class="mono">small</td><td class="mono">0.875rem</td><td class="mono">400</td></tr>
+          <tr><td class="mono">label</td><td class="mono">0.75rem</td><td class="mono">600</td></tr>
+          <tr><td class="mono">value</td><td class="mono">0.8125rem</td><td class="mono">400</td></tr>
+        </table>
+        <p class="note" style="margin-top:var(--s2);margin-bottom:0;">
+          <strong>label</strong> and <strong>value</strong> are IBM Plex Mono.
+          Everything else is Jost.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="pnum blue">07</div>
+</section>
+
+<!-- ============================================================
+     08 — TYPOGRAPHY RULES
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>08 · Type rules</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">04.1 — Type rules</span>
+    <h2 class="h-page">How the two faces divide the work</h2>
+
+    <div class="cols c2" style="margin-top:var(--s2);">
+      <div class="stack">
+        <div class="block">
+          <div class="block-head">The division</div>
+          <p><strong>Jost</strong> writes sentences. <strong>IBM Plex Mono</strong> writes values:
+          domains, token names, stack chips, stat counts, credentials, dates, page numbers, every
+          uppercase label.</p>
+          <p style="margin:0;">The test: if you would read it aloud as a phrase, it is Jost. If you
+          would spell it out character by character, it is mono.</p>
+        </div>
+        <div class="block">
+          <div class="block-head">Tracking</div>
+          <table>
+            <tr><th>Context</th><th>Tracking</th></tr>
+            <tr><td>Display &amp; h1</td><td class="mono">−0.035em to −0.025em</td></tr>
+            <tr><td>h2 / h3</td><td class="mono">−0.015em</td></tr>
+            <tr><td>Body</td><td class="mono">0</td></tr>
+            <tr><td>Mono labels (caps)</td><td class="mono">+0.14em to +0.22em</td></tr>
+          </table>
+          <p class="note" style="margin:var(--s2) 0 0;">Geometric faces get loose at display size
+          and crowded in caps — negative tracking above, positive in caps, nothing in between.</p>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="block" style="border-left:var(--rule-bold) solid var(--blue);">
+          <div class="block-head">Measure &amp; rhythm</div>
+          <ul style="margin-bottom:0;">
+            <li>Body measure caps at <span class="mono">68ch</span>.</li>
+            <li>Body line-height <span class="mono">1.5</span>; headings <span class="mono">1.05</span>.</li>
+            <li><span class="mono">text-wrap: balance</span> on every heading — carried over from the clay build.</li>
+            <li>Paragraph spacing is one <span class="mono">--s3</span> step, never a blank line.</li>
+          </ul>
+        </div>
+
+        <div class="row" style="gap:var(--s3);">
+          <div class="dd do grow">
+            <div class="dd-head">Do</div>
+            <div class="dd-body">
+              <p>Set section labels in mono caps, as on page 06.</p>
+              <p>Let headings run long and wrap — balance handles it.</p>
+            </div>
+          </div>
+          <div class="dd dont grow">
+            <div class="dd-head">Don't</div>
+            <div class="dd-body">
+              <p>Set a heading in mono because it "looks technical".</p>
+              <p>Use italics. This system has none.</p>
+              <p>Center body copy. Headings may center; paragraphs never.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">08</div>
+</section>
+
+<!-- ============================================================
+     09 — GRID & SPACING
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>09 · Grid</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">05 — Grid &amp; spacing</span>
+    <h2 class="h-page">Twelve columns, eight points</h2>
+
+    <div class="cols c-2-1" style="margin-top:var(--s2);">
+      <div class="stack">
+        <div>
+          <div class="block-head">The column grid</div>
+          <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2mm;height:26mm;border:var(--rule-thin) solid var(--ink);padding:2mm;background:var(--paper-lift);">
+            <div class="f-blue"></div><div class="f-blue"></div><div class="f-blue"></div>
+            <div class="f-blue"></div><div class="f-blue"></div><div class="f-blue"></div>
+            <div class="f-blue"></div><div class="f-blue"></div><div class="f-blue"></div>
+            <div class="f-blue"></div><div class="f-blue"></div><div class="f-blue"></div>
+          </div>
+          <p class="note" style="margin-top:2mm;">
+            12 columns, <span class="mono">24px</span> gutter, container
+            <span class="mono">min(1100px, 100%)</span> — the container value carries over from the
+            clay build unchanged. Content spans 12 / 8 / 6 / 4 / 3. No arbitrary widths.
+          </p>
+        </div>
+
+        <div>
+          <div class="block-head">Everything sits on an 8pt step</div>
+          <div class="row" style="gap:2mm;align-items:flex-end;">
+            <div style="text-align:center;"><div class="f-ink" style="width:8mm;height:4mm;"></div><div class="spec-dim">8</div></div>
+            <div style="text-align:center;"><div class="f-ink" style="width:8mm;height:8mm;"></div><div class="spec-dim">16</div></div>
+            <div style="text-align:center;"><div class="f-ink" style="width:8mm;height:12mm;"></div><div class="spec-dim">24</div></div>
+            <div style="text-align:center;"><div class="f-ink" style="width:8mm;height:16mm;"></div><div class="spec-dim">32</div></div>
+            <div style="text-align:center;"><div class="f-ink" style="width:8mm;height:24mm;"></div><div class="spec-dim">48</div></div>
+            <div style="text-align:center;"><div class="f-ink" style="width:8mm;height:32mm;"></div><div class="spec-dim">64</div></div>
+            <div style="text-align:center;"><div class="f-ink" style="width:8mm;height:40mm;"></div><div class="spec-dim">96</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block tint">
+        <div class="block-head">Spacing tokens</div>
+        <table>
+          <tr><th>Token</th><th>px</th><th>Used for</th></tr>
+          <tr><td class="mono">--bq-1</td><td class="mono">8</td><td>Icon gap</td></tr>
+          <tr><td class="mono">--bq-2</td><td class="mono">16</td><td>Inside chips</td></tr>
+          <tr><td class="mono">--bq-3</td><td class="mono">24</td><td>Card padding, gutter</td></tr>
+          <tr><td class="mono">--bq-4</td><td class="mono">32</td><td>Between cards</td></tr>
+          <tr><td class="mono">--bq-5</td><td class="mono">48</td><td>Inside sections</td></tr>
+          <tr><td class="mono">--bq-6</td><td class="mono">64</td><td>Heading to content</td></tr>
+          <tr><td class="mono">--bq-7</td><td class="mono">96</td><td>Between sections</td></tr>
+        </table>
+        <p class="note" style="margin-top:var(--s2);margin-bottom:0;">
+          The clay build already runs a 4pt base with the same ceiling. Token names change; the
+          rhythm does not, so the migration does not reflow the page.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="pnum yellow">09</div>
+</section>
+
+<!-- ============================================================
+     10 — SHAPE VOCABULARY
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>10 · Shape</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">06 — Shape vocabulary</span>
+    <h2 class="h-page">Five primitives, nothing else</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      Every illustration, icon, avatar and decorative tile in the product is assembled from these
+      five forms at a single tile size. There are no bespoke paths and no imported icon sets with
+      their own geometry.
+    </p>
+
+    <div class="cols c-2-1">
+      <div class="stack" style="gap:var(--s3);">
+        <div class="row" style="gap:var(--s3);">
+          <div style="text-align:center;">
+            <div class="f-ink" style="width:24mm;height:24mm;"></div>
+            <div class="spec-dim" style="margin-top:1mm;">square</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="sh circ f-red" style="width:24mm;height:24mm;"></div>
+            <div class="spec-dim" style="margin-top:1mm;">circle</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="sh half-t f-blue" style="width:24mm;height:24mm;"></div>
+            <div class="spec-dim" style="margin-top:1mm;">half</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="sh q f-yellow" style="width:24mm;height:24mm;"></div>
+            <div class="spec-dim" style="margin-top:1mm;">quarter</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="sh tri-tr f-ink" style="width:24mm;height:24mm;"></div>
+            <div class="spec-dim" style="margin-top:1mm;">triangle</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="block-head">Rotation is the only transform</div>
+          <p>Each primitive exists in four rotations — <span class="mono">0 / 90 / 180 / 270</span>.
+          Nothing is scaled non-uniformly, skewed, or rotated off a right angle. A quarter-circle is
+          always a true quarter of a true circle.</p>
+          <p style="margin:0;">In CSS they are pure <span class="mono">border-radius</span> and
+          <span class="mono">clip-path</span> on a square box — no SVG required for any of the five.</p>
+        </div>
+
+        <div>
+          <div class="block-head">Composition</div>
+          <p style="margin:0;">Tiles combine on a square lattice at one of three sizes:
+          <span class="mono">64 / 96 / 128px</span>. Adjacent tiles may share a color; adjacent tiles
+          may <em>not</em> form an accidental third shape that reads as a letter or a face — check
+          every band at thumbnail size.</p>
+        </div>
+      </div>
+
+      <div class="block tint" style="display:flex;flex-direction:column;">
+        <div class="block-head">Tile lattice</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:0;border:var(--rule-thin) solid var(--ink);flex:1 1 auto;">
+          <div class="sh q f-blue"></div><div class="sh tri-tr f-ink"></div><div class="sh half-b f-red"></div><div class="sh q3 f-yellow"></div>
+          <div class="sh circ f-red"></div><div class="f-paper"></div><div class="sh q2 f-blue"></div><div class="sh tri-bl f-ink"></div>
+          <div class="sh half-r f-yellow"></div><div class="sh q4 f-red"></div><div class="f-paper"></div><div class="sh circ f-blue"></div>
+          <div class="sh tri-br f-blue"></div><div class="sh half-t f-ink"></div><div class="sh q f-red"></div><div class="f-paper"></div>
+        </div>
+        <p class="note" style="margin:var(--s2) 0 0;">Roughly one in four cells stays paper. A fully
+        packed band reads as noise at mobile width.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pnum red">10</div>
+</section>
+
+<!-- ============================================================
+     11 — RULE WEIGHT & OFFSET DEPTH
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part A — Foundations</span><span>11 · Depth</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">07 — Rule weight &amp; depth</span>
+    <h2 class="h-page">Offset replaces shadow</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      The clay build carries a dual soft shadow on every surface, hue-matched to the background.
+      All of it is deleted. Depth in this system is a hard black block offset behind the element —
+      printable, scalable, and honest about being flat.
+    </p>
+
+    <div class="cols c-2-1">
+      <div class="stack">
+        <div>
+          <div class="block-head">Rule weights</div>
+          <table>
+            <tr><th>Token</th><th>px</th><th>Where</th></tr>
+            <tr><td class="mono">--bq-rule-hair</td><td class="mono">1</td><td>Table row divider only</td></tr>
+            <tr><td class="mono">--bq-rule-thin</td><td class="mono">2</td><td>Chips, inputs, small blocks</td></tr>
+            <tr><td class="mono">--bq-rule-mid</td><td class="mono">4</td><td>Cards, buttons, the default</td></tr>
+            <tr><td class="mono">--bq-rule-bold</td><td class="mono">8</td><td>Section rules, callout bars</td></tr>
+          </table>
+          <p class="note" style="margin-top:2mm;">Every rule is <span class="mono">--bq-ink</span>.
+          A colored border does not exist in this system; color goes in the fill.</p>
+        </div>
+
+        <div>
+          <div class="block-head">Offset depth</div>
+          <p style="margin:0;">Two levels, and only two. Resting elements sit flat on the page.
+          Elements that can be pressed carry <span class="mono">4px</span> of offset. Elements
+          floating above the page — dialogs, sheets — carry <span class="mono">8px</span>.
+          Pressing animates the element <em>into</em> its own offset.</p>
+        </div>
+      </div>
+
+      <div class="block tint">
+        <div class="block-head">The three states</div>
+        <div class="stack" style="gap:var(--s4);">
+          <div>
+            <div style="width:46mm;height:13mm;background:var(--paper);border:var(--rule-mid) solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:8.5pt;">Flat — resting</div>
+            <div class="spec-dim" style="margin-top:1.5mm;">box-shadow: none</div>
+          </div>
+          <div>
+            <div style="width:46mm;height:13mm;background:var(--paper);border:var(--rule-mid) solid var(--ink);box-shadow:4px 4px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:8.5pt;">Raised — pressable</div>
+            <div class="spec-dim" style="margin-top:1.5mm;">box-shadow: 4px 4px 0 ink</div>
+          </div>
+          <div>
+            <div style="width:46mm;height:13mm;background:var(--paper);border:var(--rule-mid) solid var(--ink);box-shadow:8px 8px 0 var(--ink);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:8.5pt;">Floating — dialog</div>
+            <div class="spec-dim" style="margin-top:1.5mm;">box-shadow: 8px 8px 0 ink</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout red" style="margin-top:var(--s3);">
+      <strong>The one-line test for a correct migration:</strong> search the stylesheet for
+      <span class="mono">blur</span> and for any <span class="mono">box-shadow</span> whose third
+      value is not <span class="mono">0</span>. Both searches must return nothing.
+    </div>
+  </div>
+  <div class="pnum blue">11</div>
+</section>
+
+<!-- ============================================================
+     12 — BUTTONS
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>12 · Buttons</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">08 — Buttons</span>
+    <h2 class="h-page">Three variants, four states</h2>
+
+    <div class="cols c-2-1" style="margin-top:var(--s2);">
+      <div class="stack">
+        <div class="demo">
+          <span class="bq-btn primary offset">Contact Me</span>
+          <span class="bq-btn secondary offset">View My Work</span>
+          <span class="bq-icon-btn">↗</span>
+          <span class="bq-btn secondary disabled">Disabled</span>
+        </div>
+
+        <div>
+          <div class="block-head">States</div>
+          <table>
+            <tr><th>State</th><th>Change</th><th>Duration</th></tr>
+            <tr><td>Rest</td><td class="mono">4px 4px 0 ink</td><td>—</td></tr>
+            <tr><td>Hover</td><td class="mono">6px 6px 0 ink, translate(−2px,−2px)</td><td class="mono">120ms</td></tr>
+            <tr><td>Active</td><td class="mono">0 0 0 ink, translate(4px,4px)</td><td class="mono">60ms</td></tr>
+            <tr><td>Focus</td><td class="mono">outline 3px blue, offset 2px</td><td>instant</td></tr>
+            <tr><td>Disabled</td><td class="mono">opacity .4, no offset, no pointer</td><td>—</td></tr>
+          </table>
+          <p class="note" style="margin-top:2mm;margin-bottom:0;">
+            Active moves the button exactly as far as its own offset, so it lands flush with the
+            page — the Bauhaus equivalent of the clay build's inset press.
+          </p>
+        </div>
+      </div>
+
+      <div class="block tint">
+        <div class="block-head">Geometry</div>
+        <table>
+          <tr><th>Property</th><th>Value</th></tr>
+          <tr><td>Radius</td><td class="mono">0</td></tr>
+          <tr><td>Border</td><td class="mono">4px solid ink</td></tr>
+          <tr><td>Padding</td><td class="mono">12px 28px</td></tr>
+          <tr><td>Min height</td><td class="mono">48px</td></tr>
+          <tr><td>Font</td><td class="mono">Jost 600 / 1rem</td></tr>
+          <tr><td>Icon gap</td><td class="mono">8px</td></tr>
+          <tr><td>Icon size</td><td class="mono">1.1em</td></tr>
+        </table>
+        <p class="note" style="margin-top:var(--s2);">
+          <strong>Primary</strong> = red fill, white label. <strong>Secondary</strong> = paper fill,
+          ink label. <strong>Icon</strong> = 44×44 square, blue fill, white glyph.
+        </p>
+        <p class="note" style="margin-bottom:0;">
+          The pill shape is gone. <span class="mono">--radius-pill</span> has no counterpart here and
+          should be deleted rather than mapped.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">12</div>
+</section>
+
+<!-- ============================================================
+     13 — CARDS
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>13 · Cards</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">09 — Cards</span>
+    <h2 class="h-page">One card, three fills</h2>
+
+    <div class="cols c3" style="margin-top:var(--s2);flex:0 0 auto;">
+      <div class="bq-card" style="box-shadow:4px 4px 0 var(--ink);">
+        <div class="bq-card-media f-blue" style="display:flex;align-items:center;justify-content:center;">
+          <div class="sh half-t f-yellow" style="width:14mm;height:7mm;"></div>
+        </div>
+        <div class="bq-card-body">
+          <div class="bq-card-title">Frontend tile</div>
+          <div class="bq-card-meta">groggybeans.com ↗</div>
+        </div>
+      </div>
+
+      <div class="bq-card" style="box-shadow:4px 4px 0 var(--ink);">
+        <div class="bq-card-body" style="padding:3mm;">
+          <div class="bq-card-title">ACRM</div>
+          <div class="bq-card-meta" style="margin-bottom:2mm;">Control plane</div>
+          <p class="note" style="margin-bottom:2mm;">Multi-tenant product. Console, Floor and Exchange seats.</p>
+          <div style="display:flex;gap:1.5mm;flex-wrap:wrap;">
+            <span class="bq-chip">NestJS</span><span class="bq-chip">ECS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bq-card" style="background:var(--paper-deep);">
+        <div class="bq-card-body" style="padding:3mm;">
+          <div class="bq-card-title">weZero Dialer</div>
+          <div class="bq-card-meta" style="margin-bottom:2mm;">Engine — recessed</div>
+          <p class="note" style="margin-bottom:2mm;">Subordinate card. Deeper paper, no offset.</p>
+          <div style="display:flex;gap:1.5mm;flex-wrap:wrap;">
+            <span class="bq-chip" style="background:var(--paper-lift);">Elixir</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols c-1-2" style="margin-top:var(--s3);">
+      <div>
+        <div class="block-head">The three fills</div>
+        <table>
+          <tr><th>Fill</th><th>Means</th></tr>
+          <tr><td class="mono">paper</td><td>Default card</td></tr>
+          <tr><td class="mono">paper-deep</td><td>Subordinate — replaces <span class="mono">.clay-sunken</span></td></tr>
+          <tr><td class="mono">blue / red</td><td>Feature card, white text, media only</td></tr>
+        </table>
+        <p class="note" style="margin-top:2mm;margin-bottom:0;">
+          Hierarchy is carried by fill and offset, never by size or radius.
+        </p>
+      </div>
+
+      <div class="stack" style="gap:var(--s2);">
+        <div class="block" style="padding:var(--s2) var(--s3);">
+          <div class="block-head">Anatomy</div>
+          <table>
+            <tr><th>Part</th><th>Spec</th></tr>
+            <tr><td>Border</td><td class="mono">4px solid ink, radius 0</td></tr>
+            <tr><td>Media</td><td class="mono">aspect-ratio 8/5, object-fit cover, 4px bottom rule</td></tr>
+            <tr><td>Padding</td><td class="mono">24px</td></tr>
+            <tr><td>Title</td><td class="mono">Jost 600 / 1.125rem</td></tr>
+            <tr><td>Meta</td><td class="mono">Plex Mono 400 / 0.8125rem / ink-soft</td></tr>
+            <tr><td>Hover</td><td class="mono">offset 4px → 6px, translate(−2px,−2px)</td></tr>
+          </table>
+        </div>
+        <div class="callout blue">
+          The whole card surface is the link, as in the current build. The media sits flush to the
+          border — no inset, no rounded photo corners, no padding between image and rule.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum red">13</div>
+</section>
+
+<!-- ============================================================
+     14 — CHIPS, LABELS & STATS
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>14 · Chips</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">10 — Chips, labels &amp; stats</span>
+    <h2 class="h-page">The small type</h2>
+
+    <div class="cols c2" style="margin-top:var(--s2);">
+      <div class="stack">
+        <div class="demo tight">
+          <span class="bq-chip">NestJS</span>
+          <span class="bq-chip">React Router v7</span>
+          <span class="bq-chip fill-y">Starred</span>
+          <span class="bq-chip fill-b">Live</span>
+        </div>
+        <div>
+          <div class="block-head">Chip</div>
+          <table>
+            <tr><th>Property</th><th>Value</th></tr>
+            <tr><td>Shape</td><td class="mono">rectangle, radius 0</td></tr>
+            <tr><td>Border</td><td class="mono">2px solid ink</td></tr>
+            <tr><td>Padding</td><td class="mono">4px 10px</td></tr>
+            <tr><td>Font</td><td class="mono">Plex Mono 600 / 0.75rem / +0.1em / caps</td></tr>
+            <tr><td>Fills</td><td class="mono">paper · yellow · blue(white text)</td></tr>
+          </table>
+          <p class="note" style="margin-top:2mm;margin-bottom:0;">
+            Inside a <span class="mono">paper-deep</span> card, a chip takes
+            <span class="mono">paper-lift</span> so it stays legible — the same contrast problem the
+            clay build hit with sunken cards, solved the same way.
+          </p>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div>
+          <div class="block-head">Section label</div>
+          <div class="demo tight" style="justify-content:flex-start;">
+            <span class="mono" style="font-size:8pt;font-weight:600;letter-spacing:0.18em;">MERIDIAN &amp; CO — PLATFORM</span>
+          </div>
+          <p class="note" style="margin-top:2mm;">Mono 600, caps, <span class="mono">+0.18em</span>,
+          <span class="mono">ink-soft</span>. Sits <span class="mono">16px</span> above the block it
+          names. This replaces <span class="mono">.prod-label</span> one-for-one.</p>
+        </div>
+
+        <div>
+          <div class="block-head">Stat &amp; language dot</div>
+          <div class="demo tight" style="justify-content:flex-start;gap:var(--s3);">
+            <span class="mono" style="font-size:8pt;">★ 128</span>
+            <span class="mono" style="font-size:8pt;">⑂ 14</span>
+            <span style="display:inline-flex;align-items:center;gap:2mm;font-size:8pt;" class="mono">
+              <span style="width:3mm;height:3mm;background:var(--blue);display:inline-block;"></span>TypeScript
+            </span>
+          </div>
+          <p class="note" style="margin-top:2mm;margin-bottom:0;">
+            The language dot becomes a <strong>square</strong>. It is the one place GitHub's own
+            colors are allowed into the palette, because they carry external meaning — they are data,
+            not decoration.
+          </p>
+        </div>
+
+        <div class="callout">
+          Chips never wrap mid-token and never truncate with an ellipsis. If a stack list is too
+          long for the card, drop chips from the end rather than shrinking them.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum yellow">14</div>
+</section>
+
+<!-- ============================================================
+     15 — DIALOGS & BOTTOM SHEETS
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>15 · Dialogs</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">11 — Dialogs &amp; bottom sheets</span>
+    <h2 class="h-page">Two sheets, kept as built</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      The contact sheet and the mobile project sheet keep their entire mechanism — native
+      <span class="mono">&lt;dialog&gt;</span>, top-layer rendering, focus trap, drag-to-dismiss,
+      <span class="mono">allow-discrete</span> on both <span class="mono">display</span> and
+      <span class="mono">overlay</span>. Only the skin changes.
+    </p>
+
+    <div class="cols c-1-2">
+      <div>
+        <div class="block-head">Sheet — restyled</div>
+        <div style="border:var(--rule-mid) solid var(--ink);background:var(--paper-lift);box-shadow:8px 8px 0 var(--ink);padding:3mm;">
+          <div style="width:16mm;height:1.5mm;background:var(--ink);margin:0 auto 3mm;"></div>
+          <div style="font-size:12pt;font-weight:700;letter-spacing:-0.02em;">Let's build something.</div>
+          <div style="height:var(--rule-thin);background:var(--ink);margin:2.5mm 0;"></div>
+          <div class="mono" style="font-size:7pt;">ahmad@example.com</div>
+          <div style="display:flex;gap:2mm;margin-top:3mm;">
+            <span class="bq-btn primary" style="font-size:7pt;padding:2mm 4mm;border-width:2px;">Copy</span>
+            <span class="bq-btn secondary" style="font-size:7pt;padding:2mm 4mm;border-width:2px;">GitHub</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div>
+          <div class="block-head">What changes</div>
+          <table>
+            <tr><th>Part</th><th>Clay</th><th>Bauhaus</th></tr>
+            <tr><td>Panel corners</td><td class="mono">44px top radius</td><td class="mono">0</td></tr>
+            <tr><td>Panel edge</td><td>soft shadow</td><td class="mono">4px ink + 8px offset</td></tr>
+            <tr><td>Backdrop</td><td>dimmed blur</td><td class="mono">ink @ 55%, no blur</td></tr>
+            <tr><td>Drag handle</td><td>rounded pill</td><td class="mono">64×6px ink bar, radius 0</td></tr>
+            <tr><td>Close</td><td>circular icon btn</td><td class="mono">44px square, red fill</td></tr>
+          </table>
+        </div>
+
+        <div class="callout red">
+          <strong>Do not touch the JS.</strong> The bird's landing offset is driven by
+          <span class="mono">--sheet-panel-height</span>, measured from
+          <span class="mono">sheetPanel.offsetHeight</span> after
+          <span class="mono">showModal()</span>, because the CSS <span class="mono">max-height</span>
+          is a ceiling rather than the real height. Squaring the corners changes the panel's height
+          slightly — re-check the bird's overlap at every breakpoint listed on page 22 after the
+          restyle, by measured rect, not by eye.
+        </div>
+
+        <div class="callout blue">
+          Entrance choreography, the two-phase rise, the 110px dismiss threshold and the
+          <span class="mono">close</span>-event transform reset all carry over untouched.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum blue">15</div>
+</section>
+
+<!-- ============================================================
+     16 — HEADER & NAVIGATION
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>16 · Header</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">12 — Header &amp; navigation</span>
+    <h2 class="h-page">A rule, not a floating bar</h2>
+
+    <div class="stack" style="margin-top:var(--s2);">
+      <div style="border:var(--rule-mid) solid var(--ink);background:var(--paper-lift);">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4mm 6mm;">
+          <span style="display:inline-flex;align-items:center;gap:3mm;font-weight:600;font-size:9.5pt;">
+            <span class="sh tri-bl f-red" style="width:5mm;height:5mm;display:inline-block;"></span>
+            Ahmad Rashad
+          </span>
+          <span class="bq-btn primary" style="font-size:8pt;padding:2.5mm 6mm;border-width:2px;">Contact</span>
+        </div>
+        <div style="height:var(--rule-bold);background:var(--ink);"></div>
+      </div>
+      <p class="note" style="margin-top:0;">
+        The header is a flat band terminated by an <span class="mono">8px</span> ink rule. It does
+        not float, does not blur its backdrop, and gains no shadow on scroll — the rule alone
+        separates it from the page.
+      </p>
+
+      <div class="cols c2" style="margin-top:var(--s2);">
+        <div>
+          <div class="block-head">Spec</div>
+          <table>
+            <tr><th>Property</th><th>Value</th></tr>
+            <tr><td>Height</td><td class="mono">72px desktop / 60px mobile</td></tr>
+            <tr><td>Position</td><td class="mono">sticky, top 0</td></tr>
+            <tr><td>Background</td><td class="mono">paper-lift, opaque</td></tr>
+            <tr><td>Bottom rule</td><td class="mono">8px solid ink</td></tr>
+            <tr><td>Back arrow</td><td class="mono">triangle primitive, red, 16px</td></tr>
+            <tr><td>Scroll change</td><td class="mono">none</td></tr>
+          </table>
+        </div>
+        <div class="stack" style="gap:var(--s2);">
+          <div class="callout">
+            The back arrow is the triangle primitive rotated, not an icon-font glyph or an imported
+            chevron. Same for the external-link mark: a square with a triangle notched out.
+          </div>
+          <div class="dd dont">
+            <div class="dd-head">Don't</div>
+            <div class="dd-body">
+              <p>Add a shadow or blur when the page scrolls.</p>
+              <p>Shrink the header on scroll — height is fixed.</p>
+              <p>Use a hamburger. Two items do not need a menu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">16</div>
+</section>
+
+<!-- ============================================================
+     17 — SLIDESHOW & MEDIA
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>17 · Media</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">13 — Slideshow &amp; media</span>
+    <h2 class="h-page">Screenshots in a frame</h2>
+
+    <div class="cols c-2-1" style="margin-top:var(--s2);">
+      <div class="stack">
+        <div style="border:var(--rule-mid) solid var(--ink);background:var(--ink);position:relative;height:46mm;display:flex;align-items:center;justify-content:center;">
+          <span class="mono" style="color:var(--paper);font-size:7pt;letter-spacing:0.2em;">PROJECT SCREENSHOT · 16/9</span>
+          <span style="position:absolute;top:0;right:0;background:var(--red);color:#fff;font-family:var(--mono);font-size:6.4pt;letter-spacing:0.14em;padding:1.5mm 3mm;">VIEW LIVE ↗</span>
+          <span style="position:absolute;bottom:3mm;left:50%;transform:translateX(-50%);display:flex;gap:2mm;">
+            <span style="width:4mm;height:2mm;background:var(--yellow);display:block;"></span>
+            <span style="width:2mm;height:2mm;background:var(--paper);display:block;"></span>
+            <span style="width:2mm;height:2mm;background:var(--paper);display:block;"></span>
+          </span>
+        </div>
+        <p class="note" style="margin:0;">
+          The frame is a <span class="mono">4px</span> ink border with no radius and no inset. The
+          "View Live" badge is a red rectangle flush into the top-right corner — it does not float
+          with a margin, and it does not round.
+        </p>
+      </div>
+
+      <div class="block tint">
+        <div class="block-head">Carried over</div>
+        <ul>
+          <li>Crossfade on <span class="mono">opacity</span>, <span class="mono">--dur-slow</span></li>
+          <li>Dots generated from slide count in JS, never hardcoded</li>
+          <li><span class="mono">data-autoplay</span> on the container, 2000ms</li>
+          <li>Pause on hover, focus, and out-of-view</li>
+          <li><span class="mono">prefers-reduced-motion</span> disables autoplay; dots still work</li>
+          <li>Track is an <span class="mono">&lt;a&gt;</span>; dots are a sibling, never a descendant</li>
+        </ul>
+        <div class="block-head" style="margin-top:var(--s2);">Changed</div>
+        <table>
+          <tr><th>Part</th><th>New</th></tr>
+          <tr><td>Dot — idle</td><td class="mono">8×8 paper square</td></tr>
+          <tr><td>Dot — active</td><td class="mono">16×8 yellow bar</td></tr>
+          <tr><td>Hover zoom</td><td class="mono">removed</td></tr>
+          <tr><td>Badge radius</td><td class="mono">0</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout blue" style="margin-top:var(--s3);">
+      <strong>Image treatment.</strong> Product screenshots stay in full color — they are evidence.
+      Decorative or portrait photography is duotoned to ink + one triad color, following reference
+      board 1, so photography never introduces a fourth hue.
+    </div>
+  </div>
+  <div class="pnum red">17</div>
+</section>
+
+<!-- ============================================================
+     18 — CHARACTERS
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>18 · Characters</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">14 — Characters</span>
+    <h2 class="h-page">The bird, the field, the avatar</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      These three survive the rewrite because they are the only parts of the site a visitor
+      remembers. Each is rebuilt from the five primitives — constructed, not redrawn soft.
+    </p>
+
+    <div class="cols c3">
+      <div class="stack" style="gap:var(--s2);">
+        <div class="block" style="padding:var(--s2);">
+          <div class="block-head">The bird</div>
+          <div style="height:28mm;position:relative;background:var(--paper-deep);">
+            <div class="sh circ f-blue" style="position:absolute;left:9mm;top:9mm;width:11mm;height:11mm;"></div>
+            <div class="sh tri-tr f-ink" style="position:absolute;left:19mm;top:11mm;width:4mm;height:4mm;"></div>
+            <div class="sh half-t f-red" style="position:absolute;left:7mm;top:4mm;width:10mm;height:5mm;"></div>
+            <div class="sh q3 f-yellow" style="position:absolute;left:12mm;top:19mm;width:5mm;height:5mm;"></div>
+          </div>
+          <p class="note" style="margin:2mm 0 0;">Circle body, half-circle wing, triangle beak,
+          quarter-circle tail. The wing is the only animated part: it rotates about its flat edge
+          between <span class="mono">0°</span> and <span class="mono">−38°</span>.</p>
+        </div>
+        <p class="note" style="margin:0;">Scroll-velocity flap mapping is unchanged:
+        <span class="mono">420ms</span> idle down to <span class="mono">90ms</span> at speed, easing
+        back <span class="mono">200ms</span> after scrolling stops.</p>
+      </div>
+
+      <div class="stack" style="gap:var(--s2);">
+        <div class="block" style="padding:var(--s2);">
+          <div class="block-head">The floating field</div>
+          <div style="height:28mm;position:relative;background:var(--paper-deep);">
+            <div class="sh q f-red" style="position:absolute;left:3mm;top:3mm;width:8mm;height:8mm;"></div>
+            <div class="sh circ f-blue" style="position:absolute;right:4mm;top:6mm;width:6mm;height:6mm;"></div>
+            <div class="sh tri-bl f-yellow" style="position:absolute;left:10mm;bottom:4mm;width:7mm;height:7mm;"></div>
+            <div class="sh half-r f-ink" style="position:absolute;right:8mm;bottom:3mm;width:5mm;height:10mm;"></div>
+          </div>
+          <p class="note" style="margin:2mm 0 0;">The three drifting clay blobs and four icon chips
+          become one field of primitives in the hero margins.</p>
+        </div>
+        <p class="note" style="margin:0;"><strong>Critical change:</strong> tiles do not drift
+        freely. They translate along one axis only, by at most
+        <span class="mono">8px</span>, on an <span class="mono">8s</span> loop — they must still
+        read as locked to the grid.</p>
+      </div>
+
+      <div class="stack" style="gap:var(--s2);">
+        <div class="block" style="padding:var(--s2);">
+          <div class="block-head">The avatar</div>
+          <div style="height:28mm;position:relative;background:var(--paper-deep);display:flex;align-items:center;justify-content:center;">
+            <div style="position:relative;width:20mm;height:20mm;border:var(--rule-mid) solid var(--ink);background:var(--yellow);overflow:hidden;">
+              <div class="sh half-t f-ink" style="position:absolute;left:3mm;top:2.5mm;width:13mm;height:6.5mm;"></div>
+              <div class="sh circ f-paper" style="position:absolute;left:4.5mm;top:8mm;width:3mm;height:3mm;"></div>
+              <div class="sh circ f-paper" style="position:absolute;right:4.5mm;top:8mm;width:3mm;height:3mm;"></div>
+              <div class="sh half-t f-blue" style="position:absolute;left:3mm;bottom:0;width:13mm;height:6mm;"></div>
+            </div>
+          </div>
+          <p class="note" style="margin:2mm 0 0;">A square portrait field, not a blob. Hair is a
+          half-circle, eyes are circles, shoulders are a half-circle.</p>
+        </div>
+        <p class="note" style="margin:0;"><strong>Removed:</strong> the pointer-driven
+        <span class="mono">rotateX/rotateY</span> tilt and the moving highlight. A flat system
+        cannot fake dimension and should not try.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pnum yellow">18</div>
+</section>
+
+<!-- ============================================================
+     19 — MOTION
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part B — Components</span><span>19 · Motion</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">15 — Motion</span>
+    <h2 class="h-page">Mechanical, not springy</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      Clay motion overshoots and settles, because clay is soft. Constructed things slide and stop.
+      Every easing in the system is linear or a sharp ease-out — nothing bounces, nothing wobbles.
+    </p>
+
+    <div class="cols c-2-1">
+      <div class="stack">
+        <table>
+          <tr><th>Motion</th><th>Property</th><th>Duration</th><th>Easing</th></tr>
+          <tr><td>Button hover</td><td class="mono">translate + shadow</td><td class="mono">120ms</td><td class="mono">ease-out</td></tr>
+          <tr><td>Button press</td><td class="mono">translate</td><td class="mono">60ms</td><td class="mono">linear</td></tr>
+          <tr><td>Card hover</td><td class="mono">translate + shadow</td><td class="mono">140ms</td><td class="mono">ease-out</td></tr>
+          <tr><td>Card reveal</td><td class="mono">opacity + translate 24px</td><td class="mono">400ms</td><td class="mono">cubic-bezier(.2,0,0,1)</td></tr>
+          <tr><td>Reveal stagger</td><td class="mono">per card index</td><td class="mono">60ms</td><td>—</td></tr>
+          <tr><td>Sheet rise</td><td class="mono">translateY</td><td class="mono">320ms</td><td class="mono">cubic-bezier(.2,0,0,1)</td></tr>
+          <tr><td>Slide crossfade</td><td class="mono">opacity</td><td class="mono">420ms</td><td class="mono">ease</td></tr>
+          <tr><td>Wing flap</td><td class="mono">rotate 0 → −38°</td><td class="mono">90–420ms</td><td class="mono">ease-in-out</td></tr>
+          <tr><td>Field drift</td><td class="mono">translate ≤8px, one axis</td><td class="mono">8s</td><td class="mono">ease-in-out</td></tr>
+        </table>
+        <p class="note" style="margin-top:2mm;margin-bottom:0;">
+          Card reveal keeps the current build's trick of animating
+          <span class="mono">translate</span> rather than <span class="mono">transform</span>, so the
+          finished animation's <span class="mono">forwards</span> fill does not swallow the hover
+          lift.
+        </p>
+      </div>
+
+      <div class="stack">
+        <div class="block tint">
+          <div class="block-head">Banned</div>
+          <ul style="margin-bottom:0;">
+            <li>Spring and bounce easings</li>
+            <li>Scale on hover</li>
+            <li>Blur transitions</li>
+            <li>Parallax</li>
+            <li>Rotation off a right angle</li>
+            <li>Anything over <span class="mono">450ms</span> except the drift loop</li>
+          </ul>
+        </div>
+        <div class="callout red">
+          <span class="mono">prefers-reduced-motion</span>: drift and flap stop entirely, reveals
+          become instant, the sheet appears without rising. The bird is
+          <span class="mono">display:none</span>, exactly as today — skipped outright rather than
+          left to flash past a 0.01ms override.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum blue">19</div>
+</section>
+
+<!-- ============================================================
+     20 — LAYOUT: HOME
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part C — Application</span><span>20 · Home</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">16 — Layout</span>
+    <h2 class="h-page">index.html — one locked screen</h2>
+
+    <div class="cols c-2-1" style="margin-top:var(--s2);">
+      <div style="border:var(--rule-mid) solid var(--ink);position:relative;background:var(--paper-lift);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3mm;padding:6mm;">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:18mm;display:grid;grid-template-columns:9mm 9mm;grid-auto-rows:9mm;">
+          <div class="sh q f-red"></div><div class="f-paper"></div>
+          <div class="f-paper"></div><div class="sh circ f-blue"></div>
+          <div class="sh tri-bl f-yellow"></div><div class="f-paper"></div>
+        </div>
+        <div style="position:absolute;right:0;top:0;bottom:0;width:18mm;display:grid;grid-template-columns:9mm 9mm;grid-auto-rows:9mm;">
+          <div class="f-paper"></div><div class="sh q2 f-blue"></div>
+          <div class="sh half-b f-yellow"></div><div class="f-paper"></div>
+          <div class="f-paper"></div><div class="sh tri-br f-red"></div>
+        </div>
+
+        <div style="width:22mm;height:22mm;border:var(--rule-mid) solid var(--ink);background:var(--yellow);"></div>
+        <div class="mono" style="font-size:6.4pt;letter-spacing:0.18em;color:var(--red);">FULL STACK AI DEVELOPER · DEVOPS</div>
+        <div style="font-size:19pt;font-weight:800;letter-spacing:-0.04em;line-height:1;">Ahmad Rashad</div>
+        <div style="font-size:7.6pt;max-width:62mm;text-align:center;line-height:1.4;">I build tactile, real-world software — and I'm looking for my next team.</div>
+        <div style="display:flex;gap:3mm;">
+          <span class="bq-btn primary" style="font-size:7pt;padding:2mm 5mm;border-width:2px;box-shadow:2mm 2mm 0 var(--ink);">Contact Me</span>
+          <span class="bq-btn secondary" style="font-size:7pt;padding:2mm 5mm;border-width:2px;box-shadow:2mm 2mm 0 var(--ink);">View My Work</span>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div>
+          <div class="block-head">Unchanged</div>
+          <p style="margin:0;">Still a locked single viewport —
+          <span class="mono">body.single-screen { height:100dvh; overflow:hidden }</span>. No page
+          scroll at any tested size. The <span class="mono">max-height: 760px</span> fallback still
+          compacts sizes and drops the tagline.</p>
+        </div>
+        <div>
+          <div class="block-head">Changed</div>
+          <table>
+            <tr><th>Element</th><th>Becomes</th></tr>
+            <tr><td>Photo blob</td><td>Square portrait, 4px ink border</td></tr>
+            <tr><td>Blob field</td><td>Two tile columns, page edges</td></tr>
+            <tr><td>Icon chips</td><td>Absorbed into the tile columns</td></tr>
+            <tr><td>Eyebrow role</td><td>Mono caps, red, <span class="mono">+0.18em</span></td></tr>
+            <tr><td>Pill CTAs</td><td>Square, 4px border, 4px offset</td></tr>
+          </table>
+        </div>
+        <div class="callout">
+          The tile columns replace the <span class="mono">1440px</span> / <span class="mono">760px</span>
+          visibility cutoffs with a simpler rule: they narrow to one column under
+          <span class="mono">1024px</span> and disappear under <span class="mono">640px</span>,
+          where the hero needs the full width.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">20</div>
+</section>
+
+<!-- ============================================================
+     21 — LAYOUT: WORK
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part C — Application</span><span>21 · Work</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">16.1 — Layout</span>
+    <h2 class="h-page">work.html — the scrolling page</h2>
+
+    <div class="cols c-1-2" style="margin-top:var(--s2);">
+      <div style="border:var(--rule-mid) solid var(--ink);background:var(--paper-lift);padding:3mm;display:flex;flex-direction:column;gap:2.5mm;">
+        <div style="height:var(--rule-bold);background:var(--ink);"></div>
+        <div style="font-size:11pt;font-weight:700;letter-spacing:-0.025em;">Selected work.</div>
+        <div class="mono" style="font-size:5.6pt;letter-spacing:0.16em;color:var(--red);">IN PRODUCTION</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2mm;">
+          <div style="height:11mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:11mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:11mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:11mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:11mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:11mm;border:2px solid var(--ink);background:var(--paper);"></div>
+        </div>
+        <div style="height:var(--rule-mid);background:var(--ink);"></div>
+        <div style="height:14mm;border:2px solid var(--ink);background:var(--paper);"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm;">
+          <div style="height:10mm;border:2px solid var(--ink);background:var(--paper-deep);"></div>
+          <div style="height:10mm;border:2px solid var(--ink);background:var(--paper-deep);"></div>
+        </div>
+        <div style="height:var(--rule-bold);background:var(--ink);"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm;">
+          <div style="height:16mm;border:2px solid var(--ink);background:var(--blue);"></div>
+          <div style="height:16mm;border:2px solid var(--ink);background:var(--paper);"></div>
+        </div>
+        <div class="mono" style="font-size:5.6pt;letter-spacing:0.16em;color:var(--red);">STARRED ON GITHUB</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2mm;">
+          <div style="height:9mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:9mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:9mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:9mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:9mm;border:2px solid var(--ink);background:var(--paper);"></div>
+          <div style="height:9mm;border:2px solid var(--ink);background:var(--paper);"></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div>
+          <div class="block-head">Section order — unchanged</div>
+          <table>
+            <tr><th>#</th><th>Section</th><th>Treatment</th></tr>
+            <tr><td class="mono">1</td><td>Selected work. (intro)</td><td>h1, no bottom pad</td></tr>
+            <tr><td class="mono">2</td><td>In production</td><td>Frontend grid leads, then divider, then platform</td></tr>
+            <tr><td class="mono">3</td><td>Featured projects ×3</td><td>Zigzag at <span class="mono">≥860px</span></td></tr>
+            <tr><td class="mono">4</td><td>Starred on GitHub</td><td><span class="mono">auto-fit minmax(280px,1fr)</span></td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="block-head">Section separators</div>
+          <p style="margin:0;">Sections are divided by an <span class="mono">8px</span> ink rule
+          spanning the container, not by whitespace alone. The
+          <span class="mono">.frontend-divider</span> hairline becomes a
+          <span class="mono">4px</span> rule.</p>
+        </div>
+        <div class="callout blue">
+          The featured-project zigzag keeps its DOM order <span class="mono">[media, info]</span> so
+          the mobile stack stays consistent, with <span class="mono">order</span> doing the desktop
+          flip — scoped to <span class="mono">≥860px</span> only, exactly as now.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum red">21</div>
+</section>
+
+<!-- ============================================================
+     22 — RESPONSIVE
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part C — Application</span><span>22 · Responsive</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">17 — Responsive</span>
+    <h2 class="h-page">The breakpoints that already exist</h2>
+    <p class="lede" style="margin-bottom:var(--s3);">
+      The clay build runs eight breakpoints, several of them keyed to viewport
+      <em>height</em> rather than width. They are load-bearing and they stay — restyling must not
+      quietly collapse them into a tidy three-tier set.
+    </p>
+
+    <table>
+      <tr><th>Query</th><th>Governs</th><th>Bauhaus change</th></tr>
+      <tr><td class="mono">min-width: 860px</td><td>Featured-project zigzag becomes 2-col</td><td>None</td></tr>
+      <tr><td class="mono">max-width: 1439px</td><td>Scroll bird hidden — no left margin</td><td>None</td></tr>
+      <tr><td class="mono">max-width: 1439px, max-height: 760px</td><td>Hero icon field hidden</td><td>Tile columns narrow to one, then hide at 640px</td></tr>
+      <tr><td class="mono">max-width: 640px</td><td>Project sheets become modal; section padding drops</td><td>Offset depth drops 4px → 2px below 640</td></tr>
+      <tr><td class="mono">max-width: 600px and min-height: 600px</td><td>Tall phones get a 2-icon hero layout</td><td>Two tiles instead of two icons</td></tr>
+      <tr><td class="mono">max-height: 760px</td><td>Hero compacts, tagline drops, sheet padding shrinks</td><td>None</td></tr>
+      <tr><td class="mono">pointer: coarse</td><td>Hover affordances suppressed</td><td>Offset stays at rest value; no hover lift</td></tr>
+      <tr><td class="mono">prefers-reduced-motion</td><td>All motion fallbacks</td><td>See page 19</td></tr>
+    </table>
+
+    <div class="row" style="margin-top:var(--s3);gap:var(--s3);">
+      <div class="callout red grow">
+        <strong>Height queries are not decoration.</strong> The hero is a locked viewport; a laptop
+        at <span class="mono">1440×720</span> clips without the <span class="mono">max-height</span>
+        rules. Test landscape phones explicitly — they have side margin and no vertical slack, the
+        opposite shape from portrait, and are deliberately excluded from the tall-phone tier.
+      </div>
+      <div class="callout grow">
+        <strong>Rule weights scale down.</strong> Below <span class="mono">640px</span>,
+        <span class="mono">--bq-rule-bold</span> drops 8px → 6px and
+        <span class="mono">--bq-rule-mid</span> 4px → 3px. At phone width an 8px border eats the
+        content area; the grid should look the same weight relative to the screen, not absolutely.
+      </div>
+    </div>
+  </div>
+  <div class="pnum yellow">22</div>
+</section>
+
+<!-- ============================================================
+     23 — ACCESSIBILITY
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part C — Application</span><span>23 · Accessibility</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">18 — Accessibility</span>
+    <h2 class="h-page">What flat buys, and what it costs</h2>
+
+    <div class="cols c2" style="margin-top:var(--s2);">
+      <div class="stack">
+        <div class="block" style="border-left:var(--rule-bold) solid var(--blue);">
+          <div class="block-head">What it buys</div>
+          <ul style="margin-bottom:0;">
+            <li>Every border is ink on paper — <span class="mono">15.6:1</span>. Component edges are unmissable.</li>
+            <li>No shadow means no low-contrast surface boundary, the usual neumorphism failure.</li>
+            <li>Hard offsets survive Windows High Contrast Mode, which strips <span class="mono">box-shadow</span> blur.</li>
+          </ul>
+        </div>
+        <div class="block" style="border-left:var(--rule-bold) solid var(--red);">
+          <div class="block-head">What it costs</div>
+          <ul style="margin-bottom:0;">
+            <li>Red on paper is <span class="mono">3.4:1</span> — large text only, never a paragraph, never a caption.</li>
+            <li>Red and blue at equal weight are hard for deuteranopia: never pair them as the sole difference between two states. Shape or label must also differ.</li>
+            <li>Flat removes the depth cue for "pressable". The <span class="mono">4px</span> offset is doing that job alone, so it may never be dropped for aesthetics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div>
+          <div class="block-head">Requirements</div>
+          <table>
+            <tr><th>Area</th><th>Requirement</th></tr>
+            <tr><td>Focus</td><td class="mono">3px blue outline, 2px offset, radius 0, on every interactive element</td></tr>
+            <tr><td>Target size</td><td class="mono">≥44×44px</td></tr>
+            <tr><td>Motion</td><td>Full <span class="mono">prefers-reduced-motion</span> path</td></tr>
+            <tr><td>Decoration</td><td>Every tile and character <span class="mono">aria-hidden="true"</span></td></tr>
+            <tr><td>Dialogs</td><td>Native <span class="mono">&lt;dialog&gt;</span> — focus trap, Escape, focus return</td></tr>
+            <tr><td>Images</td><td>Alt text describes the screen, not "screenshot"</td></tr>
+            <tr><td>Contrast</td><td>WCAG AA minimum, verified per combination</td></tr>
+          </table>
+        </div>
+        <div class="callout">
+          Focus rings are <strong>square</strong>. The clay build sets a
+          <span class="mono">border-radius</span> on <span class="mono">:focus-visible</span> to
+          match rounded components — that declaration must be removed, or every focus ring in the new
+          system renders with soft corners against hard ones.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum blue">23</div>
+</section>
+
+<!-- ============================================================
+     24 — MIGRATION MAP
+     ============================================================ -->
+<section class="page">
+  <div class="rh"><span>Part C — Application</span><span>24 · Migration</span></div>
+  <div class="rh-rule"></div>
+  <div class="body">
+    <span class="kicker">19 — Migration map</span>
+    <h2 class="h-page">Every existing class, accounted for</h2>
+
+    <div class="cols c2" style="margin-top:var(--s1);gap:var(--s4);">
+      <table>
+        <tr><th>Current</th><th>Becomes</th></tr>
+        <tr><td class="mono">.clay</td><td>Border + optional 4px offset</td></tr>
+        <tr><td class="mono">.clay-sunken</td><td><span class="mono">paper-deep</span> fill, no offset</td></tr>
+        <tr><td class="mono">.btn-primary</td><td>Red fill, square, 4px offset</td></tr>
+        <tr><td class="mono">.btn-secondary</td><td>Paper fill, square, 4px offset</td></tr>
+        <tr><td class="mono">.icon-btn</td><td>44px blue square</td></tr>
+        <tr><td class="mono">.photo-blob-frame</td><td>Square portrait frame</td></tr>
+        <tr><td class="mono">.photo-glow</td><td><strong>Delete</strong></td></tr>
+        <tr><td class="mono">.blob-field / .blob-1..3</td><td>Tile columns (page 18)</td></tr>
+        <tr><td class="mono">.icon-field / .floating-icon</td><td>Absorbed into tile columns</td></tr>
+        <tr><td class="mono">.repo-card</td><td>Card, paper fill</td></tr>
+        <tr><td class="mono">.lang-dot</td><td>Square, GitHub color retained</td></tr>
+        <tr><td class="mono">.live-card / .frontend-card</td><td>Card with media</td></tr>
+        <tr><td class="mono">.engine-card</td><td>Card, <span class="mono">paper-deep</span></td></tr>
+      </table>
+
+      <table>
+        <tr><th>Current</th><th>Becomes</th></tr>
+        <tr><td class="mono">.live-chip / .project-tag</td><td>Chip (page 14)</td></tr>
+        <tr><td class="mono">.prod-label</td><td>Section label, mono caps</td></tr>
+        <tr><td class="mono">.starred-tag</td><td>Yellow-fill chip</td></tr>
+        <tr><td class="mono">.sheet-panel</td><td>Square panel, 8px offset</td></tr>
+        <tr><td class="mono">.sheet-drag-handle</td><td>64×6px ink bar</td></tr>
+        <tr><td class="mono">.project-sheet</td><td>Same mechanism, square skin</td></tr>
+        <tr><td class="mono">.slideshow-visit-hint</td><td>Red corner rectangle</td></tr>
+        <tr><td class="mono">.slideshow-dots</td><td>Squares; active = yellow bar</td></tr>
+        <tr><td class="mono">.contact-bird / .work-bird</td><td>Constructed bird (page 18)</td></tr>
+        <tr><td class="mono">.email-pill</td><td>Square field, mono value</td></tr>
+        <tr><td class="mono">.demo-credentials</td><td><span class="mono">paper-deep</span> inset field</td></tr>
+        <tr><td class="mono">--radius-sm..xl, --radius-pill</td><td><strong>Delete all</strong></td></tr>
+        <tr><td class="mono">--clay-dark / -soft / -light</td><td><strong>Delete all</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="callout red" style="margin-top:var(--s2);">
+      <strong>Order of work.</strong> Tokens first — swapping the custom properties alone will make
+      the site look broken but structurally correct, which is the point. Then primitives
+      (<span class="mono">.clay</span>, buttons, chips), then components, then the characters, and the
+      hero last, because it is the only locked-viewport layout and the most sensitive to every
+      preceding change.
+    </div>
+  </div>
+  <div class="pnum">24</div>
+</section>
+
+<!-- ============================================================
+     25 — DO & DON'T
+     ============================================================ -->
+<section class="page">
+  <div class="motif right">
+    <div class="sh q f-red"></div><div class="sh tri-tr f-ink"></div>
+    <div class="sh half-b f-blue"></div><div class="sh q3 f-yellow"></div>
+    <div class="sh circ f-ink"></div><div class="sh q2 f-red"></div>
+    <div class="sh tri-bl f-yellow"></div><div class="sh half-t f-blue"></div>
+    <div class="sh q4 f-blue"></div><div class="sh q f-ink"></div>
+    <div class="sh half-r f-red"></div><div class="sh tri-br f-yellow"></div>
+    <div class="sh circ f-blue"></div><div class="sh q3 f-red"></div>
+    <div class="sh tri-tl f-ink"></div><div class="sh half-b f-yellow"></div>
+    <div class="sh q2 f-ink"></div><div class="sh circ f-red"></div>
+    <div class="sh half-l f-yellow"></div><div class="sh tri-br f-blue"></div>
+    <div class="sh q f-blue"></div><div class="sh q4 f-ink"></div>
+    <div class="sh tri-tr f-yellow"></div><div class="sh half-t f-red"></div>
+    <div class="sh q3 f-ink"></div><div class="sh circ f-blue"></div>
+  </div>
+  <div class="rh" style="padding-right:40mm;"><span>Part C — Application</span><span>25 · Do &amp; don't</span></div>
+  <div class="rh-rule" style="margin-right:40mm;"></div>
+  <div class="body" style="padding-right:40mm;">
+    <span class="kicker">20 — Do &amp; don't</span>
+    <h2 class="h-page">The page to re-read before shipping</h2>
+
+    <div class="cols c2" style="margin-top:var(--s2);">
+      <div class="dd do">
+        <div class="dd-head">Do</div>
+        <div class="dd-body">
+          <p><strong>Let the grid show.</strong> Visible structure is the decoration; a rule is never apologised for.</p>
+          <p><strong>Keep paper dominant.</strong> Color covers roughly 15% of any screen.</p>
+          <p><strong>Build illustrations from the five primitives,</strong> at right angles only.</p>
+          <p><strong>Use offset for depth,</strong> at exactly 4px or 8px.</p>
+          <p><strong>Set values in mono, sentences in Jost.</strong></p>
+          <p><strong>Keep one red element per viewport,</strong> and make it the thing you want pressed.</p>
+          <p><strong>Preserve every dialog mechanism</strong> — only the skin was in scope.</p>
+          <p><strong>Re-measure the bird's sheet overlap</strong> after restyling, by rect, at each breakpoint.</p>
+        </div>
+      </div>
+
+      <div class="dd dont">
+        <div class="dd-head">Don't</div>
+        <div class="dd-body">
+          <p><strong>Don't leave a blurred shadow anywhere.</strong> One survivor undoes the system.</p>
+          <p><strong>Don't round a corner</strong> — not on a focus ring, a badge, an avatar, or a dot.</p>
+          <p><strong>Don't tint a triad color.</strong> There is no lighter red.</p>
+          <p><strong>Don't add a fourth hue</strong> for a chart, a tag, or a state.</p>
+          <p><strong>Don't fill a gap with a shape.</strong> If the corner looks empty, fix the layout.</p>
+          <p><strong>Don't bounce.</strong> Constructed things slide and stop.</p>
+          <p><strong>Don't collapse the height-based breakpoints</strong> into a tidy width-only set.</p>
+          <p><strong>Don't centre body copy.</strong> Headings may; paragraphs never.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:var(--rule-bold);background:var(--ink);margin-top:var(--s3);"></div>
+    <p class="mono" style="font-size:7pt;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:var(--s2);margin-bottom:0;">
+      End of specification &nbsp;/&nbsp; Bauhaus Profile &nbsp;/&nbsp; Revision 01
+    </p>
+  </div>
+  <div class="pnum red">25</div>
+</section>
+
+</body>
+</html>
