@@ -1,1 +1,595 @@
-/* BAUHAUS — 03-components (filled by a later task) */
+/* ============================================================
+   BAUHAUS — 03 COMPONENTS
+   Spec: pp. 13-17, 21
+   ============================================================ */
+
+/* ============================================================
+   Header (spec p.16)
+   A flat band terminated by an 8px ink rule. It does not float, does
+   not blur its backdrop, and gains nothing on scroll — the rule alone
+   separates it from the page.
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--bq-paper-lift);
+  border-bottom: var(--bq-rule-bold) solid var(--bq-ink);
+  height: 72px;
+  display: flex;
+  align-items: center;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bq-3);
+  width: min(1100px, 100%);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bq-2);
+  font-family: var(--bq-sans);
+  font-weight: 600;
+  font-size: var(--bq-body);
+  color: var(--bq-ink);
+  min-height: 44px;
+  padding-right: var(--bq-1);
+}
+
+/* The back arrow is the triangle primitive rotated, not a glyph and not
+   an imported chevron. (spec p.16) */
+.back-link svg { display: none; }
+
+.back-link::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  background: var(--bq-red);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transition: transform var(--bq-dur-hover) var(--bq-ease);
+}
+
+.back-link:hover::before { transform: translateX(-3px); }
+
+.header-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.5rem 1.5rem;
+  font-family: var(--bq-sans);
+  font-weight: 600;
+  font-size: var(--bq-small);
+  background: var(--bq-red);
+  color: var(--bq-white);
+  border: var(--bq-rule-thin) solid var(--bq-ink);
+  box-shadow: var(--bq-offset-rest) var(--bq-offset-rest) 0 var(--bq-ink);
+  transition: transform var(--bq-dur-hover) var(--bq-ease),
+              box-shadow var(--bq-dur-hover) var(--bq-ease);
+}
+
+.header-contact:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--bq-ink);
+}
+
+.header-contact:active {
+  transform: translate(var(--bq-offset-rest), var(--bq-offset-rest));
+  box-shadow: 0 0 0 var(--bq-ink);
+  transition-duration: var(--bq-dur-press);
+}
+
+@media (max-width: 640px) {
+  .site-header { height: 60px; }
+}
+
+/* ============================================================
+   Sections (spec p.21)
+   Sections are divided by an ink rule spanning the container, not by
+   whitespace alone.
+   ============================================================ */
+.section {
+  position: relative;
+  padding-block: var(--bq-7);
+}
+
+.work-intro {
+  padding-top: var(--bq-6);
+  padding-bottom: 0;
+}
+
+.work-intro .section-sub { margin-bottom: 0; }
+
+.section-heading {
+  font-size: var(--bq-h1);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--bq-2);
+}
+
+.section-sub {
+  color: var(--bq-ink-soft);
+  font-size: var(--bq-body);
+  max-width: 62ch;
+  margin-bottom: var(--bq-5);
+}
+
+/* Section label — mono caps, replaces .prod-label one-for-one (spec p.14) */
+.prod-label {
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bq-ink-soft);
+  margin-bottom: var(--bq-2);
+}
+
+.platform-card + .prod-label,
+.engine-grid + .prod-label {
+  margin-top: var(--bq-4);
+}
+
+/* The hairline divider becomes a 4px rule (spec p.21) */
+.frontend-divider {
+  height: var(--bq-rule-mid);
+  background: var(--bq-ink);
+  color: var(--bq-ink);   /* <hr> inherits a UA gray otherwise */
+  border: 0;
+  margin: var(--bq-6) 0 var(--bq-4);
+}
+
+/* ============================================================
+   Cards (spec p.13)
+   One card, three fills. Hierarchy is carried by fill and offset,
+   never by size or radius.
+   ============================================================ */
+.repo-card,
+.live-card,
+.frontend-card,
+.engine-card,
+.platform-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bq-2);
+  background: var(--bq-paper);
+  border: var(--bq-rule-mid) solid var(--bq-ink);
+  border-radius: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.repo-card,
+.live-card,
+.platform-card {
+  padding: var(--bq-3);
+}
+
+/* Subordinate card — replaces .clay-sunken. Deeper paper, no offset. */
+.engine-card {
+  background: var(--bq-paper-deep);
+  padding: var(--bq-3);
+  box-shadow: none;
+}
+
+/* Offset marks the cards that are themselves links. */
+.repo-card,
+.live-card.platform-card,
+.frontend-card {
+  box-shadow: var(--bq-offset-rest) var(--bq-offset-rest) 0 var(--bq-ink);
+}
+
+.repo-card,
+.live-card,
+.frontend-card,
+.engine-card {
+  transition: transform var(--bq-dur-card) var(--bq-ease),
+              box-shadow var(--bq-dur-card) var(--bq-ease);
+}
+
+.repo-card:hover,
+.live-card:hover,
+.frontend-card:hover,
+.live-card:focus-visible,
+.frontend-card:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--bq-ink);
+}
+
+.engine-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--bq-offset-rest) var(--bq-offset-rest) 0 var(--bq-ink);
+}
+
+/* --- card type --- */
+.repo-name,
+.live-name,
+.project-name {
+  font-family: var(--bq-sans);
+  font-size: var(--bq-h3);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+.live-name-sub,
+.project-name-sub {
+  display: block;
+  font-family: var(--bq-mono);
+  font-size: var(--bq-value);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--bq-ink-soft);
+  margin-top: 0.25rem;
+}
+
+.repo-desc,
+.live-desc,
+.project-desc {
+  color: var(--bq-ink-soft);
+  font-size: var(--bq-small);
+  margin: 0;
+}
+
+.repo-owner {
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  color: var(--bq-ink-soft);
+}
+
+.repo-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--bq-2);
+}
+
+.live-chips,
+.project-tags,
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bq-1);
+  align-items: center;
+}
+
+.repo-meta {
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  color: var(--bq-ink-soft);
+  gap: var(--bq-2);
+}
+
+.lang-chip,
+.stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* The language dot becomes a square. It is the one place GitHub's own
+   colors enter the palette, because they carry external meaning — they
+   are data, not decoration. (spec p.14) */
+.lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.stat svg { width: 13px; height: 13px; }
+
+.live-url,
+.repo-link,
+.frontend-domain {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: var(--bq-2);
+  font-family: var(--bq-mono);
+  font-size: var(--bq-value);
+  font-weight: 600;
+  color: var(--bq-blue);
+  transition: gap var(--bq-dur-hover) var(--bq-ease);
+}
+
+.repo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bq-3);
+  margin-top: auto;
+  padding-top: var(--bq-2);
+  border-top: var(--bq-rule-thin) solid var(--bq-ink);
+}
+
+.repo-link {
+  margin-top: 0;
+  padding-top: 0;
+  border: 0;
+  min-height: 44px;
+}
+/* Not red: red is action-only (spec p.06) and red text on paper is
+   3.79:1, below AA. Ink keeps it distinct from the blue primary. */
+.repo-link.secondary { color: var(--bq-ink); }
+.repo-link svg, .live-url svg, .frontend-domain svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+.repo-card:hover .repo-link,
+.live-card:hover .live-url,
+.frontend-card:hover .frontend-domain { gap: 0.65rem; }
+
+/* --- grids --- */
+.repo-grid,
+.frontend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--bq-4);
+}
+
+.engine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--bq-4);
+}
+
+.view-all-repos {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--bq-5);
+}
+
+/* --- frontend tile: media flush to the border, no inset, no radius --- */
+.frontend-card { padding: 0; gap: 0; overflow: hidden; }
+
+.frontend-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--bq-paper-deep);
+  border-bottom: var(--bq-rule-mid) solid var(--bq-ink);
+}
+
+.frontend-meta {
+  padding: var(--bq-2) var(--bq-3) var(--bq-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.frontend-meta .live-name { font-size: var(--bq-h3); }
+.frontend-domain { margin-top: 0; padding-top: 0.25rem; }
+
+/* ============================================================
+   Featured projects (spec p.21) — zigzag preserved verbatim
+   ============================================================ */
+.featured-project { padding-block: var(--bq-6); }
+
+.featured-project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bq-4);
+}
+
+.project-media { order: 1; }
+.project-info  { order: 2; display: flex; flex-direction: column; gap: var(--bq-2); }
+
+@media (min-width: 860px) {
+  .featured-project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--bq-5);
+    align-items: center;
+  }
+  .media-right .project-media { order: 2; }
+  .media-right .project-info  { order: 1; }
+}
+
+/* ============================================================
+   Slideshow and media (spec p.17)
+   ============================================================ */
+.project-slideshow {
+  position: relative;
+  border: var(--bq-rule-mid) solid var(--bq-ink);
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--bq-ink);
+  aspect-ratio: 16 / 9;
+}
+
+.slideshow-track { display: block; width: 100%; height: 100%; position: relative; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity var(--bq-dur-slow) ease;
+}
+
+.slide.is-active { opacity: 1; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+
+/* The badge is a red rectangle flush into the corner — no margin, no
+   radius, and the hover zoom is removed. (spec p.17) */
+.slideshow-visit-hint {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bq-red);
+  color: var(--bq-white);
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  opacity: 0;
+  transition: opacity var(--bq-dur-hover) var(--bq-ease);
+}
+
+.slideshow-track:hover .slideshow-visit-hint,
+.slideshow-track:focus-visible .slideshow-visit-hint { opacity: 1; }
+
+.slideshow-dots {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: var(--bq-1);
+  padding: var(--bq-1);
+}
+
+/* Spec p.17 puts the dot at 8x8; spec p.23 requires a 44x44 target. The
+   button carries the 44px hit area and the ::before carries the 8px mark,
+   so both hold. */
+.slideshow-dots .dot {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+}
+
+.slideshow-dots .dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--bq-paper);
+  transition: width var(--bq-dur-hover) var(--bq-ease),
+              background var(--bq-dur-hover) var(--bq-ease);
+}
+
+.slideshow-dots .dot.is-active::before {
+  width: 16px;
+  background: var(--bq-yellow);
+}
+
+/* --- mobile collapsed preview --- */
+.project-preview {
+  display: none;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  background: var(--bq-paper);
+  border: var(--bq-rule-mid) solid var(--bq-ink);
+  box-shadow: var(--bq-offset-rest) var(--bq-offset-rest) 0 var(--bq-ink);
+}
+
+.project-preview-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: var(--bq-rule-mid) solid var(--bq-ink);
+}
+
+.project-preview-name {
+  display: block;
+  padding: var(--bq-2) var(--bq-3);
+  font-family: var(--bq-sans);
+  font-size: var(--bq-h3);
+  font-weight: 600;
+}
+
+.project-preview-expand {
+  display: inline-block;
+  padding: 0 var(--bq-3) var(--bq-3);
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bq-blue);
+}
+
+/* ============================================================
+   Demo credentials (spec p.24) — paper-deep inset field
+   ============================================================ */
+.demo-credentials {
+  background: var(--bq-paper-deep);
+  border: var(--bq-rule-thin) solid var(--bq-ink);
+  padding: var(--bq-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--bq-1);
+}
+
+.demo-credentials-label,
+.credential-label {
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bq-ink-soft);
+}
+
+.credential {
+  display: flex;
+  align-items: center;
+  gap: var(--bq-1);
+  flex-wrap: wrap;
+}
+
+.credential-value {
+  font-family: var(--bq-mono);
+  font-size: var(--bq-value);
+  background: var(--bq-paper-lift);
+  border: var(--bq-rule-thin) solid var(--bq-ink);
+  padding: 0.25rem 0.5rem;
+}
+
+.credential-copy {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bq-paper-lift);
+  border: var(--bq-rule-thin) solid var(--bq-ink);
+  color: var(--bq-ink);
+}
+
+.credential-copy svg { width: 16px; height: 16px; }
+.credential-copy.copied { background: var(--bq-yellow); }
+
+/* ============================================================
+   Reveal on scroll (spec p.19)
+   Animates `translate`, not `transform`, so the finished animation's
+   forwards fill cannot swallow the hover lift. This bug was already
+   fixed once in the clay build; the test in Task 5 prevents its return.
+   ============================================================ */
+.repo-card,
+.rise {
+  opacity: 0;
+  translate: 0 24px;
+}
+
+.repo-card.is-visible,
+.rise.is-visible {
+  animation: bq-rise-in 400ms var(--bq-ease) forwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@keyframes bq-rise-in {
+  to { opacity: 1; translate: 0 0; }
+}

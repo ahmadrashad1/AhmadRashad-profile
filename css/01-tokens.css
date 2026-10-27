@@ -86,6 +86,7 @@
 *::after { box-sizing: border-box; }
 
 html {
+  color: var(--bq-ink);
   color-scheme: only light;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;

@@ -141,7 +141,8 @@ const IN_PAGE = (paletteKeys) => {
     }
 
     // --- targetSize: interactive elements >= 44x44 (spec p.23)
-    if (["A", "BUTTON"].includes(el.tagName) && cs.display !== "inline") {
+    if (["A", "BUTTON"].includes(el.tagName) && cs.display !== "inline"
+        && !el.classList.contains("visually-hidden")) {
       const r = el.getBoundingClientRect();
       if (r.width < 44 || r.height < 44) {
         add("targetSize", el, `${Math.round(r.width)}x${Math.round(r.height)}`);
