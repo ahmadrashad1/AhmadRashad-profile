@@ -16,13 +16,13 @@
   overflow: hidden;
 }
 
-/* Hero background art (index.html only). Source is 736x552 -- `contain`
-   rather than `cover` so the illustration is never upscaled past what the
-   file actually holds; at typical widescreen ratios the height is the
-   binding axis, so it still fills edge to edge vertically with the
-   letterboxing landing left/right, behind the tile columns. */
+/* Hero background art (index.html only).
+   Vector, not raster: the 736x552 source photo went soft the moment it was
+   scaled past a laptop. images/hero-bauhaus.svg redraws the same scene from
+   the system's own primitives in the eight-value palette, so it is sharp at
+   any resolution and cannot introduce an off-palette colour. */
 .screen {
-  background-image: url("../images/inspiration.jpg");
+  background-image: url("../images/hero-bauhaus.svg");
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
@@ -222,6 +222,13 @@
 
 .tile-column-left  { left: 0; }
 .tile-column-right { right: 0; }
+
+/* The background illustration now carries the decoration on the hero, and
+   the tile columns were landing on top of its own left and right clusters --
+   two decorative systems competing for the same margin. The columns keep
+   their rules (they are still the documented hero motif if the art is ever
+   removed) but are not drawn while the art is present. */
+.screen .tile-column { display: none; }
 
 .tile-column .bq-shape {
   width: var(--bq-tile, 68px);
