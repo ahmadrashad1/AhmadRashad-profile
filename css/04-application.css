@@ -1,1 +1,321 @@
-/* BAUHAUS — 04-application (filled by a later task) */
+/* ============================================================
+   BAUHAUS — 04 APPLICATION
+   Spec: pp. 18-20, 22-23
+   ============================================================ */
+
+/* ============================================================
+   Hero (spec p.20) — still a locked single viewport
+   ============================================================ */
+.screen {
+  flex: 1 1 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hero-stack {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--bq-3);
+}
+
+/* Spec p.20 asks for a red eyebrow; spec p.23 forbids red on small text
+   (3.79:1, below AA). p.23 wins — it is the explicit accessibility rule,
+   and p.20 is a layout note. The red stays in the system as a shape marker
+   rather than as the text color, so the accent survives and the label
+   clears AA at 5.94:1. */
+.eyebrow-role {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bq-1);
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bq-ink-soft);
+  margin: 0;
+}
+
+.eyebrow-role::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  background: var(--bq-red);
+}
+
+.hero-name {
+  font-size: var(--bq-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.hero-tagline {
+  font-size: var(--bq-body);
+  color: var(--bq-ink-soft);
+  max-width: 44ch;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bq-3);
+  justify-content: center;
+  margin-top: var(--bq-1);
+}
+
+/* ============================================================
+   The avatar (spec p.18)
+   A square portrait field, not a blob. Every feature is one of the five
+   primitives: half-circle hair and shoulders, circle eyes, squares for
+   the glasses and brows. The pointer-driven tilt and the moving
+   highlight are gone -- a flat system cannot fake dimension.
+   ============================================================ */
+.avatar-frame {
+  width: clamp(150px, 23vmin, 208px);
+  aspect-ratio: 1;
+  border: var(--bq-rule-mid) solid var(--bq-ink);
+  background: var(--bq-yellow);
+  box-shadow: var(--bq-offset-rest) var(--bq-offset-rest) 0 var(--bq-ink);
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.avatar-face { position: relative; width: 100%; height: 100%; }
+.avatar-face > span { position: absolute; }
+
+/* face plate — paper, so the yellow field reads as background not skin */
+.avatar-head {
+  left: 22%;
+  /* starts below the hair's flat bottom edge minus a margin, so the
+     half-circle's curve never exposes the plate's square corners */
+  top: 21%;
+  width: 56%;
+  height: 53%;
+  background: var(--bq-paper-lift);
+}
+
+/* hair: a half-circle capping the head, with forehead left visible */
+.avatar-hair {
+  left: 19%;
+  top: 9%;
+  width: 62%;
+  height: 30%;
+  background: var(--bq-ink);
+}
+
+.avatar-brow {
+  top: 40%;
+  width: 13%;
+  height: 3.5%;
+  background: var(--bq-ink);
+}
+
+.avatar-brow-l { left: 27%; }
+.avatar-brow-r { right: 27%; }
+
+/* glasses: two squares and a bridge — primitives, not an icon */
+.avatar-lens {
+  top: 46%;
+  width: 17%;
+  height: 14%;
+  border: 3px solid var(--bq-ink);
+  background: transparent;
+}
+
+.avatar-lens-l { left: 24%; }
+.avatar-lens-r { right: 24%; }
+
+.avatar-bridge {
+  top: 51%;
+  left: 41%;
+  width: 18%;
+  height: 3px;
+  background: var(--bq-ink);
+}
+
+.avatar-eye {
+  top: 50%;
+  width: 6%;
+  aspect-ratio: 1;
+  background: var(--bq-ink);
+}
+
+.avatar-eye-l { left: 29.5%; }
+.avatar-eye-r { right: 29.5%; }
+
+.avatar-mouth {
+  left: 44%;
+  top: 65%;
+  width: 12%;
+  height: 3px;
+  background: var(--bq-ink);
+}
+
+.avatar-shoulders {
+  left: 8%;
+  bottom: 0;
+  width: 84%;
+  height: 24%;
+  background: var(--bq-blue);
+}
+
+/* a notch of paper at the collar, so the shoulders read as a garment */
+.avatar-collar {
+  left: 44%;
+  bottom: 0;
+  width: 12%;
+  height: 9%;
+  background: var(--bq-paper-lift);
+}
+
+/* ============================================================
+   Tile columns (spec p.18)
+   The three drifting clay blobs and four icon chips become one field of
+   primitives in the hero margins. Tiles translate along ONE axis only,
+   by at most 8px, so they still read as locked to the grid.
+   ============================================================ */
+.tile-column {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: var(--z-blob);
+  display: grid;
+  grid-template-columns: repeat(2, var(--bq-tile, 68px));
+  grid-auto-rows: var(--bq-tile, 68px);
+  align-content: center;
+  pointer-events: none;
+}
+
+.tile-column-left  { left: 0; }
+.tile-column-right { right: 0; }
+
+.tile-column .bq-shape {
+  width: var(--bq-tile, 68px);
+  height: var(--bq-tile, 68px);
+  animation: bq-drift 8s ease-in-out infinite;
+}
+
+.tile-column .bq-shape:nth-child(3n)   { animation-duration: 9.5s; animation-delay: -1.2s; }
+.tile-column .bq-shape:nth-child(4n+1) { animation-duration: 11s;  animation-delay: -2.6s; }
+
+@keyframes bq-drift {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 8px; }
+}
+
+@media (max-width: 1024px) {
+  .tile-column { grid-template-columns: var(--bq-tile, 68px); }
+  :root { --bq-tile: 56px; }
+}
+
+@media (max-width: 640px) {
+  .tile-column { display: none; }
+}
+
+/* ============================================================
+   The bird (spec p.18)
+   Circle body, half-circle wing, triangle beak, quarter-circle tail.
+   The wing is the only animated part; it rotates about its flat edge
+   between 0 and -38deg. The scroll-velocity flap mapping in main.js
+   (420ms idle to 90ms at speed) is unchanged.
+   ============================================================ */
+.bird-wing {
+  transform-origin: 60px 44px;
+  animation-duration: var(--flap-duration, 420ms);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.bird-wing-left  { animation-name: bq-flap-left; }
+.bird-wing-right { animation-name: bq-flap-right; }
+
+@keyframes bq-flap-left {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(-38deg); }
+}
+
+@keyframes bq-flap-right {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(38deg); }
+}
+
+/* Scroll-following bird — >=1440px only, there is no usable left margin
+   below that. Enforced in CSS as a hard fallback even if JS runs. */
+.work-bird {
+  position: fixed;
+  left: 2.5vw;
+  top: 12vh;
+  width: 84px;
+  height: 70px;
+  z-index: var(--z-content);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--bq-dur-slow) var(--bq-ease);
+}
+
+.work-bird.is-visible { opacity: 1; }
+
+@media (max-width: 1439px), (max-height: 760px) {
+  .work-bird { display: none; }
+}
+
+/* ============================================================
+   Hero compaction on short viewports (spec p.20) — carried over
+   ============================================================ */
+@media (max-height: 760px) {
+  .hero-stack { gap: var(--bq-2); }
+  .hero-tagline { display: none; }
+  .avatar-frame { width: clamp(110px, 17vmin, 150px); }
+}
+
+@media (max-width: 640px) {
+  .hero-stack { gap: var(--bq-2); }
+  .hero-actions { gap: var(--bq-2); width: 100%; }
+  .hero-actions .btn { flex: 1 1 auto; }
+}
+
+/* ============================================================
+   Reduced motion (spec p.19)
+   Drift and flap stop entirely, reveals become instant, the sheet
+   appears without rising. The bird is display:none -- skipped outright
+   rather than left to flash past a 0.01ms override.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .contact-bird { display: none !important; }
+
+  .tile-column .bq-shape,
+  .bird-wing {
+    animation: none !important;
+  }
+
+  .repo-card,
+  .rise {
+    opacity: 1 !important;
+    translate: none !important;
+    animation: none !important;
+  }
+
+  .contact-sheet[open] .sheet-panel,
+  .project-sheet:modal {
+    animation: none !important;
+  }
+
+  .sheet-panel { transition: none; }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
