@@ -5,41 +5,6 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------------------------------------------------------
-     Hero avatar wave loop. A <video> can't be stopped by CSS,
-     so hold the poster frame when motion is unwelcome.
-     --------------------------------------------------------- */
-  const avatarVideo = document.getElementById("avatarVideo");
-  if (avatarVideo && reduceMotion) {
-    avatarVideo.removeAttribute("autoplay");
-    avatarVideo.removeAttribute("loop");
-    avatarVideo.pause();
-    avatarVideo.currentTime = 0;
-  }
-
-  /* ---------------------------------------------------------
-     Photo blob pointer tilt
-     --------------------------------------------------------- */
-  const stage = document.getElementById("photoStage");
-  const blob = document.getElementById("photoBlob");
-
-  if (stage && blob && !reduceMotion && matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    const MAX_TILT = 8;
-
-    stage.addEventListener("pointermove", (event) => {
-      const rect = stage.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      const rotateY = x * MAX_TILT * 2;
-      const rotateX = y * -MAX_TILT * 2;
-      blob.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-
-    stage.addEventListener("pointerleave", () => {
-      blob.style.transform = "rotateX(0deg) rotateY(0deg)";
-    });
-  }
-
-  /* ---------------------------------------------------------
      Contact sheet — a <dialog> that slides up from the bottom.
      showModal()/close() drive the CSS transition; native focus
      trap + Escape-to-close come for free from <dialog>.
@@ -58,6 +23,16 @@
     if (!sheetPanel) return;
     const height = sheetPanel.offsetHeight;
     contactSheet.style.setProperty("--sheet-panel-height", `${height}px`);
+  }
+
+  // The panel's height changes with the viewport (its padding steps down at
+  // two breakpoints), so a sheet that is already open must re-measure. Without
+  // this, rotating a phone with the sheet open leaves the bird on a stale
+  // offset and drops it onto the heading.
+  if (contactSheet) {
+    window.addEventListener("resize", () => {
+      if (contactSheet.open) alignBirdToPanel();
+    });
   }
 
   if (contactCta && contactSheet) {
@@ -231,7 +206,12 @@
       .catch((err) => {
         console.error("Could not load repo data:", err);
         reposGrid.innerHTML =
-          '<li class="repo-card clay"><p class="repo-desc">Couldn’t load projects right now — please check back shortly.</p></li>';
+          '<li class="repo-card"><p class="repo-desc">Couldn’t load projects right now — please check back shortly.</p></li>';
+        // Revealed directly rather than via the observer: the card is created
+        // after observeCards() ran, and it sits below the fold, so an
+        // observer-driven reveal would hide the error until the user scrolled
+        // to it -- which is exactly when they would not.
+        reposGrid.querySelector(".repo-card")?.classList.add("is-visible");
       });
   }
 
@@ -275,7 +255,7 @@
       if (repo.language) {
         const langChip = node.querySelector(".lang-chip");
         langChip.hidden = false;
-        langChip.querySelector(".lang-dot").style.background = repo.languageColor || "var(--muted)";
+        langChip.querySelector(".lang-dot").style.background = repo.languageColor || "var(--bq-ink-soft)";
         langChip.querySelector(".lang-name").textContent = repo.language;
       } else {
         node.querySelector(".lang-chip").remove();
@@ -432,7 +412,7 @@
     workBird &&
     featuredProjects.length > 1 &&
     !reduceMotion &&
-    window.matchMedia("(min-width: 1440px)").matches
+    window.matchMedia("(min-width: 1440px) and (min-height: 761px)").matches
   ) {
     const TRAVEL_TOP_VH = 12;
     const TRAVEL_BOTTOM_VH = 88;

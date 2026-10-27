@@ -4,38 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="only light" />
-  <meta name="theme-color" content="#e2efe5" />
+  <meta name="theme-color" content="#EFE7D7" />
   <title>Selected Work — Ahmad Rashad</title>
   <meta name="description" content="Projects Ahmad Rashad has built end-to-end — an AI finance assistant, a fine-tuned customer support LLM, and a student study companion — plus everything else, starred on GitHub." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23c1571f' d='M62 8C78 8 92 22 92 42c0 18-14 30-32 32C40 76 20 70 12 54 4 38 12 18 30 12 40 8 52 8 62 8Z'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23CE4435' d='M62 8C78 8 92 22 92 42c0 18-14 30-32 32C40 76 20 70 12 54 4 38 12 18 30 12 40 8 52 8 62 8Z'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/01-tokens.css" />
+  <link rel="stylesheet" href="css/02-primitives.css" />
+  <link rel="stylesheet" href="css/03-components.css" />
+  <link rel="stylesheet" href="css/04-application.css" />
 </head>
 <body>
   <a class="visually-hidden" href="#main">Skip to content</a>
 
   <svg class="work-bird" id="workBird" aria-hidden="true" viewBox="0 0 120 100">
-    <defs>
-      <linearGradient id="workBirdBody" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#9AC3ED" />
-        <stop offset="1" stop-color="#5B8FC7" />
-      </linearGradient>
-    </defs>
-    <path class="bird-wing bird-wing-left" d="M40,42 C22,34 8,20 4,6 C16,10 32,20 42,34 Z" fill="#4A7AB5" />
-    <path class="bird-wing bird-wing-right" d="M80,42 C98,34 112,20 116,6 C104,10 88,20 78,34 Z" fill="#4A7AB5" />
-    <ellipse cx="60" cy="52" rx="25" ry="30" fill="url(#workBirdBody)" />
-    <ellipse cx="58" cy="66" rx="15" ry="12" fill="#F4E9DD" opacity="0.85" />
-    <circle cx="60" cy="24" r="17" fill="url(#workBirdBody)" />
-    <path d="M52,28 L45,33 L52,36 Z" fill="#E8944B" />
-    <circle cx="55" cy="20" r="2.4" fill="#241A12" />
-    <circle cx="66" cy="20" r="2.4" fill="#241A12" />
-    <circle cx="54" cy="19" r="0.8" fill="#fff" />
-    <circle cx="65" cy="19" r="0.8" fill="#fff" />
-    <path d="M50,80 C48,84 46,86 43,87 M50,80 C50,85 50,87 49,89" stroke="#E8944B" stroke-width="2.2" stroke-linecap="round" fill="none" />
-    <path d="M70,80 C72,84 74,86 77,87 M70,80 C70,85 70,87 71,89" stroke="#E8944B" stroke-width="2.2" stroke-linecap="round" fill="none" />
-  </svg>
+      <circle cx="60" cy="56" r="26" fill="#1E4FA1" />
+      <circle cx="60" cy="26" r="16" fill="#1E4FA1" />
+      <path class="bird-wing bird-wing-left" d="M58,44 A22,22 0 0 0 14,44 Z" fill="#CE4435" />
+      <path class="bird-wing bird-wing-right" d="M62,44 A22,22 0 0 1 106,44 Z" fill="#CE4435" />
+      <path d="M44,26 L28,26 L44,36 Z" fill="#E9A92F" />
+      <path d="M86,70 A22,22 0 0 1 64,92 L64,70 Z" fill="#E9A92F" />
+      <circle cx="54" cy="22" r="3" fill="#EFE7D7" />
+      <rect x="52" y="84" width="4" height="12" fill="#15161A" />
+      <rect x="66" y="84" width="4" height="12" fill="#15161A" />
+    </svg>
 
   <header class="site-header">
     <div class="container">
@@ -60,13 +54,13 @@
     <!-- ============ In production (live platform + frontend work) ============ -->
     <section class="section" aria-labelledby="in-production">
       <div class="container">
-        <h2 class="section-heading" style="font-size:var(--text-xl);" id="in-production">In production</h2>
-        <p class="section-sub" style="margin-bottom:var(--space-6);">Sites live for real brands, and systems running real traffic. Every one of these opens.</p>
+        <h2 class="section-heading" id="in-production">In production</h2>
+        <p class="section-sub">Sites live for real brands, and systems running real traffic. Every one of these opens.</p>
 
         <p class="prod-label">Live frontend work</p>
         <ul class="frontend-grid">
           <li>
-            <a class="live-card clay frontend-card rise" href="https://groggybeans.com/" target="_blank" rel="noopener noreferrer">
+            <a class="live-card frontend-card rise" href="https://groggybeans.com/" target="_blank" rel="noopener noreferrer">
               <img class="frontend-shot" src="assets/img/frontends/groggybeans.jpg" alt="Groggy Beans home page: a blanket-wrapped owl holding a mug beside the wordmark “groggy — talk later.”" loading="lazy" width="880" height="550" />
               <span class="frontend-meta">
                 <span class="live-name">Groggy Beans</span>
@@ -78,7 +72,7 @@
             </a>
           </li>
           <li>
-            <a class="live-card clay frontend-card rise" style="--i:1;" href="https://bannisidee.com/" target="_blank" rel="noopener noreferrer">
+            <a class="live-card frontend-card rise" style="--i:1;" href="https://bannisidee.com/" target="_blank" rel="noopener noreferrer">
               <img class="frontend-shot" src="assets/img/frontends/bannisidee.jpg" alt="Bannisidee home page: the brand name set in Latin and Urdu over a deep red field framed by woven border ornament" loading="lazy" width="880" height="550" />
               <span class="frontend-meta">
                 <span class="live-name">Bannisidee</span>
@@ -90,7 +84,7 @@
             </a>
           </li>
           <li>
-            <a class="live-card clay frontend-card rise" style="--i:2;" href="https://koiwok.com/" target="_blank" rel="noopener noreferrer">
+            <a class="live-card frontend-card rise" style="--i:2;" href="https://koiwok.com/" target="_blank" rel="noopener noreferrer">
               <img class="frontend-shot" src="assets/img/frontends/koiwok.jpg" alt="Koi Wok home page: an ink dragon on a gold disc with falling blossom over a vermilion background" loading="lazy" width="880" height="550" />
               <span class="frontend-meta">
                 <span class="live-name">Koi Wok</span>
@@ -102,7 +96,7 @@
             </a>
           </li>
           <li>
-            <a class="live-card clay frontend-card rise" href="https://rusruss.com/" target="_blank" rel="noopener noreferrer">
+            <a class="live-card frontend-card rise" href="https://rusruss.com/" target="_blank" rel="noopener noreferrer">
               <img class="frontend-shot" src="assets/img/frontends/rusruss.jpg" alt="Rusruss home page: a cartoon rabbit with a rake beside the line “Juice from fruit that looks wrong,” over a row of fruit" loading="lazy" width="880" height="550" />
               <span class="frontend-meta">
                 <span class="live-name">Rusruss</span>
@@ -114,7 +108,7 @@
             </a>
           </li>
           <li>
-            <a class="live-card clay frontend-card rise" style="--i:1;" href="https://gruffthepotato.com/" target="_blank" rel="noopener noreferrer">
+            <a class="live-card frontend-card rise" style="--i:1;" href="https://gruffthepotato.com/" target="_blank" rel="noopener noreferrer">
               <img class="frontend-shot" src="assets/img/frontends/gruffthepotato.jpg" alt="Le Gruff home page styled as a vintage French newspaper front page headlined “The frites of the Rue des Martyrs”" loading="lazy" width="880" height="550" />
               <span class="frontend-meta">
                 <span class="live-name">Le Gruff</span>
@@ -126,7 +120,7 @@
             </a>
           </li>
           <li>
-            <a class="live-card clay frontend-card rise" style="--i:2;" href="https://dum-biryani.com/" target="_blank" rel="noopener noreferrer">
+            <a class="live-card frontend-card rise" style="--i:2;" href="https://dum-biryani.com/" target="_blank" rel="noopener noreferrer">
               <img class="frontend-shot" src="assets/img/frontends/dum-biryani.jpg" alt="Dum Biryani home page: the wordmark centred on a large mandala motif in muted taupe" loading="lazy" width="880" height="550" />
               <span class="frontend-meta">
                 <span class="live-name">Dum Biryani</span>
@@ -142,7 +136,7 @@
         <hr class="frontend-divider" />
 
         <p class="prod-label">Meridian &amp; Co — platform</p>
-        <a class="live-card clay platform-card rise" href="https://acrm.meredianandco.com" target="_blank" rel="noopener noreferrer">
+        <a class="live-card platform-card rise" href="https://acrm.meredianandco.com" target="_blank" rel="noopener noreferrer">
           <p class="live-name">ACRM<span class="live-name-sub">Control plane — the only thing anyone logs into</span></p>
           <p class="live-desc">
             The multi-tenant product itself: Console for callers, Floor for managers and owners, Exchange for the platform operator.
@@ -165,7 +159,7 @@
 
         <p class="prod-label">Engines it drives</p>
         <div class="engine-grid">
-          <a class="live-card clay-sunken engine-card rise" style="--i:1;" href="https://dialer.meredianandco.com" target="_blank" rel="noopener noreferrer">
+          <a class="live-card engine-card rise" style="--i:1;" href="https://dialer.meredianandco.com" target="_blank" rel="noopener noreferrer">
             <p class="live-name">weZero Dialer<span class="live-name-sub">Telephony engine</span></p>
             <p class="live-desc">
               Elixir/Phoenix on top of FreeSWITCH: carrier trunks, DID number pools, campaigns and agent shifts, with an in-browser
@@ -183,7 +177,7 @@
             </span>
           </a>
 
-          <a class="live-card clay-sunken engine-card rise" style="--i:2;" href="https://linkedout.meredianandco.com" target="_blank" rel="noopener noreferrer">
+          <a class="live-card engine-card rise" style="--i:2;" href="https://linkedout.meredianandco.com" target="_blank" rel="noopener noreferrer">
             <p class="live-name">LinkedOut<span class="live-name-sub">Outreach engine</span></p>
             <p class="live-desc">
               A NestJS API over a worker fleet on k3s — one StatefulSet per connected account, pairing a browser worker with a noVNC
@@ -244,7 +238,7 @@
           <div class="project-info">
             <h2 class="project-name" id="proj-ai-finance">AI Finance Assistant</h2>
             <p class="project-desc">
-              A conversational assistant for finance teams. Ask a plain-English question like "who hasn't paid us?" and get back a real answer, not a search results page: an aging report, a duplicate-invoice check, an outstanding balance by customer. Wrapped in a quiet, editorial interface that reads more like a memo than a dashboard.
+              A conversational assistant for finance teams. Ask a plain-English question like"who hasn't paid us?" and get back a real answer, not a search results page: an aging report, a duplicate-invoice check, an outstanding balance by customer. Wrapped in a quiet, editorial interface that reads more like a memo than a dashboard.
             </p>
             <ul class="project-tags">
               <li class="project-tag">Conversational AI</li>
@@ -387,8 +381,8 @@
     <!-- ============ Starred repos (unified grid) ============ -->
     <section class="section">
       <div class="container">
-        <h2 class="section-heading" style="font-size:var(--text-xl);">Starred on GitHub</h2>
-        <p class="section-sub" style="margin-bottom:var(--space-6);">Everything else — things I've built, and repos I star because they teach me something.</p>
+        <h2 class="section-heading">Starred on GitHub</h2>
+        <p class="section-sub">Everything else — things I've built, and repos I star because they teach me something.</p>
 
         <ul class="repo-grid" id="reposGrid" aria-label="Repos owned and starred by Ahmad Rashad"></ul>
 
@@ -402,12 +396,12 @@
     </section>
 
     <footer class="site-footer">
-      <p>Handbuilt, one clay blob at a time. © <span id="year"></span> Ahmad Rashad.</p>
+      <p>Built from five shapes and three colours. © <span id="year"></span> Ahmad Rashad.</p>
     </footer>
   </main>
 
   <template id="repoCardTemplate">
-    <li class="repo-card clay">
+    <li class="repo-card">
       <div class="repo-card-top">
         <p class="repo-name"></p>
         <span class="starred-tag" hidden>
