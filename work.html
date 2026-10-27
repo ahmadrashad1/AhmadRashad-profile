@@ -61,71 +61,7 @@
     <section class="section" aria-labelledby="in-production">
       <div class="container">
         <h2 class="section-heading" style="font-size:var(--text-xl);" id="in-production">In production</h2>
-        <p class="section-sub" style="margin-bottom:var(--space-6);">Systems running real traffic, and sites live for real brands. Every one of these opens.</p>
-
-        <p class="prod-label">Meridian &amp; Co — platform</p>
-        <a class="live-card clay platform-card rise" href="https://acrm.meredianandco.com" target="_blank" rel="noopener noreferrer">
-          <p class="live-name">ACRM<span class="live-name-sub">Control plane — the only thing anyone logs into</span></p>
-          <p class="live-desc">
-            The multi-tenant product itself: Console for callers, Floor for managers and owners, Exchange for the platform operator.
-            NestJS and React Router v7 over Supabase/Postgres with row-level security, on ECS. Leads, campaigns, questionnaires,
-            diary, reporting, billing and audit, with per-organisation isolation and self-serve signup — plus the commercial layer
-            the engines have no concept of: DID allocation, per-tenant quotas, metering and suspension.
-          </p>
-          <div class="live-chips">
-            <span class="live-chip">NestJS</span>
-            <span class="live-chip">React Router v7</span>
-            <span class="live-chip">Supabase · RLS</span>
-            <span class="live-chip">ECS</span>
-            <span class="live-chip">Multi-tenant</span>
-          </div>
-          <span class="live-url">
-            acrm.meredianandco.com
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-          </span>
-        </a>
-
-        <p class="prod-label">Engines it drives</p>
-        <div class="engine-grid">
-          <a class="live-card clay-sunken engine-card rise" style="--i:1;" href="https://dialer.meredianandco.com" target="_blank" rel="noopener noreferrer">
-            <p class="live-name">weZero Dialer<span class="live-name-sub">Telephony engine</span></p>
-            <p class="live-desc">
-              Elixir/Phoenix on top of FreeSWITCH: carrier trunks, DID number pools, campaigns and agent shifts, with an in-browser
-              WebRTC handset so a caller works from the web rather than a desk phone. Deploys are manual and gated on purpose —
-              a deploy ends every shift and stops every campaign.
-            </p>
-            <div class="live-chips">
-              <span class="live-chip">Elixir/Phoenix</span>
-              <span class="live-chip">FreeSWITCH</span>
-              <span class="live-chip">WebRTC</span>
-            </div>
-            <span class="live-url">
-              dialer.meredianandco.com
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            </span>
-          </a>
-
-          <a class="live-card clay-sunken engine-card rise" style="--i:2;" href="https://linkedout.meredianandco.com" target="_blank" rel="noopener noreferrer">
-            <p class="live-name">LinkedOut<span class="live-name-sub">Outreach engine</span></p>
-            <p class="live-desc">
-              A NestJS API over a worker fleet on k3s — one StatefulSet per connected account, pairing a browser worker with a noVNC
-              container so sign-in challenges can be co-browsed by a human. Profile views, connections, messages, campaigns, warmup
-              schedules, and a proxy pool that keeps every account on a stable residential IP.
-            </p>
-            <div class="live-chips">
-              <span class="live-chip">NestJS</span>
-              <span class="live-chip">k3s</span>
-              <span class="live-chip">GraphQL</span>
-              <span class="live-chip">noVNC</span>
-            </div>
-            <span class="live-url">
-              linkedout.meredianandco.com
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            </span>
-          </a>
-        </div>
-
-        <hr class="frontend-divider" />
+        <p class="section-sub" style="margin-bottom:var(--space-6);">Sites live for real brands, and systems running real traffic. Every one of these opens.</p>
 
         <p class="prod-label">Live frontend work</p>
         <ul class="frontend-grid">
@@ -202,6 +138,70 @@
             </a>
           </li>
         </ul>
+
+        <hr class="frontend-divider" />
+
+        <p class="prod-label">Meridian &amp; Co — platform</p>
+        <a class="live-card clay platform-card rise" href="https://acrm.meredianandco.com" target="_blank" rel="noopener noreferrer">
+          <p class="live-name">ACRM<span class="live-name-sub">Control plane — the only thing anyone logs into</span></p>
+          <p class="live-desc">
+            The multi-tenant product itself: Console for callers, Floor for managers and owners, Exchange for the platform operator.
+            NestJS and React Router v7 over Supabase/Postgres with row-level security, on ECS. Leads, campaigns, questionnaires,
+            diary, reporting, billing and audit, with per-organisation isolation and self-serve signup — plus the commercial layer
+            the engines have no concept of: DID allocation, per-tenant quotas, metering and suspension.
+          </p>
+          <div class="live-chips">
+            <span class="live-chip">NestJS</span>
+            <span class="live-chip">React Router v7</span>
+            <span class="live-chip">Supabase · RLS</span>
+            <span class="live-chip">ECS</span>
+            <span class="live-chip">Multi-tenant</span>
+          </div>
+          <span class="live-url">
+            acrm.meredianandco.com
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+          </span>
+        </a>
+
+        <p class="prod-label">Engines it drives</p>
+        <div class="engine-grid">
+          <a class="live-card clay-sunken engine-card rise" style="--i:1;" href="https://dialer.meredianandco.com" target="_blank" rel="noopener noreferrer">
+            <p class="live-name">weZero Dialer<span class="live-name-sub">Telephony engine</span></p>
+            <p class="live-desc">
+              Elixir/Phoenix on top of FreeSWITCH: carrier trunks, DID number pools, campaigns and agent shifts, with an in-browser
+              WebRTC handset so a caller works from the web rather than a desk phone. Deploys are manual and gated on purpose —
+              a deploy ends every shift and stops every campaign.
+            </p>
+            <div class="live-chips">
+              <span class="live-chip">Elixir/Phoenix</span>
+              <span class="live-chip">FreeSWITCH</span>
+              <span class="live-chip">WebRTC</span>
+            </div>
+            <span class="live-url">
+              dialer.meredianandco.com
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </span>
+          </a>
+
+          <a class="live-card clay-sunken engine-card rise" style="--i:2;" href="https://linkedout.meredianandco.com" target="_blank" rel="noopener noreferrer">
+            <p class="live-name">LinkedOut<span class="live-name-sub">Outreach engine</span></p>
+            <p class="live-desc">
+              A NestJS API over a worker fleet on k3s — one StatefulSet per connected account, pairing a browser worker with a noVNC
+              container so sign-in challenges can be co-browsed by a human. Profile views, connections, messages, campaigns, warmup
+              schedules, and a proxy pool that keeps every account on a stable residential IP.
+            </p>
+            <div class="live-chips">
+              <span class="live-chip">NestJS</span>
+              <span class="live-chip">k3s</span>
+              <span class="live-chip">GraphQL</span>
+              <span class="live-chip">noVNC</span>
+            </div>
+            <span class="live-url">
+              linkedout.meredianandco.com
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
