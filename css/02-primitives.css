@@ -238,8 +238,15 @@
    ============================================================ */
 @media (forced-colors: active) {
   .btn,
-  .icon-btn {
+  .icon-btn,
+  .header-contact,
+  .project-preview,
+  .repo-card,
+  .live-card,
+  .frontend-card {
+    /* No forced-color-adjust: the page must adopt the user's palette.
+       The border is what carries the control once the OS drops the
+       offset, so it is restated here rather than relied upon. */
     border: var(--bq-rule-mid) solid ButtonBorder;
-    forced-color-adjust: none;
   }
 }

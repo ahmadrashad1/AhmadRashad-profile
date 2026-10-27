@@ -22,6 +22,9 @@ const VIEWPORTS = [
   { w: 1440, h: 900, name: "desktop" },
   { w: 820, h: 1000, name: "tablet" },
   { w: 390, h: 844, name: "mobile" },
+  // A real forced-colors context. Inferring this from a normal one is how the
+  // first version of the assertion stayed green with the media block deleted.
+  { w: 1440, h: 900, name: "forced-colors", forcedColors: "active" },
 ];
 
 /* The eight palette values, spec p.05. Everything the browser computes must
@@ -187,6 +190,21 @@ const IN_PAGE = (paletteKeys) => {
     }
   }
 
+  // --- focusRingSquare: the ring must be square, 3px blue, 2px offset.
+  // The clay build rounded :focus-visible to match rounded components; a
+  // leftover radius renders soft corners against hard ones. (spec p.23)
+  const focusable = document.querySelector("a[href], button");
+  if (focusable) {
+    focusable.focus();
+    const fs = getComputedStyle(focusable);
+    if (fs.outlineStyle !== "none") {
+      if (parseFloat(fs.outlineWidth) !== 3) add("focusRingSquare", focusable, `outline-width ${fs.outlineWidth}`);
+      if (parseFloat(fs.outlineOffset) !== 2) add("focusRingSquare", focusable, `outline-offset ${fs.outlineOffset}`);
+      if (parseFloat(fs.borderTopLeftRadius) !== 0) add("focusRingSquare", focusable, `focus radius ${fs.borderTopLeftRadius}`);
+    }
+    focusable.blur();
+  }
+
   // --- noClayToken: the old custom properties must be gone
   const rootCS = getComputedStyle(document.documentElement);
   for (const name of ["--clay-dark", "--clay-light", "--clay-dark-soft",
@@ -214,7 +232,10 @@ const violations = [];
 
 for (const page of PAGES) {
   for (const vp of VIEWPORTS) {
-    const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h } });
+    const ctx = await browser.newContext({
+      viewport: { width: vp.w, height: vp.h },
+      ...(vp.forcedColors ? { forcedColors: vp.forcedColors } : {}),
+    });
     const p = await ctx.newPage();
     await p.goto(`http://127.0.0.1:${port}/${page}`, { waitUntil: "networkidle" });
     // walk the page so reveal-on-scroll elements are in their settled state
@@ -226,8 +247,23 @@ for (const page of PAGES) {
     await p.evaluate(() => window.scrollTo(0, 0));
     await p.waitForTimeout(400);
 
+    // Open both sheet types so their contents are actually sampled. Without
+    // this, paletteOnly/contrastAA/noRadius/targetSize all stop at the dialog
+    // boundary -- proven by injecting red small text into .contact-heading and
+    // still getting a clean run.
+    await p.evaluate(() => {
+      document.querySelectorAll("#contact, .project-sheet").forEach((d) => {
+        try { if (!d.matches(":modal")) { d.close(); d.showModal(); } } catch {}
+      });
+    });
+    await p.waitForTimeout(700);
+
     for (const v of await p.evaluate(IN_PAGE, Object.keys(PALETTE))) {
+      // Under forced colors the OS owns every colour, so palette and contrast
+      // assertions do not apply; structural ones still do.
+      if (vp.forcedColors && ["paletteOnly", "__contrast", "visibleDecoration"].includes(v.rule)) continue;
       if (v.rule === "__contrast") {
+        if (only && only !== "contrastAA") continue;
         const ratio = contrastRatio(v.fg, v.bg);
         const floor = v.large ? 3 : 4.5;
         if (ratio < floor) {
@@ -250,7 +286,7 @@ const byRule = {};
 for (const v of violations) (byRule[v.rule] ??= []).push(v);
 
 if (violations.length === 0) {
-  console.log("PASS — all assertions clean across 2 pages x 3 viewports");
+  console.log(`PASS — all assertions clean across ${PAGES.length} pages x ${VIEWPORTS.length} contexts`);
   process.exit(0);
 }
 

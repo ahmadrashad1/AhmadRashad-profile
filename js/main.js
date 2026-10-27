@@ -25,6 +25,16 @@
     contactSheet.style.setProperty("--sheet-panel-height", `${height}px`);
   }
 
+  // The panel's height changes with the viewport (its padding steps down at
+  // two breakpoints), so a sheet that is already open must re-measure. Without
+  // this, rotating a phone with the sheet open leaves the bird on a stale
+  // offset and drops it onto the heading.
+  if (contactSheet) {
+    window.addEventListener("resize", () => {
+      if (contactSheet.open) alignBirdToPanel();
+    });
+  }
+
   if (contactCta && contactSheet) {
     contactCta.addEventListener("click", () => {
       contactSheet.showModal();
@@ -196,7 +206,12 @@
       .catch((err) => {
         console.error("Could not load repo data:", err);
         reposGrid.innerHTML =
-          '<li class="repo-card clay"><p class="repo-desc">Couldn’t load projects right now — please check back shortly.</p></li>';
+          '<li class="repo-card"><p class="repo-desc">Couldn’t load projects right now — please check back shortly.</p></li>';
+        // Revealed directly rather than via the observer: the card is created
+        // after observeCards() ran, and it sits below the fold, so an
+        // observer-driven reveal would hide the error until the user scrolled
+        // to it -- which is exactly when they would not.
+        reposGrid.querySelector(".repo-card")?.classList.add("is-visible");
       });
   }
 
@@ -240,7 +255,7 @@
       if (repo.language) {
         const langChip = node.querySelector(".lang-chip");
         langChip.hidden = false;
-        langChip.querySelector(".lang-dot").style.background = repo.languageColor || "var(--muted)";
+        langChip.querySelector(".lang-dot").style.background = repo.languageColor || "var(--bq-ink-soft)";
         langChip.querySelector(".lang-name").textContent = repo.language;
       } else {
         node.querySelector(".lang-chip").remove();
@@ -397,7 +412,7 @@
     workBird &&
     featuredProjects.length > 1 &&
     !reduceMotion &&
-    window.matchMedia("(min-width: 1440px)").matches
+    window.matchMedia("(min-width: 1440px) and (min-height: 761px)").matches
   ) {
     const TRAVEL_TOP_VH = 12;
     const TRAVEL_BOTTOM_VH = 88;

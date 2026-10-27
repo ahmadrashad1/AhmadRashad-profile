@@ -375,8 +375,16 @@
    ============================================================ */
 .featured-project { padding-block: var(--bq-6); }
 
-.featured-project-grid {
+/* Never set `display` on an element that is itself a <dialog>: an author
+   display beats the UA `dialog:not([open]){display:none}` and a closed sheet
+   renders in flow. Scoped to non-dialogs, plus [open] dialogs below. */
+.featured-project-grid:not(dialog) {
   display: flex;
+  flex-direction: column;
+  gap: var(--bq-4);
+}
+
+dialog.featured-project-grid[open]:not(:modal) {
   flex-direction: column;
   gap: var(--bq-4);
 }
@@ -385,7 +393,8 @@
 .project-info  { order: 2; display: flex; flex-direction: column; gap: var(--bq-2); }
 
 @media (min-width: 860px) {
-  .featured-project-grid {
+  .featured-project-grid:not(dialog),
+  dialog.featured-project-grid[open]:not(:modal) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--bq-5);
@@ -484,6 +493,22 @@
   background: var(--bq-yellow);
 }
 
+/* Forced colors collapses every fill to the user's palette, which would
+   leave idle and active dots identical. A border on the idle dot and a
+   solid active one keep them distinguishable by shape, not just colour. */
+@media (forced-colors: active) {
+  .slideshow-dots .dot::before {
+    background: Canvas;
+    border: 2px solid CanvasText;
+  }
+  /* The active dot is twice as wide. Width is the differentiator that
+     survives any palette -- two system colours can resolve identically. */
+  .slideshow-dots .dot.is-active::before {
+    background: CanvasText;
+    border-color: CanvasText;
+  }
+}
+
 /* --- mobile collapsed preview --- */
 .project-preview {
   display: none;
@@ -513,11 +538,10 @@
 
 .project-preview-expand {
   display: inline-block;
-  padding: 0 var(--bq-3) var(--bq-3);
-  font-family: var(--bq-mono);
-  font-size: var(--bq-label);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin: 0 var(--bq-3) var(--bq-3);
   color: var(--bq-blue);
 }
 
@@ -615,7 +639,7 @@
   background: transparent;
   color: var(--bq-ink);
   overflow: visible;
-  transition: display allow-discrete, overlay allow-discrete;
+  transition: display 420ms allow-discrete, overlay 420ms allow-discrete;
 }
 
 .contact-sheet::backdrop {
@@ -744,6 +768,19 @@
 }
 
 /* Close: 44px square, red fill (spec p.15) */
+.project-sheet-close { display: none; }
+
+.project-sheet:modal .project-sheet-close {
+  display: inline-flex;
+  z-index: 4;   /* above .slideshow-dots and .slideshow-visit-hint */
+}
+
+/* Both close buttons share .sheet-close, so this must be scoped: an
+   unscoped rule re-showed the three project-sheet buttons on desktop. */
+.contact-sheet .sheet-close {
+  display: inline-flex;
+}
+
 .sheet-close,
 .project-sheet-close {
   position: absolute;
@@ -751,7 +788,6 @@
   right: var(--bq-2);
   width: 44px;
   height: 44px;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--bq-red);
@@ -765,10 +801,25 @@
 .project-sheet-close svg { width: 18px; height: 18px; }
 
 .copy-tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  translate: -50% 0;
+  white-space: nowrap;
+  padding: 0.2rem 0.5rem;
+  background: var(--bq-ink);
+  color: var(--bq-paper);
   font-family: var(--bq-mono);
   font-size: var(--bq-label);
-  color: var(--bq-ink-soft);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--bq-dur-hover) var(--bq-ease);
 }
+
+.copied .copy-tip { opacity: 1; }
+
+.icon-btn.copied,
+.credential-copy.copied { background: var(--bq-yellow); color: var(--bq-ink); }
 
 /* ============================================================
    Project sheet — same markup serves desktop block and mobile modal
@@ -783,12 +834,16 @@
   width: auto;
   transform: translateY(100%);
   transition: transform var(--bq-dur-rise) var(--bq-ease),
-              display allow-discrete,
-              overlay allow-discrete;
+              display var(--bq-dur-rise) allow-discrete,
+              overlay var(--bq-dur-rise) allow-discrete;
 }
 
 /* An open-attribute dialog (not showModal) is an ordinary in-flow block:
-   no backdrop, no top layer. Desktop keeps the grid it always had. */
+   no backdrop, no top layer. Desktop keeps the grid it always had.
+   `display` is only ever set on [open]: an author-origin display on the
+   dialog itself overrides the UA `dialog:not([open]){display:none}` and a
+   closed sheet renders in flow -- which collapsed the whole mobile
+   preview mechanism. */
 .project-sheet[open]:not(:modal) {
   position: static;
   display: flex;
@@ -869,4 +924,20 @@
 @media (max-height: 760px) {
   .sheet-panel { padding: var(--bq-3) var(--bq-3) var(--bq-3); }
   .contact-bird { --bq-bird-sink: 16px; }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer {
+  text-align: center;
+  padding-block: var(--bq-4) var(--bq-5);
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+  margin-top: var(--bq-5);
+  border-top: var(--bq-rule-bold) solid var(--bq-ink);
+  color: var(--bq-ink-soft);
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
