@@ -16,6 +16,18 @@
   overflow: hidden;
 }
 
+/* Hero background art (index.html only). Source is 736x552 -- `contain`
+   rather than `cover` so the illustration is never upscaled past what the
+   file actually holds; at typical widescreen ratios the height is the
+   binding axis, so it still fills edge to edge vertically with the
+   letterboxing landing left/right, behind the tile columns. */
+.screen {
+  background-image: url("../images/inspiration.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+}
+
 .hero-stack {
   position: relative;
   z-index: var(--z-content);
@@ -24,6 +36,17 @@
   align-items: center;
   text-align: center;
   gap: var(--bq-3);
+  /* The background art's building facade sits right where this content
+     lands at typical widescreen ratios, and the striped/dark areas drop
+     the eyebrow and tagline well below AA. An opaque plaque -- not a
+     blur, not translucency -- is the flat, in-system fix: it reads as
+     another card, the same bordered/offset language as everything else
+     on the page, rather than a hack to hide the art. */
+  background: var(--bq-paper);
+  border: var(--bq-rule-mid) solid var(--bq-ink);
+  padding: var(--bq-5) var(--bq-6);
+  box-shadow: var(--bq-offset-float) var(--bq-offset-float) 0 var(--bq-ink);
+  max-width: min(640px, 90vw);
 }
 
 /* Spec p.20 asks for a red eyebrow; spec p.23 forbids red on small text
