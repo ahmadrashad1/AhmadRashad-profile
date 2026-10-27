@@ -242,8 +242,12 @@
 
   .tile-column .bq-shape { width: 44px; height: 44px; }
 
-  /* only the first tile of each column survives at this size */
-  .tile-column .bq-shape:nth-child(n + 2) { display: none; }
+  /* One tile per column survives. Pick them explicitly by index rather than
+     taking the first child -- document order put a paper tile at the head of
+     the right column, which rendered an invisible square on paper. */
+  .tile-column .bq-shape { display: none; }
+  .tile-column-left  .bq-shape:nth-child(1) { display: block; }  /* red quarter */
+  .tile-column-right .bq-shape:nth-child(3) { display: block; }  /* yellow half */
 
   .tile-column-left  { top: 4vh; left: 6vw; bottom: auto; }
   .tile-column-right { bottom: 4vh; right: 6vw; top: auto; }

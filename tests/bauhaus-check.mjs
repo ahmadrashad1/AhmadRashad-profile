@@ -150,6 +150,27 @@ const IN_PAGE = (paletteKeys) => {
     }
   }
 
+  // --- visibleDecoration: spec p.10 deliberately leaves roughly one cell in
+  // four as paper -- that is negative space, not a bug. But a column reduced
+  // to a SINGLE tile (the tall-phone tier) rendering that one tile in a paper
+  // tone draws an invisible square and nothing else. Document order put a
+  // paper tile at the head of the right column once already.
+  const PAPERS = ["rgb(239, 231, 215)", "rgb(247, 242, 231)", "rgb(226, 215, 194)"];
+  for (const col of document.querySelectorAll(".tile-column")) {
+    const shown = [...col.children].filter(visible);
+    if (shown.length !== 1) continue;
+    const fill = getComputedStyle(shown[0]).backgroundColor;
+    let anc = shown[0].parentElement, ground = "rgba(0, 0, 0, 0)";
+    while (anc) {
+      const c = getComputedStyle(anc).backgroundColor;
+      if (c && c !== "rgba(0, 0, 0, 0)" && !c.endsWith(", 0)")) { ground = c; break; }
+      anc = anc.parentElement;
+    }
+    if (PAPERS.includes(fill) && PAPERS.includes(ground)) {
+      add("visibleDecoration", col, `lone tile ${fill} on ${ground} — invisible`);
+    }
+  }
+
   // --- forcedColors: Windows High Contrast strips box-shadow, which is this
   // system's only depth cue. A button must still read as a button from its
   // border alone. (Review Focus 1)
