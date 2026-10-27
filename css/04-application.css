@@ -223,6 +223,32 @@
   .tile-column { display: none; }
 }
 
+/* Tall portrait phones only. On a phone the centered hero leaves almost no
+   SIDE margin, but the compaction above frees real vertical slack above and
+   below the stack -- measured, not assumed, since intuition says "no room"
+   and is wrong about which axis. Two tiles go in that vertical space,
+   replacing the clay build's two-icon tier. Landscape phones are
+   deliberately excluded: they have side margin and no vertical slack, the
+   opposite shape, and would need their own treatment. (spec p.22) */
+@media (max-width: 600px) and (min-height: 600px) {
+  .tile-column {
+    display: grid;
+    grid-template-columns: 44px;
+    grid-auto-rows: 44px;
+    align-content: start;
+    top: auto;
+    bottom: auto;
+  }
+
+  .tile-column .bq-shape { width: 44px; height: 44px; }
+
+  /* only the first tile of each column survives at this size */
+  .tile-column .bq-shape:nth-child(n + 2) { display: none; }
+
+  .tile-column-left  { top: 4vh; left: 6vw; bottom: auto; }
+  .tile-column-right { bottom: 4vh; right: 6vw; top: auto; }
+}
+
 /* ============================================================
    The bird (spec p.18)
    Circle body, half-circle wing, triangle beak, quarter-circle tail.
