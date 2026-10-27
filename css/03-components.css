@@ -593,3 +593,280 @@
 @keyframes bq-rise-in {
   to { opacity: 1; translate: 0 0; }
 }
+
+/* ============================================================
+   Dialogs and bottom sheets (spec p.15)
+   The mechanism is kept entirely: native <dialog>, top-layer render,
+   focus trap, allow-discrete on BOTH display and overlay, the 110px
+   drag threshold, the close-event transform reset. Only the skin changes.
+   ============================================================ */
+
+/* The <dialog> stays transform-free and full-viewport, or it becomes a
+   containing block for position:fixed descendants and traps the bird in
+   its own moving coordinate space. All visible styling lives on the panel. */
+.contact-sheet {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  background: transparent;
+  color: var(--bq-ink);
+  overflow: visible;
+  transition: display allow-discrete, overlay allow-discrete;
+}
+
+.contact-sheet::backdrop {
+  background: rgba(21, 22, 26, 0.55);   /* ink @ 55%, no blur (spec p.15) */
+}
+
+.contact-sheet:not([open]) { display: none; }
+
+.sheet-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-inline: auto;
+  width: min(560px, 100%);
+  max-height: 80dvh;
+  overflow-y: auto;
+  background: var(--bq-paper-lift);
+  border: var(--bq-rule-mid) solid var(--bq-ink);
+  border-radius: 0;
+  box-shadow: var(--bq-offset-float) var(--bq-offset-float) 0 var(--bq-ink);
+  padding: var(--bq-5) var(--bq-4) var(--bq-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--bq-3);
+  transform: translateY(100%);
+  transition: transform var(--bq-dur-rise) var(--bq-ease);
+}
+
+.contact-sheet[open] .sheet-panel {
+  animation: bq-sheet-rise 620ms var(--bq-ease) forwards;
+}
+
+/* Two-phase rise: the panel holds off-screen while the bird flies up, then
+   the two "arrive" together — the bird reads as pulling the sheet into view. */
+@keyframes bq-sheet-rise {
+  0%, 36% { transform: translateY(100%); }
+  100%    { transform: translateY(0); }
+}
+
+/* How deep the bird sinks into the panel's top edge. It must be at least a
+   few px (a bird hovering above the card reads as a mascot standing nearby,
+   not as something gripping it) and never more than the panel's own top
+   padding, or it collides with the heading. Verified by measured rect in
+   tests/bird-overlap.test.mjs, not by eye. */
+.contact-bird {
+  --bq-bird-sink: 28px;
+  position: fixed;
+  left: 50%;
+  translate: -50% 0;
+  bottom: calc(var(--sheet-panel-height, 320px) - var(--bq-bird-sink));
+  width: 96px;
+  height: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.contact-sheet[open] .contact-bird {
+  animation: bq-bird-fly 620ms var(--bq-ease) backwards;
+}
+
+@keyframes bq-bird-fly {
+  0%   { transform: translateY(70vh); opacity: 0; }
+  40%  { opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.contact-heading {
+  font-size: var(--bq-h2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  padding-bottom: var(--bq-2);
+  border-bottom: var(--bq-rule-thin) solid var(--bq-ink);
+}
+
+.contact-row,
+.contact-link-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--bq-2);
+}
+
+.email-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bq-1);
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  font-family: var(--bq-mono);
+  font-size: var(--bq-value);
+  background: var(--bq-paper);
+  border: var(--bq-rule-thin) solid var(--bq-ink);
+  color: var(--bq-ink);
+}
+
+.email-pill svg { width: 16px; height: 16px; }
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bq-1);
+  min-height: 44px;
+  font-family: var(--bq-mono);
+  font-size: var(--bq-value);
+  font-weight: 600;
+  color: var(--bq-blue);
+}
+
+.contact-link svg { width: 16px; height: 16px; }
+
+.contact-divider {
+  height: var(--bq-rule-thin);
+  background: var(--bq-ink);
+  color: var(--bq-ink);
+  border: 0;
+  margin: 0;
+}
+
+.contact-copyright {
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bq-ink-soft);
+}
+
+/* Close: 44px square, red fill (spec p.15) */
+.sheet-close,
+.project-sheet-close {
+  position: absolute;
+  top: var(--bq-2);
+  right: var(--bq-2);
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bq-red);
+  color: var(--bq-white);
+  border: var(--bq-rule-thin) solid var(--bq-ink);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.sheet-close svg,
+.project-sheet-close svg { width: 18px; height: 18px; }
+
+.copy-tip {
+  font-family: var(--bq-mono);
+  font-size: var(--bq-label);
+  color: var(--bq-ink-soft);
+}
+
+/* ============================================================
+   Project sheet — same markup serves desktop block and mobile modal
+   ============================================================ */
+.project-sheet {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--bq-ink);
+  max-width: none;
+  width: auto;
+  transform: translateY(100%);
+  transition: transform var(--bq-dur-rise) var(--bq-ease),
+              display allow-discrete,
+              overlay allow-discrete;
+}
+
+/* An open-attribute dialog (not showModal) is an ordinary in-flow block:
+   no backdrop, no top layer. Desktop keeps the grid it always had. */
+.project-sheet[open]:not(:modal) {
+  position: static;
+  display: flex;
+  transform: none;
+  width: auto;
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (min-width: 860px) {
+  .project-sheet[open]:not(:modal) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--bq-5);
+    align-items: center;
+  }
+}
+
+.project-sheet:modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  width: 100%;
+  max-width: 100%;
+  max-height: 85dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bq-3);
+  background: var(--bq-paper-lift);
+  border: var(--bq-rule-mid) solid var(--bq-ink);
+  border-radius: 0;
+  padding: var(--bq-3);
+  transform: translateY(0);
+  animation: bq-project-rise var(--bq-dur-rise) var(--bq-ease);
+}
+
+@keyframes bq-project-rise {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.project-sheet:modal::backdrop {
+  background: rgba(21, 22, 26, 0.55);
+}
+
+.project-sheet.is-dragging { transition: none; }
+
+/* Drag handle: a 64x6 ink bar, radius 0 (spec p.15) */
+.sheet-drag-handle {
+  display: none;
+  width: 64px;
+  height: 6px;
+  flex: 0 0 auto;
+  margin: 0 auto;
+  padding: 0;
+  background: var(--bq-ink);
+  border: 0;
+  border-radius: 0;
+  cursor: grab;
+  touch-action: none;
+}
+
+.project-sheet:modal .sheet-drag-handle { display: block; }
+
+/* Safety net: hide the statically-open dialog for the brief window before
+   main.js closes it on mobile, so the phone never flashes desktop content. */
+@media (max-width: 640px) {
+  .project-sheet[open]:not(:modal) { display: none; }
+  .project-preview { display: block; }
+  .sheet-panel { padding: var(--bq-4) var(--bq-3) var(--bq-3); }
+  .contact-bird { --bq-bird-sink: 20px; }
+}
+
+@media (max-height: 760px) {
+  .sheet-panel { padding: var(--bq-3) var(--bq-3) var(--bq-3); }
+  .contact-bird { --bq-bird-sink: 16px; }
+}
