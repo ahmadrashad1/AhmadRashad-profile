@@ -14,6 +14,7 @@ import { chromium } from "/home/ahmadrashad/.local/share/pnpm/global/5/.pnpm/pla
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
+import { contrastRatio } from "./contrast.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 const PAGES = ["index.html", "work.html"];
@@ -66,11 +67,11 @@ function serve() {
 
 const IN_PAGE = (paletteKeys) => {
   const out = [];
+  const sel = (el) => (el === document.documentElement ? ":root"
+    : (el.tagName || "?").toLowerCase() + (el.className && typeof el.className === "string"
+      ? "." + el.className.trim().split(/\s+/).slice(0, 2).join(".") : "")).slice(0, 54);
   const add = (rule, el, actual) => {
-    const sel = el === document.documentElement ? ":root"
-      : (el.tagName || "?").toLowerCase() + (el.className && typeof el.className === "string"
-        ? "." + el.className.trim().split(/\s+/).slice(0, 2).join(".") : "");
-    out.push({ rule, selector: sel.slice(0, 54), actual: String(actual).slice(0, 72) });
+    out.push({ rule, selector: sel(el), actual: String(actual).slice(0, 72) });
   };
 
   const all = [document.documentElement, ...document.querySelectorAll("*")]
@@ -122,6 +123,23 @@ const IN_PAGE = (paletteKeys) => {
       }
     }
 
+    // --- contrastAA: text must clear 4.5:1, or 3:1 when large (spec p.05/p.23).
+    // Red on paper is 3.79:1, so a paragraph that inherits red is a violation.
+    const ownText = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1);
+    if (ownText) {
+      let bgEl = el, bg = "rgba(0, 0, 0, 0)";
+      while (bgEl) {
+        const c = getComputedStyle(bgEl).backgroundColor;
+        if (c && c !== "rgba(0, 0, 0, 0)" && !c.endsWith(", 0)")) { bg = c; break; }
+        bgEl = bgEl.parentElement;
+      }
+      const size = parseFloat(cs.fontSize);
+      const weight = parseInt(cs.fontWeight, 10) || 400;
+      const large = size >= 24 || (size >= 18.66 && weight >= 700);
+      out.push({ rule: "__contrast", selector: sel(el), fg: cs.color, bg, large,
+                 size: Math.round(size) });
+    }
+
     // --- targetSize: interactive elements >= 44x44 (spec p.23)
     if (["A", "BUTTON"].includes(el.tagName) && cs.display !== "inline") {
       const r = el.getBoundingClientRect();
@@ -171,6 +189,15 @@ for (const page of PAGES) {
     await p.waitForTimeout(400);
 
     for (const v of await p.evaluate(IN_PAGE, Object.keys(PALETTE))) {
+      if (v.rule === "__contrast") {
+        const ratio = contrastRatio(v.fg, v.bg);
+        const floor = v.large ? 3 : 4.5;
+        if (ratio < floor) {
+          violations.push({ page, viewport: vp.name, rule: "contrastAA", selector: v.selector,
+            actual: `${ratio.toFixed(2)}:1 < ${floor} (${v.size}px ${v.fg} on ${v.bg})` });
+        }
+        continue;
+      }
       if (only && v.rule !== only) continue;
       violations.push({ page, viewport: vp.name, ...v });
     }
