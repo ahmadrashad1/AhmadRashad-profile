@@ -149,6 +149,22 @@ const IN_PAGE = (paletteKeys) => {
     }
   }
 
+  // --- forcedColors: Windows High Contrast strips box-shadow, which is this
+  // system's only depth cue. A button must still read as a button from its
+  // border alone. (Review Focus 1)
+  // Scoped to controls that carry an offset: those are the ones whose only
+  // depth cue the OS removes. A flat indicator (a slideshow dot) has no depth
+  // to lose and is not claimed by Review Focus 1.
+  for (const btn of document.querySelectorAll(".btn, .icon-btn, button, [role='button']")) {
+    if (!visible(btn)) continue;
+    const bs = getComputedStyle(btn);
+    const carriesOffset = bs.boxShadow && bs.boxShadow !== "none";
+    if (!carriesOffset) continue;
+    if (parseFloat(bs.borderTopWidth) < 2 || bs.borderTopStyle === "none") {
+      add("forcedColors", btn, `offset without border: ${bs.borderTopWidth} ${bs.borderTopStyle} — needs >=2px solid`);
+    }
+  }
+
   // --- noClayToken: the old custom properties must be gone
   const rootCS = getComputedStyle(document.documentElement);
   for (const name of ["--clay-dark", "--clay-light", "--clay-dark-soft",
